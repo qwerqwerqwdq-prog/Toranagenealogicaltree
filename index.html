@@ -1675,14 +1675,24 @@ body.reveal #hint{animation:fin 1.1s ease .65s both}
         <button class="cm-mode" id="cmModeAi"><b>Против стражей</b><i>Вы ведёте верблюда, стражами управляет игра</i></button>
         <button class="cm-mode" id="cmMode2p"><b>Двое за устройством</b><i>Один пасёт стражниками, второй — верблюдом</i></button>
       </div>
+      <div id="cmDiffWrap">
+        <div class="cm-sec">Сложность стражей</div>
+        <div class="cm-modes" id="cmDiffs">
+          <button class="cm-mode" data-diff="easy"><b>Пастухи</b><i>Зевают, бродят, часто выжидают</i></button>
+          <button class="cm-mode" data-diff="normal"><b>Дозор</b><i>Пасут аккуратно, режут свободу</i></button>
+          <button class="cm-mode" data-diff="hard"><b>Тень каравана</b><i>Считает ответ верблюда на ход вперёд</i></button>
+        </div>
+      </div>
       <details class="cm-rules">
         <summary>Правила — коротко</summary>
         <ul>
           <li><b>Фигуры.</b> Верблюд против трёх стражников. За ход двигается одна фигура: верблюд — сам, у стражников — любой один.</li>
           <li><b>Ход.</b> На 1–2 клетки в любую из восьми сторон. Сквозь камни и фигуры ходить нельзя.</li>
+          <li><b>Наискосок нельзя.</b> Диагональный ход закрыт, если обе «угловые» клетки заняты: протиснуться между двумя фигурами (или камнями) по диагонали не выйдет. Мимо одинокой фигуры — по-прежнему можно.</li>
           <li><b>Пойман.</b> Верблюд в начале хода не может ступить — или сам закончил движение вплотную к стражнику (соседняя клетка, диагонали считаются). Пройти мимо стражников по пути — можно; стражник, сам подошедший вплотную, верблюда не ловит.</li>
           <li><b>Второе дыхание.</b> У верблюда три «бака» дыхания (❂❂❂), со старта они пусты (0 из 3). Каждые 20 ходов верблюда один бак наполняется сам; съеденный кактус даёт заряд сразу. Потратьте заряд — верблюд делает два рывка за один ход, но затем пропускает ход. <b>Рывки неуловимы:</b> шаг даже вплотную к стражнику во время дыхания не считается поимкой — такие клетки в этот ход подсвечены зелёным.</li>
           <li><b>Кактусы.</b> Клетки кактусов выпадают кубиками «высота × ширина», бросает игрок верблюда. Съеденный плод — заряд дыхания. Стражник, встав на кактус, ломает его.</li>
+          <li><b>Стражи-ИИ.</b> Три повадки: Пастухи — зевают и бродят; Дозор — пасут аккуратно; Тень каравана — просчитывает ответ верблюда на ход вперёд. Рекорды у каждой сложности свои.</li>
           <li><b>Счёт.</b> Сколько ходов продержался верблюд. Первый ход — за верблюдом; стражник может пропустить ход.</li>
         </ul>
       </details>
@@ -7202,12 +7212,15 @@ function bindHooks(){
 /*__CM_GAME__*/
 /* ═══════════ 8. ИГРА «ВЕРБЛЮД И СТРАЖНИКИ» (F21) ═══════════
    Народная игра зверолюдей: один верблюд против трёх стражников.
-   Ходы на 1–2 клетки по восьми сторонам; верблюд пойман, если
-   заперт или сам подошёл к стражнику в упор — но во время рывков
+   Ходы на 1–2 клетки по восьми сторонам, но наискосок между
+   двумя преградами протиснуться нельзя (диагональ закрыта,
+   если обе «угловые» клетки заняты). Верблюд пойман, если заперт
+   или сам подошёл к стражнику в упор — но во время рывков
    второго дыхания упор не считается: рывок неуловим. Второе
    дыхание: старт без зарядов (0 из 3), один бак наполняется
    каждые 20 ходов верблюда либо съеденным кактусом. Кактусы
-   ставятся кубиками, поля с преградами. Счёт — число ходов.   */
+   ставятся кубиками, поля с преградами. ИИ стражей — три
+   сложности: Пастухи / Дозор / Тень каравана. Счёт — число ходов. */
 
 var CM_MAPS = [
   { id:'oasis', name:'Оазис', sub:'7×7 · ровное малое поле', cols:7, rows:7, cacti:2, zone:2, rocks:[] },
@@ -7261,15 +7274,18 @@ var CM_DIRS = [[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]];
 
 var G = null;          /* текущая партия */
 var CM_GEN = 0;        /* поколение партии — гасит отложенные ходы ИИ */
-var CM_LAST = { map:'oasis', mode:'ai' };
+var CM_LAST = { map:'oasis', mode:'ai', diff:'normal' };
+var CM_DIFFS = { easy:'Пастухи', normal:'Дозор', hard:'Тень каравана' };
 var CM_TOK = {};
 
 /* ---- рекорды ---- */
-function cmBestKey(map, mode){ return map + '|' + mode; }
+function cmBestKey(map, mode){ return map + '|' + mode + (mode === 'ai' ? '|' + (CM_LAST.diff || 'normal') : ''); }
 function cmGetBest(map, mode){
   try{
     var d = JSON.parse(localStorage.getItem('robre_cm_best_v1') || '{}');
-    return d[cmBestKey(map, mode)] || 0;
+    var k = cmBestKey(map, mode);
+    if(mode === 'ai' && !d[k]) return d[map + '|' + mode] || 0; /* рекорды до деления на сложности */
+    return d[k] || 0;
   }catch(e){ return 0; }
 }
 function cmSetBest(map, mode, v){
@@ -7294,10 +7310,16 @@ function cmAdjGuardIn(x, y, guards){
   }
   return false;
 }
+function cmBlockFor(x, y, isCamel, guards){
+  if(cmIsRock(x, y)) return true;
+  for(var i = 0; i < guards.length; i++){ if(guards[i].x === x && guards[i].y === y) return true; }
+  return !isCamel && G.camel && G.camel.x === x && G.camel.y === y;
+}
 function cmMovesIn(x, y, isCamel, guards){
   var out = [], i, d, s, nx, ny;
   for(i = 0; i < 8; i++){
     d = CM_DIRS[i];
+    var diag = d[0] !== 0 && d[1] !== 0;
     for(s = 1; s <= 2; s++){
       nx = x + d[0] * s; ny = y + d[1] * s;
       if(!cmIn(nx, ny) || cmIsRock(nx, ny)) break;
@@ -7305,6 +7327,9 @@ function cmMovesIn(x, y, isCamel, guards){
       for(j = 0; j < guards.length; j++){ if(guards[j].x === nx && guards[j].y === ny){ blocked = true; break; } }
       if(blocked) break;
       if(!isCamel && G.camel && G.camel.x === nx && G.camel.y === ny) break;
+      /* наискосок между двумя преградами протиснуться нельзя */
+      if(diag && cmBlockFor(nx, y + d[1] * (s - 1), isCamel, guards) &&
+                 cmBlockFor(x + d[0] * (s - 1), ny, isCamel, guards)) break;
       out.push({ x:nx, y:ny });
     }
   }
@@ -7325,7 +7350,7 @@ function cmNewGame(mapId, mode){
   var map = null, i;
   for(i = 0; i < CM_MAPS.length; i++) if(CM_MAPS[i].id === mapId) map = CM_MAPS[i];
   if(!map) map = CM_MAPS[0];
-  CM_LAST = { map:map.id, mode:mode };
+  CM_LAST = { map:map.id, mode:mode, diff:(CM_LAST && CM_LAST.diff) || 'normal' };
   var oldG = G;
   G = {
     mapId:map.id, map:map, mode:mode, cols:map.cols, rows:map.rows,
@@ -7450,6 +7475,7 @@ function cmUpdateHud(hint){
   } else if(G.phase === 'play'){
     var isC = G.turn === 'C';
     h += '<span class="cm-chip ' + (isC ? 'turnC">Ход верблюда' : 'turnG">Ход стражников') + '</span>';
+    if(G.mode === 'ai') h += '<span class="cm-chip">Стражи: ' + (CM_DIFFS[CM_LAST.diff] || CM_DIFFS.normal) + '</span>';
     h += '<span class="cm-chip">Продержано: <b>' + G.turns + '</b></span>';
     var br = '', bi;
     for(bi = 0; bi < 3; bi++) br += bi < G.charges ? '❂' : '<i style="opacity:.28">❂</i>';
@@ -7528,12 +7554,13 @@ function cmStartPlacement(){
   }
 }
 function cmAiPlaceGuards(){
-  var fr = [0.2, 0.5, 0.8], i, dc, c, r, ok;
+  var hard = (CM_LAST.diff === 'hard');
+  var fr = hard ? [0.15, 0.5, 0.85] : [0.2, 0.5, 0.8], i, dc, c, r, ok;
   for(i = 0; i < 3; i++){
     r = Math.round(fr[i] * (G.rows - 1));
     ok = false;
     for(dc = 0; dc < G.map.zone && !ok; dc++){
-      c = G.cols - 1 - dc;
+      c = G.cols - 1 - (hard ? G.map.zone - 1 - dc : dc); /* Тень строит стену передним краем */
       if(cmFreeCell(c, r)){ G.guards[i] = { x:c, y:r }; ok = true; }
     }
     if(!ok){
@@ -7694,6 +7721,9 @@ function cmDoGuardMove(gi, c, r, human){
 }
 function cmAiMove(){
   if(!G || G.over) return;
+  var diff = CM_LAST.diff || 'normal';
+  if(diff === 'easy'){ cmAiEasy(); return; }
+  if(diff === 'hard'){ cmAiHard(); return; }
   var cands = [], i, j, mv;
   for(i = 0; i < G.guards.length; i++){
     mv = cmMoves(G.guards[i].x, G.guards[i].y, false);
@@ -7736,6 +7766,92 @@ function cmAiMove(){
   }
 }
 
+/* ИИ-стражи, лёгкий уровень: Пастухи */
+function cmAiEasy(){
+  var cands = [], i, j, mv;
+  for(i = 0; i < G.guards.length; i++){
+    mv = cmMoves(G.guards[i].x, G.guards[i].y, false);
+    for(j = 0; j < mv.length; j++) cands.push({ gi:i, x:mv[j].x, y:mv[j].y });
+  }
+  cands.push({ gi:-1 });
+  if(Math.random() < 0.22){ cmMsg('Стражи позевают — выжидают.'); G.turn = 'C'; cmTurnStart(); return; }
+  var cur = 99, k, dd;
+  for(k = 0; k < G.guards.length; k++){
+    dd = Math.max(Math.abs(G.guards[k].x - G.camel.x), Math.abs(G.guards[k].y - G.camel.y));
+    if(dd < cur) cur = dd;
+  }
+  var pool = [];
+  for(k = 0; k < cands.length; k++){
+    if(cands[k].gi < 0) continue;
+    dd = Math.max(Math.abs(cands[k].x - G.camel.x), Math.abs(cands[k].y - G.camel.y));
+    if(dd < cur) pool.push(cands[k]);
+  }
+  var pick = (pool.length && Math.random() < 0.75) ? pool[Math.floor(Math.random() * pool.length)]
+                                                   : cands[Math.floor(Math.random() * cands.length)];
+  if(pick.gi >= 0) cmDoGuardMove(pick.gi, pick.x, pick.y, false);
+  else { cmMsg('Стражи бродят без плана.'); G.turn = 'C'; cmTurnStart(); }
+}
+/* свобода верблюда в гипотетической позиции (для Тени каравана) */
+function cmCamelFreedom(cx, cy, gc){
+  var mvC = cmMovesIn(cx, cy, true, gc), k, safe = 0, cac = 0;
+  var windUp = G.charges > 0 || G.dbl;
+  for(k = 0; k < mvC.length; k++){
+    if(windUp || !cmAdjGuardIn(mvC[k].x, mvC[k].y, gc)) safe++;
+    if(G.cacti[cmKey(mvC[k].x, mvC[k].y)]) cac++;
+  }
+  var dmin = 99;
+  for(k = 0; k < gc.length; k++){
+    var dd = Math.max(Math.abs(gc[k].x - cx), Math.abs(gc[k].y - cy));
+    if(dd < dmin) dmin = dd;
+  }
+  return safe * 10 + cac * 4 + dmin * 1.2;
+}
+/* ИИ-стражи, тяжёлый уровень: Тень каравана — считает лучший ответ верблюда */
+function cmAiHard(){
+  var cands = [], i, j, mv;
+  for(i = 0; i < G.guards.length; i++){
+    mv = cmMoves(G.guards[i].x, G.guards[i].y, false);
+    for(j = 0; j < mv.length; j++) cands.push({ gi:i, x:mv[j].x, y:mv[j].y });
+  }
+  cands.push({ gi:-1 });
+  var best = null, bestS = -1e9;
+  cands.forEach(function(cd){
+    var gc = [], k, windUp = G.charges > 0 || G.dbl;
+    for(k = 0; k < G.guards.length; k++) gc.push({ x:G.guards[k].x, y:G.guards[k].y });
+    var broke = false;
+    if(cd.gi >= 0){
+      gc[cd.gi].x = cd.x; gc[cd.gi].y = cd.y;
+      broke = !!G.cacti[cmKey(cd.x, cd.y)];
+    }
+    var replies = cmMovesIn(G.camel.x, G.camel.y, true, gc);
+    if(!replies.length){ bestS = 1e9; best = cd; return; } /* заперт — брать! */
+    var live = [];
+    for(k = 0; k < replies.length; k++){
+      if(windUp || !cmAdjGuardIn(replies[k].x, replies[k].y, gc)) live.push(replies[k]);
+    }
+    var s;
+    if(!live.length){ s = 5e5; } /* любой ход верблюда — в упор */
+    else {
+      var worst = -1e9;
+      for(k = 0; k < live.length; k++){
+        var v = cmCamelFreedom(live[k].x, live[k].y, gc);
+        if(v > worst) worst = v;
+      }
+      s = -worst;
+    }
+    if(broke){
+      var near = Math.max(Math.abs(cd.x - G.camel.x), Math.abs(cd.y - G.camel.y)) <= 2;
+      s += near ? -6 : -16; /* кактус ломать только по делу */
+    }
+    if(cd.gi < 0) s -= 2.5;
+    s += Math.random() * 0.8;
+    if(s > bestS){ bestS = s; best = cd; }
+  });
+  if(!best){ G.turn = 'C'; cmTurnStart(); return; }
+  if(best.gi >= 0) cmDoGuardMove(best.gi, best.x, best.y, false);
+  else { cmMsg('Тень каравана ждёт ошибку.'); G.turn = 'C'; cmTurnStart(); }
+}
+
 /* ---- финал ---- */
 function cmGameOver(reason){
   if(!G || G.over) return;
@@ -7770,6 +7886,10 @@ function cmRenderSetup(){
   q('#cmMaps').innerHTML = ms;
   q('#cmModeAi').classList.toggle('on', CM_LAST.mode === 'ai');
   q('#cmMode2p').classList.toggle('on', CM_LAST.mode === '2p');
+  q('#cmDiffWrap').style.display = (CM_LAST.mode === '2p') ? 'none' : '';
+  q('#cmDiffs').querySelectorAll('.cm-mode').forEach(function(b){
+    b.classList.toggle('on', b.getAttribute('data-diff') === (CM_LAST.diff || 'normal'));
+  });
   q('#cmSetup').hidden = false;
   q('#cmTable').hidden = true;
 }
@@ -7789,6 +7909,12 @@ function cmBindUi(){
   });
   q('#cmModeAi').addEventListener('click', function(){ CM_LAST.mode = 'ai'; cmRenderSetup(); });
   q('#cmMode2p').addEventListener('click', function(){ CM_LAST.mode = '2p'; cmRenderSetup(); });
+  q('#cmDiffs').addEventListener('click', function(e){
+    var b = e.target.closest('[data-diff]');
+    if(!b) return;
+    CM_LAST.diff = b.getAttribute('data-diff');
+    cmRenderSetup();
+  });
   q('#cmStart').addEventListener('click', function(){ cmNewGame(CM_LAST.map, CM_LAST.mode); });
   q('#cmBoard').addEventListener('click', function(e){
     var el = e.target.closest('.cm-cel');
