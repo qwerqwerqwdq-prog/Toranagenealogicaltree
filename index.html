@@ -960,6 +960,179 @@ body.reveal #hint{animation:fin 1.1s ease .65s both}
   .in-mark-wrap,.in-title,.in-sub,.in-btn,.in-hint,.in-rune,.in-fog{animation:none}
 }
 /*__INTRO_CSS_END__*/
+/*__HUB_CSS__*/
+/* ═══════════ ЛЕТОПИСЬ ТОРАНА — ГЛАВНОЕ МЕНЮ (ХАБ) ═══════════ */
+#hub{position:fixed;inset:0;z-index:240;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  background:
+    radial-gradient(1100px 520px at 50% -8%, rgba(200,165,101,.13), transparent 62%),
+    radial-gradient(900px 600px at 50% 112%, rgba(200,165,101,.09), transparent 60%),
+    linear-gradient(180deg,#0d0b07,#14110c 46%,#0a0806);
+  opacity:0;pointer-events:none;transition:opacity .5s ease}
+#hub.open{opacity:1;pointer-events:auto}
+#hub::after{content:'';position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 180px rgba(0,0,0,.75)}
+.hub-glow{position:absolute;left:50%;top:50%;width:78vmin;height:78vmin;transform:translate(-50%,-50%);pointer-events:none;z-index:0;
+  background:radial-gradient(closest-side, rgba(200,165,101,.13), rgba(200,165,101,.04) 55%, transparent 72%);
+  animation:inBreathe 5.5s ease-in-out infinite}
+.hub-fog{position:absolute;width:130vmax;height:130vmax;border-radius:50%;pointer-events:none;z-index:0;opacity:.5;
+  background:radial-gradient(closest-side,rgba(200,165,101,.05),transparent 70%)}
+.hub-fog.f1{left:-38vmax;bottom:-48vmax;animation:inFog 21s ease-in-out infinite alternate}
+.hub-fog.f2{right:-42vmax;top:-46vmax;animation:inFog 31s ease-in-out infinite alternate-reverse}
+.hub-center{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:30px 20px calc(24px + var(--sab));max-width:660px;width:100%;max-height:100%;overflow-y:auto;overflow-x:hidden}
+.hub-mark{width:56px;height:56px;border:1.5px solid var(--accent);border-radius:10px;transform:rotate(45deg);display:grid;place-items:center;
+  box-shadow:0 0 30px rgba(200,165,101,.28),inset 0 0 16px rgba(200,165,101,.13);animation:inFloat 4s ease-in-out infinite}
+.hub-mark span{transform:rotate(-45deg);font-family:'Cormorant Garamond',serif;font-weight:700;font-size:29px;color:var(--accent);line-height:1}
+.hub-title{margin-top:24px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(22px,4.6vw,36px);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  background:linear-gradient(105deg,#e8dcb8 22%,#fff6dd 40%,#e2c387 52%,#e8dcb8 68%);background-size:240% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 2px 20px rgba(200,165,101,.3));animation:inSheen 6s ease-in-out 1s infinite}
+.hub-sub{margin-top:11px;font-size:clamp(8.5px,1.5vw,10.5px);letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--faint)}
+.hub-view{width:100%;display:flex;flex-direction:column;align-items:center}
+.hub-view[hidden]{display:none}
+.hub-view:not([hidden]){animation:inUp .5s cubic-bezier(.22,.8,.3,1) both}
+.hub-menu{margin-top:28px;display:flex;flex-direction:column;gap:11px;width:min(470px,100%)}
+.hub-btn{position:relative;display:flex;align-items:center;gap:15px;padding:13px 17px;cursor:pointer;text-align:left;overflow:hidden;
+  background:linear-gradient(160deg,rgba(200,165,101,.13),rgba(200,165,101,.035));
+  border:1px solid rgba(200,165,101,.42);border-radius:13px;color:#f0dfb2;
+  font-family:'Cormorant Garamond',serif;font-weight:700;font-size:17.5px;letter-spacing:.13em;text-transform:uppercase;
+  box-shadow:0 10px 26px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.09);
+  transition:border-color .3s ease,filter .3s ease;animation:inUp .8s cubic-bezier(.22,.8,.3,1) backwards}
+.hub-btn:nth-child(1){animation-delay:.10s}
+.hub-btn:nth-child(2){animation-delay:.19s}
+.hub-btn:nth-child(3){animation-delay:.28s}
+.hub-btn:nth-child(4){animation-delay:.37s}
+.hub-btn::before{content:'';position:absolute;top:-40%;bottom:-40%;left:-45%;width:32%;transform:rotate(18deg);pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(240,223,178,.13),transparent);animation:inShine 3.6s ease-in-out infinite}
+.hub-btn:nth-child(2)::before{animation-delay:.9s}
+.hub-btn:nth-child(3)::before{animation-delay:1.8s}
+.hub-btn:nth-child(4)::before{animation-delay:2.7s}
+.hub-btn:hover,.hub-btn:focus-visible{border-color:#e8cf96;
+  filter:drop-shadow(0 0 18px rgba(232,207,150,.38)) drop-shadow(0 6px 16px rgba(0,0,0,.4))}
+.hub-btn:active{transform:scale(.985)}
+.hub-btn .hb-ico{width:36px;height:36px;flex:none;border:1px solid rgba(200,165,101,.55);border-radius:9px;transform:rotate(45deg);
+  display:grid;place-items:center;background:rgba(200,165,101,.11);box-shadow:inset 0 0 10px rgba(200,165,101,.14)}
+.hub-btn .hb-ico svg{transform:rotate(-45deg);stroke:#e0c184;fill:none}
+.hub-btn .hb-txt{min-width:0}
+.hub-btn .hb-t{display:block;line-height:1.15}
+.hub-btn .hb-s{display:block;margin-top:4px;font-family:'Manrope',sans-serif;font-weight:500;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);line-height:1.5}
+/* династии */
+.hub-view-head{margin-top:26px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:14px;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--muted)}
+.hub-dyn-grid{margin-top:18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:min(540px,100%)}
+.hub-dyn{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:13px 15px;cursor:pointer;text-align:left;
+  background:linear-gradient(160deg,rgba(200,165,101,.10),rgba(200,165,101,.03));
+  border:1px solid rgba(200,165,101,.34);border-radius:12px;color:#ece0c2;
+  font-family:'Cormorant Garamond',serif;font-weight:700;font-size:17px;letter-spacing:.08em;
+  box-shadow:0 8px 20px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.07);
+  transition:border-color .3s,filter .3s;animation:inUp .6s cubic-bezier(.22,.8,.3,1) backwards}
+.hub-dyn:nth-child(1){animation-delay:.08s}.hub-dyn:nth-child(2){animation-delay:.13s}
+.hub-dyn:nth-child(3){animation-delay:.18s}.hub-dyn:nth-child(4){animation-delay:.23s}
+.hub-dyn:nth-child(5){animation-delay:.28s}.hub-dyn:nth-child(6){animation-delay:.33s}
+.hub-dyn:hover,.hub-dyn:focus-visible{border-color:#e8cf96;filter:drop-shadow(0 0 14px rgba(232,207,150,.32))}
+.hub-dyn:active{transform:scale(.98)}
+.hub-dyn .hd-n{display:flex;align-items:center;gap:8px;line-height:1.1}
+.hub-dyn .hd-dot{width:7px;height:7px;flex:none;transform:rotate(45deg);background:rgba(200,165,101,.65);box-shadow:0 0 8px rgba(200,165,101,.5)}
+.hub-dyn .hd-s{font-family:'Manrope',sans-serif;font-weight:500;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);line-height:1.5}
+.hub-dyn.is-here{border-color:rgba(232,207,150,.75);background:linear-gradient(160deg,rgba(200,165,101,.2),rgba(200,165,101,.06))}
+.hub-dyn.is-here .hd-n{color:#ffe9b8;text-shadow:0 0 14px rgba(232,207,150,.35)}
+.hub-dyn.is-wip .hd-dot{background:rgba(154,144,118,.4);box-shadow:none}
+.hub-dyn .hd-badge{position:absolute;top:9px;right:11px;font-family:'Manrope',sans-serif;font-size:7.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);opacity:.9}
+.hub-dyn.is-here .hd-badge{color:#e6c98a}
+/* «В разработке» */
+.hub-wip{display:flex;flex-direction:column;align-items:center;margin-top:34px;animation:inUp .5s ease both}
+.hub-wip .hw-glyph{width:44px;height:44px;border:1px solid rgba(200,165,101,.45);border-radius:50%;display:grid;place-items:center;
+  color:var(--accent);font-size:19px;box-shadow:0 0 22px rgba(200,165,101,.2);animation:inFloat 3.6s ease-in-out infinite}
+.hub-wip .hw-t{margin-top:18px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(19px,3.6vw,26px);letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;color:var(--muted)}
+.hub-wip .hw-s{margin-top:10px;max-width:380px;font-size:12px;line-height:1.7;color:var(--faint)}
+.hub-back{margin-top:26px;height:38px;padding:0 22px;cursor:pointer;
+  font-family:'Cormorant Garamond',serif;font-weight:700;font-size:12.5px;letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;color:#e5d3a4;
+  background:rgba(200,165,101,.07);border:1px solid rgba(200,165,101,.38);border-radius:10px;
+  transition:border-color .3s,filter .3s}
+.hub-back:hover,.hub-back:focus-visible{border-color:#e8cf96;filter:drop-shadow(0 0 12px rgba(232,207,150,.3))}
+.hub-hint{margin-top:26px;font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);opacity:.7}
+/* кнопка в шапке сайта */
+#btnHub{border-color:rgba(200,165,101,.5);color:#ecd9a8}
+#btnHub .bt-ico{stroke:#e0c184}
+@media (max-width:760px){
+  .hub-center{padding:22px 14px calc(20px + var(--sab))}
+  .hub-mark{width:46px;height:46px}
+  .hub-mark span{font-size:24px}
+  .hub-title{letter-spacing:.18em;text-indent:.18em}
+  .hub-menu{gap:9px;margin-top:22px}
+  .hub-btn{padding:11px 13px;font-size:15px;letter-spacing:.09em;gap:11px}
+  .hub-btn .hb-ico{width:30px;height:30px;border-radius:7px}
+  .hub-btn .hb-s{font-size:8px;letter-spacing:.16em}
+  .hub-dyn-grid{grid-template-columns:1fr 1fr;gap:8px;width:100%}
+  .hub-dyn{padding:11px 12px;font-size:14.5px}
+  .hub-dyn .hd-s{font-size:7.5px}
+  .hub-wip{margin-top:26px}
+}
+@media (max-width:400px){ .hub-dyn-grid{grid-template-columns:1fr} }
+/*__HUB_CSS_END__*/
+/*__LORE_CSS__*/
+/* ═══ ЛЕТОПИСЬ ТОРАНА: МИРОВАЯ ХРОНИКА / БЕСТИАРИЙ / НАЦИИ И РАССЫ ═══ */
+/* мировая хроника — та же анатомия ленты, что у хроники эпох, плюс эпоха-группа */
+.wc-era{position:relative;display:flex;align-items:center;gap:14px;margin:26px 0 12px}
+.wc-era::before,.wc-era::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(200,165,101,.4))}
+.wc-era::after{background:linear-gradient(90deg,rgba(200,165,101,.4),transparent)}
+.wc-era span{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:15px;letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:var(--accent);text-align:center;white-space:nowrap}
+.wc-era .wc-era-y{font-family:'Manrope',sans-serif;font-size:9px;letter-spacing:.18em;color:var(--faint);text-indent:0;white-space:nowrap}
+#wchronRows{max-width:860px;margin:0 auto;padding:6px 12px 8px}
+#wchronRows .ch-item{animation:none}
+.wc-open{margin:30px 0 6px;text-align:center;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint)}
+/* бестиарий */
+.be-lead{max-width:820px;margin:16px auto 0;padding:0 16px;text-align:center;font-size:11.5px;line-height:1.7;color:var(--muted)}
+.be-toolbar{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;max-width:900px;margin:16px auto 0;padding:0 14px}
+.be-chip{height:30px;padding:0 14px;cursor:pointer;border-radius:15px;border:1px solid var(--hair);background:rgba(255,255,255,.035);
+  color:var(--muted);font-family:inherit;font-size:11px;font-weight:600;letter-spacing:.08em;transition:border-color .25s,color .25s,background .25s}
+.be-chip:hover{border-color:rgba(200,165,101,.45);color:var(--text)}
+.be-chip.on{border-color:var(--accent);color:#f0dfb2;background:rgba(200,165,101,.12)}
+.be-grid{max-width:980px;margin:0 auto;padding:18px 12px 10px;display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:12px}
+.be-card{position:relative;display:flex;flex-direction:column;gap:8px;padding:15px 16px 13px;text-align:left;
+  background:var(--card);border:1px solid var(--hair);border-radius:14px;
+  box-shadow:0 8px 22px rgba(0,0,0,.3);transition:border-color .25s,transform .25s;animation:fin .5s ease both}
+.be-card:hover{border-color:rgba(200,165,101,.45);transform:translateY(-2px)}
+.be-top{display:flex;align-items:center;gap:11px}
+.be-ico{width:38px;height:38px;flex:none;border:1px solid rgba(200,165,101,.4);border-radius:9px;transform:rotate(45deg);
+  display:grid;place-items:center;background:rgba(200,165,101,.09);box-shadow:inset 0 0 10px rgba(200,165,101,.12)}
+.be-ico span{transform:rotate(-45deg);font-size:19px;line-height:1}
+.be-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;letter-spacing:.05em;color:var(--text);line-height:1.1}
+.be-tag{display:inline-block;margin-top:3px;font-family:'Manrope',sans-serif;font-size:8px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);opacity:.85}
+.be-d{font-size:12px;line-height:1.66;color:var(--muted)}
+.be-meta{margin-top:auto;padding-top:9px;border-top:1px solid rgba(255,255,255,.06);display:flex;flex-wrap:wrap;gap:5px 12px}
+.be-meta i{font-style:normal;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.be-meta b{font-size:10.5px;font-weight:600;color:var(--text);letter-spacing:.02em}
+.be-meta .bm{display:flex;flex-direction:column;gap:2px;min-width:0}
+.be-empty{grid-column:1/-1;text-align:center;padding:34px 10px;font-size:12px;color:var(--faint)}
+/* нации и рассы */
+.na-tabs{display:flex;gap:8px;justify-content:center;margin:16px auto 0;padding:0 14px}
+.na-tab{height:34px;padding:0 20px;cursor:pointer;border-radius:17px;border:1px solid var(--hair);background:rgba(255,255,255,.035);
+  font-family:'Cormorant Garamond',serif;font-weight:700;font-size:13.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  transition:border-color .25s,color .25s,background .25s}
+.na-tab:hover{border-color:rgba(200,165,101,.45);color:var(--text)}
+.na-tab.on{border-color:var(--accent);color:#f0dfb2;background:rgba(200,165,101,.12)}
+.na-grid{max-width:980px;margin:0 auto;padding:18px 12px 10px;display:grid;grid-template-columns:repeat(auto-fill,minmax(286px,1fr));gap:12px}
+.na-card{display:flex;flex-direction:column;gap:7px;padding:15px 16px 13px;text-align:left;
+  background:var(--card);border:1px solid var(--hair);border-radius:14px;box-shadow:0 8px 22px rgba(0,0,0,.3);
+  transition:border-color .25s;animation:fin .5s ease both}
+.na-card:hover{border-color:rgba(200,165,101,.4)}
+.na-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.na-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;letter-spacing:.04em;color:var(--text)}
+.na-kind{font-family:'Manrope',sans-serif;font-size:8px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);opacity:.85;white-space:nowrap}
+.na-d{font-size:12px;line-height:1.66;color:var(--muted)}
+.na-facts{margin-top:auto;padding-top:9px;border-top:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:4px}
+.na-facts .nf{display:flex;gap:7px;font-size:10.5px;line-height:1.5;color:var(--muted)}
+.na-facts .nf i{font-style:normal;flex:none;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);padding-top:1px}
+.na-facts .nf b{font-weight:600;color:var(--text)}
+.na-empty{grid-column:1/-1;text-align:center;padding:34px 10px;font-size:12px;color:var(--faint)}
+@media (max-width:760px){
+  .be-grid,.na-grid{grid-template-columns:1fr;padding:14px 10px 6px}
+  .be-card,.na-card{padding:13px 13px 11px}
+  #wchronRows{padding:4px 8px 6px}
+  .wc-era span{font-size:12.5px;letter-spacing:.16em;text-indent:.16em}
+  .wc-era .wc-era-y{display:none}
+}
+/*__LORE_CSS_END__*/
 /*__TOP_CSS__*/
 /* ═════════════════ ТОП ДОСТИЖЕНИЙ — отдельная вкладка ═════════════════ */
 #tops{position:fixed;inset:0;z-index:121;display:none;flex-direction:column;
@@ -1047,6 +1220,9 @@ body.reveal #hint{animation:fin 1.1s ease .65s both}
 .mm-row svg{flex:none;stroke:var(--accent)}
 @media (max-width:1000px){
   .tool-btn{display:none}
+  /* хаб «Летопись Торана» остаётся в шапке и на узких экранах */
+  #btnHub{display:grid}
+  #btnHub .bt-label{display:none}
   #btnMore{display:grid}
 }
 /* шесть новых инструментов расширили шапку: статистика и «Летопись основателя»
@@ -1512,6 +1688,7 @@ body.reveal #hint{animation:fin 1.1s ease .65s both}
   </div>
   <div class="top-stats" id="stats"></div>
   <div class="top-actions">
+    <button class="ghost-btn tool-btn" id="btnHub" title="Летопись Торана — главное меню (династии, хроника, бестиарий)" aria-label="Летопись Торана"><svg class="bt-ico" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="7.2" y="7.2" width="9.6" height="9.6" transform="rotate(45 12 12)"/></svg><span class="bt-label">Летопись Торана</span></button>
     <div class="search-wrap">
       <div class="search-box">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
@@ -1753,12 +1930,74 @@ body.reveal #hint{animation:fin 1.1s ease .65s both}
 <!-- ═══════════ F16: ПАНЕЛЬ ФИЛЬТРОВ + МЕНЮ + СЛУЖЕБНЫЕ СЛОИ ═══════════ -->
 <aside id="fpanel" aria-label="Фильтры линий и домов"></aside>
 
+<!-- ═══════════ ЛЕТОПИСЬ ТОРАНА: МИРОВАЯ ХРОНИКА ═══════════ -->
+<div id="wchron" class="f16-dlg" role="dialog" aria-modal="true" aria-label="Мировая Хроника" tabindex="-1">
+  <div class="lib-head">
+    <div class="lh-t">
+      <h2>Мировая Хроника</h2>
+      <div class="lh-s">Летопись Торана · от начала времён до наших дней</div>
+      <div class="lh-rule">❦</div>
+    </div>
+    <button class="lib-close" id="wchronClose" aria-label="Закрыть">✕</button>
+  </div>
+  <div class="lib-shelf-wrap"><div id="wchronRows"></div>
+    <div class="lib-note">Годы — от пробуждения Оркена, если не сказано иного · «ок.» — приблизительно · составлено по публичным летописям Тораны</div>
+  </div>
+</div>
+
+<!-- ═══════════ ЛЕТОПИСЬ ТОРАНА: БЕСТИАРИЙ ═══════════ -->
+<div id="besti" class="f16-dlg" role="dialog" aria-modal="true" aria-label="Бестиарий" tabindex="-1">
+  <div class="lib-head">
+    <div class="lh-t">
+      <h2>Бестиарий</h2>
+      <div class="lh-s">Существа, чудища и разумные нелюди мира Торана</div>
+      <div class="lh-rule">❦</div>
+    </div>
+    <button class="lib-close" id="beClose" aria-label="Закрыть">✕</button>
+  </div>
+  <div class="be-lead">Всё, что ходит, летает, ползает и шепчет вне человеческих народов: расы и порождения Тораны — от спящих альхорнцев до тёмных единорогов.</div>
+  <div class="gl-searchbar"><div class="gl-search">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+    <input id="beSearch" type="text" placeholder="Найти существо…" autocomplete="off">
+  </div></div>
+  <div class="be-toolbar" id="beChips"></div>
+  <div class="lib-shelf-wrap"><div class="be-grid" id="beRows"></div>
+    <div class="lib-note">Составлено по упоминаниям в летописях Торана · «ок.» — приблизительно</div>
+  </div>
+</div>
+
+<!-- ═══════════ ЛЕТОПИСЬ ТОРАНА: НАЦИИ И РАССЫ ═══════════ -->
+<div id="nations" class="f16-dlg" role="dialog" aria-modal="true" aria-label="Нации и Рассы" tabindex="-1">
+  <div class="lib-head">
+    <div class="lh-t">
+      <h2>Нации и Рассы</h2>
+      <div class="lh-s">Народы, державы и виды разумных существ Тораны</div>
+      <div class="lh-rule">❦</div>
+    </div>
+    <button class="lib-close" id="naClose" aria-label="Закрыть">✕</button>
+  </div>
+  <div class="na-tabs" id="naTabs">
+    <button class="na-tab on" data-natab="nation" type="button">Нации</button>
+    <button class="na-tab" data-natab="race" type="button">Рассы</button>
+  </div>
+  <div class="gl-searchbar"><div class="gl-search">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+    <input id="naSearch" type="text" placeholder="Найти народ или расу…" autocomplete="off">
+  </div></div>
+  <div class="lib-shelf-wrap"><div class="na-grid" id="naRows"></div>
+    <div class="lib-note">Актуальные сведения о народах и видах разумных Тораны · границы и названия даны на год 271 (679 Ход)</div>
+  </div>
+</div>
+
 <div id="moreMenu" role="menu" aria-label="Ещё инструменты">
   <button class="mm-row" data-act="kin" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="6" r="3.2"/><circle cx="18" cy="18" r="3.2"/><path d="M8.2 8.2l7.6 7.6"/></svg>Кто кому родня</button>
   <button class="mm-row" data-act="filters" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18l-7 8v5l-4 2v-7z"/></svg>Линии и дома</button>
   <button class="mm-row" data-act="alive" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg><span id="mmAliveT">Только живые: выкл</span></button>
   <button class="mm-row" data-act="tline" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18"/><circle cx="7" cy="12" r="2"/><circle cx="13.5" cy="12" r="2"/></svg>Таймлайн</button>
   <button class="mm-row" data-act="chron" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>Хроника эпох</button>
+  <button class="mm-row" data-act="wchron" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><path d="M3.6 12h16.8M12 3.6c2.5 2.3 3.8 5.2 3.8 8.4s-1.3 6.1-3.8 8.4c-2.5-2.3-3.8-5.2-3.8-8.4s1.3-6.1 3.8-8.4z"/></svg>Мировая Хроника</button>
+  <button class="mm-row" data-act="besti" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-7-10.4C5 7 7.2 5 9.6 5c1 0 1.9.4 2.4 1 .5-.6 1.4-1 2.4-1C16.8 5 19 7 19 10.6 19 16.4 12 21 12 21z"/></svg>Бестиарий</button>
+  <button class="mm-row" data-act="nations" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M5 20V9l3-2 4 3 4-3 3 2v11"/><path d="M12 10V4l2 2-2 2-2-2z"/></svg>Нации и Рассы</button>
   <button class="mm-row" data-act="gloss" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 6c-1.8-1.4-4.4-2-8-2v14c3.6 0 6.2.6 8 2 1.8-1.4 4.4-2 8-2V4c-3.6 0-6.2.6-8 2z"/></svg>Глоссарий</button>
   <button class="mm-row" data-act="ach" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.5 5.2 5.7.7-4.2 4 1.1 5.6-5.1-2.8-5.1 2.8 1.1-5.6-4.2-4 5.7-.7z"/></svg>Достижения гостя</button>
   <button class="mm-row" data-act="game" role="menuitem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><g fill="currentColor" stroke="none"><circle cx="8.6" cy="8.6" r="1.4"/><circle cx="15.4" cy="15.4" r="1.4"/><circle cx="12" cy="12" r="1.4"/></g></svg>Игра «Верблюд и стражники»</button>
@@ -7249,9 +7488,108 @@ function bindGloss(){
   dlg.addEventListener('click', function(e){ if(e.target === dlg) closeDlg('gloss'); });
 }
 
+/* ═══════════ 6.5 ЛЕТОПИСЬ ТОРАНА: МИРОВАЯ ХРОНИКА / БЕСТИАРИЙ / НАЦИИ ═══════════
+   Данные — в глобальных массивах WCHRON_ERAS / BESTIARY / NATIONS (скрипт-данные в конце файла). */
+
+var wcBuilt = false;
+function renderWchron(){
+  var el = q('#wchronRows');
+  if(!el || wcBuilt) return;
+  wcBuilt = true;
+  el.innerHTML = (window.WCHRON_OPEN || '') + (window.WCHRON_ERAS || []).map(function(era){
+    return '<div class="wc-era"><span>' + esc(era.t) + (era.y ? ' <b class="wc-era-y">· ' + esc(era.y) + '</b>' : '') + '</span></div>' +
+      era.items.map(function(it){
+        return '<div class="ch-item"><div class="ch-y">' + esc(it.y) + '</div>' +
+          '<div class="ch-b"><h4>' + esc(it.h) + '</h4><p>' + esc(it.p) + '</p></div></div>';
+      }).join('');
+  }).join('') + '<div class="wc-open">наши дни · 271 год · 679 Ход — летопись продолжается</div>';
+}
+
+var beState = { cat:'все', q:'', built:false };
+var BE_ICONS = { 'чудище':'✦','раса':'❖','нежить':'☠','зверолюди':'❂','природное':'❦','прочее':'✧' };
+function renderBesti(){
+  var el = q('#beRows');
+  if(!el) return;
+  if(!beState.built){
+    beState.built = true;
+    var cats = ['все'];
+    (window.BESTIARY || []).forEach(function(b){ if(cats.indexOf(b.cat) < 0) cats.push(b.cat); });
+    var chips = q('#beChips');
+    if(chips) chips.innerHTML = cats.map(function(c){
+      return '<button class="be-chip' + (c === 'все' ? ' on' : '') + '" data-becat="' + esc(c) + '" type="button">' + esc(c) + '</button>';
+    }).join('');
+  }
+  var rx = beState.q ? new RegExp(beState.q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i') : null;
+  var rows = (window.BESTIARY || []).filter(function(b){
+    if(beState.cat !== 'все' && b.cat !== beState.cat) return false;
+    if(rx && !(rx.test(b.n) || rx.test(b.d) || rx.test(b.cat))) return false;
+    return true;
+  });
+  el.innerHTML = rows.length ? rows.map(function(b){
+    var ico = BE_ICONS[b.cat] || '✧';
+    return '<div class="be-card"><div class="be-top"><span class="be-ico"><span>' + ico + '</span></span>' +
+      '<span><span class="be-name">' + esc(b.n) + '</span><span class="be-tag">' + esc(b.cat) + '</span></span></div>' +
+      '<div class="be-d">' + esc(b.d) + '</div>' +
+      (((b.where || b.danger) ? '<div class="be-meta">' +
+        (b.where ? '<span class="bm"><i>Где</i><b>' + esc(b.where) + '</b></span>' : '') +
+        (b.danger ? '<span class="bm"><i>Опасность</i><b>' + esc(b.danger) + '</b></span>' : '') +
+        '</div>' : '')) + '</div>';
+  }).join('') : '<div class="be-empty">Такого существа в бестиарии пока нет.</div>';
+}
+
+var naState = { tab:'nation', q:'', built:false };
+function renderNations(){
+  var el = q('#naRows');
+  if(!el) return;
+  var rx = naState.q ? new RegExp(naState.q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i') : null;
+  var rows = (window.NATIONS || []).filter(function(n){
+    if(n.tab !== naState.tab) return false;
+    if(rx && !(rx.test(n.n) || rx.test(n.d))) return false;
+    return true;
+  });
+  el.innerHTML = rows.length ? rows.map(function(n){
+    var facts = (n.facts || []).map(function(f){
+      return '<div class="nf"><i>' + esc(f[0]) + '</i><b>' + esc(f[1]) + '</b></div>';
+    }).join('');
+    return '<div class="na-card"><div class="na-top"><span class="na-name">' + esc(n.n) + '</span><span class="na-kind">' + esc(n.kind) + '</span></div>' +
+      '<div class="na-d">' + esc(n.d) + '</div>' +
+      (facts ? '<div class="na-facts">' + facts + '</div>' : '') + '</div>';
+  }).join('') : '<div class="na-empty">Такой записи в разделах пока нет.</div>';
+}
+
+function bindLore(){
+  [['#wchron','#wchronClose'],['#besti','#beClose'],['#nations','#naClose']].forEach(function(pair){
+    var dlg = q(pair[0]), btn = q(pair[1]);
+    if(!dlg || !btn || dlg.dataset.loreD) return;
+    dlg.dataset.loreD = '1';
+    btn.addEventListener('click', function(){ closeDlg(dlg.id); });
+    dlg.addEventListener('click', function(e){ if(e.target === dlg) closeDlg(dlg.id); });
+  });
+  var beInp = q('#beSearch');
+  if(beInp) beInp.addEventListener('input', function(){ beState.q = beInp.value.trim(); renderBesti(); });
+  var beChips = q('#beChips');
+  if(beChips) beChips.addEventListener('click', function(e){
+    var c = e.target.closest ? e.target.closest('[data-becat]') : null;
+    if(!c) return;
+    beState.cat = c.dataset.becat;
+    beChips.querySelectorAll('.be-chip').forEach(function(x){ x.classList.toggle('on', x === c); });
+    renderBesti();
+  });
+  var naTabs = q('#naTabs');
+  if(naTabs) naTabs.addEventListener('click', function(e){
+    var t = e.target.closest ? e.target.closest('[data-natab]') : null;
+    if(!t) return;
+    naState.tab = t.dataset.natab;
+    naTabs.querySelectorAll('.na-tab').forEach(function(x){ x.classList.toggle('on', x === t); });
+    renderNations();
+  });
+  var naInp = q('#naSearch');
+  if(naInp) naInp.addEventListener('input', function(){ naState.q = naInp.value.trim(); renderNations(); });
+}
+
 /* ═══════════ 7. СКЛЕЙКА: ДИАЛОГИ, КНОПКИ, МЕНЮ, ХУКИ ═══════════ */
 
-var F16_DLGS = ['kin', 'tline', 'chron', 'gloss', 'ach', 'game'];
+var F16_DLGS = ['kin', 'tline', 'chron', 'wchron', 'besti', 'nations', 'gloss', 'ach', 'game'];
 var F16_RETURN = null;   /* куда вернуть фокус после закрытия диалога */
 function openDlg(id){
   var target = q('#' + id);
@@ -7270,6 +7608,9 @@ function openDlg(id){
   if(id === 'kin') renderKin();
   if(id === 'tline'){ renderTline(); robreAch('timeline'); }
   if(id === 'chron'){ renderChron(); robreAch('chron'); }
+  if(id === 'wchron'){ renderWchron(); }
+  if(id === 'besti'){ renderBesti(); }
+  if(id === 'nations'){ renderNations(); }
   if(id === 'gloss'){ renderGloss(); robreAch('gloss'); }
   if(id === 'ach') renderAch();
   if(id === 'game'){ if(!G || G.over) cmShowSetup(); }
@@ -7283,6 +7624,9 @@ function closeDlg(id){
   var back = F16_RETURN; F16_RETURN = null;
   try{ if(back && back.focus) back.focus(); }catch(e){}
 }
+/* глобальные мостики: хаб-меню и мировые разделы живут в других скрипт-блоках */
+window.openDlg = openDlg;
+window.closeDlg = closeDlg;
 /* ловушка фокуса: Tab и Shift+Tab не покидают открытый диалог */
 document.addEventListener('keydown', function(e){
   if(e.key !== 'Tab') return;
@@ -8162,6 +8506,7 @@ function bindGame(){
   bindTline();
   bindChron();
   bindGloss();
+  bindLore();
   bindGame();
   bindMore();
   bindHooks();
@@ -8220,6 +8565,60 @@ function bindGame(){
   </div>
   <div class="in-ring"></div>
   <div class="in-flash"></div>
+</div>
+<div id="hub" aria-label="Летопись Торана — главное меню" role="dialog" tabindex="-1">
+  <div class="hub-glow"></div>
+  <i class="hub-fog f1"></i>
+  <i class="hub-fog f2"></i>
+  <div class="hub-center">
+    <div class="hub-mark"><span>Т</span></div>
+    <div class="hub-title">Летопись Торана</div>
+    <div class="hub-sub">Хроника мира · от начала времён до наших дней</div>
+
+    <div class="hub-view" id="hubMain">
+      <div class="hub-menu">
+        <button class="hub-btn" data-hub="dyn" type="button">
+          <span class="hb-ico"><svg width="17" height="17" viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M5 20V9l3-2 4 3 4-3 3 2v11"/><path d="M12 10V4l2 2-2 2-2-2z"/></svg></span>
+          <span class="hb-txt"><span class="hb-t">Великие династии</span><span class="hb-s">Шесть великих домов мира Торана</span></span>
+        </button>
+        <button class="hub-btn" data-hub="wchron" type="button">
+          <span class="hb-ico"><svg width="17" height="17" viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span>
+          <span class="hb-txt"><span class="hb-t">Мировая Хроника</span><span class="hb-s">Летопись мира · от начала и до конца времён</span></span>
+        </button>
+        <button class="hub-btn" data-hub="besti" type="button">
+          <span class="hb-ico"><svg width="17" height="17" viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-7-10.4C5 7 7.2 5 9.6 5c1 0 1.9.4 2.4 1 .5-.6 1.4-1 2.4-1C16.8 5 19 7 19 10.6 19 16.4 12 21 12 21z"/><path d="M9 11h2M13 11h2"/></svg></span>
+          <span class="hb-txt"><span class="hb-t">Бестиарий</span><span class="hb-s">Существа, чудища и разумные нелюди</span></span>
+        </button>
+        <button class="hub-btn" data-hub="nations" type="button">
+          <span class="hb-ico"><svg width="17" height="17" viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><path d="M3.6 12h16.8M12 3.6c2.5 2.3 3.8 5.2 3.8 8.4s-1.3 6.1-3.8 8.4c-2.5-2.3-3.8-5.2-3.8-8.4s1.3-6.1 3.8-8.4z"/></svg></span>
+          <span class="hb-txt"><span class="hb-t">Нации и Рассы</span><span class="hb-s">Народы, державы и виды разумных</span></span>
+        </button>
+      </div>
+      <div class="hub-hint">выбери раздел · летопись Роббертсов — внутри «Великих династий»</div>
+    </div>
+
+    <div class="hub-view" id="hubDyn" hidden>
+      <div class="hub-view-head">Шесть великих династий</div>
+      <div class="hub-dyn-grid">
+        <button class="hub-dyn is-here" data-dyn="robberts" type="button"><span class="hd-badge">Летопись открыта</span><span class="hd-n"><i class="hd-dot"></i>Роббертсы</span><span class="hd-s">Первые Дуксы Центроземья · древо, летописи, таймлайн</span></button>
+        <button class="hub-dyn is-wip" data-dyn="miensery" type="button"><span class="hd-badge">В разработке</span><span class="hd-n"><i class="hd-dot"></i>Мьенсеры</span><span class="hd-s">Летопись дома ещё пишется</span></button>
+        <button class="hub-dyn is-wip" data-dyn="walters" type="button"><span class="hd-badge">В разработке</span><span class="hd-n"><i class="hd-dot"></i>Вальтеры</span><span class="hd-s">Летопись дома ещё пишется</span></button>
+        <button class="hub-dyn is-wip" data-dyn="lomtengovy" type="button"><span class="hd-badge">В разработке</span><span class="hd-n"><i class="hd-dot"></i>Ломтенговы</span><span class="hd-s">Летопись дома ещё пишется</span></button>
+        <button class="hub-dyn is-wip" data-dyn="evaudy" type="button"><span class="hd-badge">В разработке</span><span class="hd-n"><i class="hd-dot"></i>Эвауды</span><span class="hd-s">Летопись дома ещё пишется</span></button>
+        <button class="hub-dyn is-wip" data-dyn="krosvyvilnevy" type="button"><span class="hd-badge">В разработке</span><span class="hd-n"><i class="hd-dot"></i>Кросвывильневы</span><span class="hd-s">Летопись дома ещё пишется</span></button>
+      </div>
+      <button class="hub-back" data-hubback="hubMain" type="button">← К меню летописи</button>
+    </div>
+
+    <div class="hub-view" id="hubWip" hidden>
+      <div class="hub-wip">
+        <div class="hw-glyph">✦</div>
+        <div class="hw-t">В разработке</div>
+        <div class="hw-s" id="hubWipName">Этот раздел летописи ещё пишется — хронисты Торана трудятся над ним.</div>
+        <button class="hub-back" data-hubback="hubDyn" type="button">← К династиям</button>
+      </div>
+    </div>
+  </div>
 </div>
 <script>
 /* ═══ ИНТРО: кнопка запускает анимацию древа восьми ветвей ═══ */
@@ -8299,7 +8698,8 @@ function finish(fast){
   timers.forEach(clearTimeout);
   if(stopSky) stopSky();
   intro.classList.add('gone');
-  document.body.classList.add('reveal');
+  /* после заставки — главное меню «Летопись Торана»; сайт дома открывается из меню */
+  try{ window.robreHubOpen && window.robreHubOpen(); }catch(e){}
   setTimeout(function(){ if(intro.parentNode) intro.parentNode.removeChild(intro); }, fast ? 340 : 820);
 }
 function play(){
@@ -8422,6 +8822,473 @@ intro.addEventListener('click', function(){ if(intro.classList.contains('play'))
 document.addEventListener('keydown', function(e){
   if(e.key === 'Escape' && intro.parentNode && !done) finish(true);
 }, true);
+})();
+</script>
+<script>
+/*__LORE_SCRIPT__*/
+/* ═══════════ ЛЕТОПИСЬ ТОРАНА: ДАННЫЕ МИРОВЫХ РАЗДЕЛОВ ═══════════
+   Данные собраны по публичным летописям паблика «Легенда Торана»:
+   статьи (Летопись краткая, Летопись Нира, Расы Торана, Вампиры Торана,
+   Центроземье, Большие горы, Крайний север и др.), статьи-итоги событий,
+   Архивные дела и анкеты династий. Массивы — глобальные: их читают
+   рендеры внутри модуля F16. */
+var WCHRON_OPEN = '';
+
+/* ДАННЫЕ ЛЕТОПИСИ ТОРАНА — собраны из публичных статей паблика «Легенда Торана»
+   (Летопись краткая, Летопись Нира, статьи-итоги, циклы эпох, Архивные дела, анкеты держав).
+   Хроника: 26 эпох, 123 событий · Бестиарий: 40 записей · Нации и Рассы: 60 записей. */
+var WCHRON_ERAS = [{"t":"Пробуждение и первобытные века","y":"0 – 845 от пробуждения Оркена","items":[{"y":"0 от пробуждения Оркена","h":"Пробуждение Оркена","p":"В нулевой год пробудился Оркен — главный антагонист мира, и с этого мгновения ведётся отсчёт всей истории Тораны. Пробуждение вошло в основы многих религий, чаще всего его почитают представители чёрной расы людей. Всё, что случилось прежде, осталось другой, отдельной историей."},
+{"y":"1 – 5 от пр.","h":"Первые племена","p":"У нескольких рас, прежде всего у людей, появились первые первобытные племена — подобия протостран, закат поздней первобытности. К 250 году племя Земфры впервые сменило камень на медь, однако уже в 275-м оно пало."},
+{"y":"6 от пр.","h":"Нашествие фороракосов","p":"На Южном континенте началось нашествие фороракосов — хищников, терзавших мир полторы тысячи лет. От них объясняются и долгие странствия эльфов, и гибель племени Бродгры. Нашествие окончилось лишь к 1700 году, когда фороракосы были полностью уничтожены."},
+{"y":"400 от пр.","h":"Первое государство","p":"Эльфы после изнурительных путешествий, связанных с нашествием фороракосов, основали в низовьях Срединных Гор первое государство нового мира. Так окончилась эпоха племён и началась эпоха держав."},
+{"y":"455 от пр.","h":"Извержение Сарартиса","p":"На Южном континенте произошло первое крупное извержение вулкана Сарартиса после пробуждения. Из его огня родилась цивилизация змеелюдей, повлиявшая затем на судьбу всего юга."},
+{"y":"505 от пр.","h":"Царство Меломы","p":"Сложилось первое медное Царство Меломы — держава Белой расы, которой предстояло не раз становиться центром мира. С 510 года медный век начал распространяться по самым развитым землям Тораны."},
+{"y":"700 от пр.","h":"Первое государство магов","p":"Маги впервые оформились в собственное государство, отделив власть чародейства от власти меча. Четверть века спустя мир пережил первое сильнейшее землетрясение после пробуждения."},
+{"y":"845 от пр.","h":"Пробуждение Драконов Торана","p":"Пробудились Драконы Торана — древние крылатые владыки, отныне неизменно влиявшие на ход мировой истории. Уже на следующий год они выступили в великой войне на стороне Синей расы."}]},
+{"t":"Хроника Крайнего Севера: от дуэли первозданных магов","y":"170–920 гг. от пр. Оркена","items":[{"y":"01.01.170 г. от пр. О.","h":"Великая дуэль магов Йорика и Зеро","p":"Два первозданных мага — огненный Йорик и водный Зеро — годами искали источник времени на Крайнем Севере, а их созданные народы (камронцы и водные твари) вели войну за господство в крае. В итоге противники усыпили друг друга, огонь и вода ушли из земель, а источник времени сместился и был потерян. Власть получила раса камронцев, сотворённая Йориком."},
+{"y":"170–260 гг. от пр. О.","h":"Камронский этап и исход камронок","p":"Оставленный магами странный объект-хранитель стал убивать камронок и поставил на кон всю зарождающуюся цивилизацию. Камронки бежали по замёрзшим землям на острова, объект исчез, а Крайний Север опустел. Борьба двух первозданных магов ускорила эволюцию местных видов до гуманоидов."},
+{"y":"260–570 гг. от пр. О.","h":"Барсовый этап: гибель мага-поработителя","p":"Пришлый маг ускорил эволюцию барсов до гуманоидов и долгие годы держал их в рабстве. Когда обман раскрылся, порабощённые подняли войну против свободных сородичей и хозяина; обе стороны пришли в упадок и вымирание, но барсы сумели убить тирана. Его последним даром краю стала невидимая область искажения эволюции у бывшего Камрона."},
+{"y":"570–920 гг. от пр. О.","h":"Альвийский этап: самоистребление диких эльфов","p":"Ошибка эльфийских магов, пытавшихся возродить эфирных эльфов, выбросила диких и пустынных эльфов на Крайний Север. Не сумев выжить, они нашли путь обратно в эфир — взаимное истребление. Племя ушло из мира почти без следа, лишь выплеск эфира напомнил о былом."}]},
+{"t":"Медная и бронзовая древность","y":"850 – 2525 от пробуждения Оркена","items":[{"y":"850 – 1185 от пр.","h":"Война Белой и Синей расы","p":"Крупнейшая война и первое глобальное столкновение медной эпохи: Синие люди Княжества Фолькхота, хозяйничавшие на островах, сошлись с Белой расой Царства Меломы. Островитян поддерживали Драконы, Мелому — Орлы. Война в три фазы выдавила Фолькхот с островов на континент и закончилась взаимным истощением."},
+{"y":"1185 от пр.","h":"Падение Фолькхота и Меломы","p":"В величайшем сражении на фолькхотско-меломском пограничье Царь Бурда и Князь Родомир сразили друг друга. Мелома развалилась на Скерийские полисы, Фолькхот исчез вовсе, а всю Синюю расу Драконы за нарушенную сделку превратили в отмороженных. Началась новая эпоха Западного континента и Северных островов."},
+{"y":"1595 от пр.","h":"Величайшее сражение первобытности","p":"На Южном континенте сошлись силы, ещё не знавшие цивилизованного железа, — битва вошла в летописи как величайшее сражение первобытной эпохи Тораны."},
+{"y":"1700 – 1705 от пр.","h":"Конец фороракосов и Великая Охота","p":"К 1700 году фороракосы были окончательно истреблены. Но на Западном континенте явились существа Великой Охоты, несколько лет терроризировавшие север и юг материка, пока в 2870 году не были сломлены в величайшей битве эпохи бронзы."},
+{"y":"2100 от пр.","h":"Поморское происшествие","p":"Из воды вышли люди-поморы и разнесли по берегам свою культуру и методы. Следствием происшествия стало невиданное увеличение продолжительности жизни — до тысячи лет."},
+{"y":"2295 – 2370 от пр.","h":"Повсеместный бронзовый век","p":"Бронзовый век наступил в развитых странах на всех континентах, сложились государства древности. В 2370 году одна из держав впервые перешла к Античности и железному веку, задав планку остальному миру."},
+{"y":"2505 от пр.","h":"Рождение Орговии","p":"Появилась Орговия — государство, которому суждено влиять на судьбы многих народов на протяжении всей последующей истории Тораны."},
+{"y":"2510 – 2525 от пр.","h":"Первый Великий Переполох","p":"Все донирские народы островов — Эвлены, Дерцы, Саты, Гофи, Горемежцы — столкнулись в междоусобной войне. К 2525 году переполох иссяк, а победившие Гофи выстроили гофскую дипломатическую систему северного региона, державшуюся почти тысячу лет."}]},
+{"t":"Античная эпоха железа","y":"2870 – 4495 от пробуждения Оркена","items":[{"y":"2870 от пр.","h":"Закат Великой Охоты","p":"В величайшем сражении древности эпохи бронзы Великая Охота Западного континента была сломлена. Так завершилось время древних чудовищ, державших материк в страхе."},
+{"y":"3040 от пр.","h":"Великая гномья научная революция","p":"Гномы совершили великую научную революцию и создали множество важных технологий, опередивших своё время. Их открытия надолго стали двигателем прогресса всей Тораны."},
+{"y":"3700 – 4030 от пр.","h":"Война Южного континента и Огненных земель","p":"Самый большой конфликт с участием огненных тварей до маго-ядерной войны: юг сражался против Огненных земель почти три века. В 3710 году был заключён договор на крови, чьи принципы держались на Южном континенте до самой катастрофы. В 4030 году Огненные земли были побеждены — это стало величайшим сражением античной железной эпохи."},
+{"y":"4110 – 4150 от пр.","h":"Война Эредов и Южного Царства","p":"На южных островах очнулись Эреды — разумные машины, вставшие на войну против Южного Царства, величайшей державы людей чёрной расы. К 4150 году люди одолели машины."},
+{"y":"4200 от пр.","h":"Морское единение мира","p":"Страны, разделённые морями, впервые завязали дипломатические контакты. Кораблестроение расцвело во многих уголках мира, прежде всего у развитых южных держав."},
+{"y":"4470 от пр.","h":"Великое цунами","p":"На мир обрушилось первое в таких масштабах цунами после пробуждения, перекроившее берега и судьбы приморских народов."},
+{"y":"4495 от пр.","h":"Выход Крепости Азрона","p":"Из Великой Пустыни вышла Крепость Азрона — дом антиоркенистов, борцов с пробудившимся Оркеном. Орден ещё заявит о себе в год великих знамений."}]},
+{"t":"Век Переполохов и богов второго поколения","y":"4885 – 5965 от пробуждения Оркена","items":[{"y":"4885 от пр.","h":"Ассило-Скерия входит в Средневековье","p":"Ассило-Скерия на западе Западного континента первой перешла в раннее Средневековье. Массовый переход в бронзу менял облик войны и торговли по всему миру."},
+{"y":"4998 от пр.","h":"Явление Атланта","p":"В Ассило-Скерии явился Атлант — полуреальный бог. Мир готовился к переменам куда большим, чем догадывался."},
+{"y":"4999 от пр.","h":"Год великих знамений","p":"В один год мир перевернулся: на сходке в замке ярла Геды Долбадёба начался Второй Великий Переполох; умер реальный Бог А и явились реальные Боги второго поколения; из тела спящего Оркена выполз первый чудище Ёрмунгандер; рыболюди вышли на землю, маги Северо-Западных пещер замыслили изменить само время. Реальные Боги повторно отправили Оркена в сон, и острова вступили в раннее Средневековье."},
+{"y":"4999 от пр.","h":"Начало пути Дедриона Кудирана","p":"В первый месяц 4999 года начался путь Дедриона Кудирана — самого опасного существа в истории мира, которое со временем в определённой мере будет контролировать всю Торану."},
+{"y":"5001 – 5200 от пр.","h":"Второй Великий Переполох и набеги островитян","p":"Война всех против всех на островах переросла в эпоху Великих Островитянских войн: с 5045 года островитяне обрушивались на континенты, уничтожив даже магов Северо-Западных пещер. К 5200 году Драконы уговорили Триимов и Поморов покинуть острова и сами окончательно ушли в Драконьи Горы."},
+{"y":"5200 от пр.","h":"Образование Нира","p":"Ярл Эрик Родскагиг по прозванию Оборотень объединил острова в единое Конунгство Нир и стал первым Конунгом династии Нирсонов. Островитяне — немногие, кто со времён древности дружил с Драконами Торана."},
+{"y":"5559 от пр.","h":"Конец эпохи бронзы","p":"Страна Славно первой перешла в Высокое Средневековье, остальные земли массово шагнули в железный век. Эпоха бронзы окончилась — началась античная эпоха."},
+{"y":"5965 от пр.","h":"Нир становится Дарлоном","p":"После победоносного второго вторжения в Восточный континент, вдохновлённого философией проповедника Левиты, Конунгство Нир официально переименовано в Дарлон. Конунг Агвид Нирсон стал Первым Властелином будущей мировой державы."}]},
+{"t":"Владычество Дарлона","y":"6010 – 14.004 от пробуждения Оркена","items":[{"y":"6010 от пр.","h":"Восход Дарлона","p":"Дарлон явил себя миру как первая страна, сумевшая подчинить весь мир Тораны. Началась многотысячелетняя эпоха единой империи островитян."},
+{"y":"7285 от пр.","h":"Конец эпохи островитян","p":"Самостоятельная история островитян завершилась: Дарлон продолжал расширяться во все стороны, вбирая старые народы и земли."},
+{"y":"7333 – 7429 от пр.","h":"Скорпионово нашествие","p":"Нашествие скорпионов уничтожило значительную часть мира Тораны и отбросило технологии назад. Цивилизация оправлялась от удара десятилетиями."},
+{"y":"7552 от пр.","h":"Россэршбертское безумие","p":"На севере Западного материка появилось множество опасных вампиров, столетиями охотившихся на живых. Страшное время осталось в летописях как Россэршбертское безумие."},
+{"y":"8001 от пр.","h":"Азронский договор","p":"Государства мира подписали Азронский договор о нерушимых границах. Попытки их нарушать не исчезли, но примерно в этих рубежах державы и подошли к маго-ядерной войне."},
+{"y":"10.955 – 11.100 от пр.","h":"Пик Дарлона","p":"На пике могущества Дарлон держал в руках весь мир Тораны. В 11100 году появилась единая мировая валюта."},
+{"y":"14.004 от пр.","h":"Гибель Дарлона","p":"В день падения Ваапх контролировали лишь несколько секунд, хотя юридически столица принадлежала Дарлону куда дольше — и всё же с этого мгновения империя начала разрушаться, пока в 14.004 году не была уничтожена окончательно."}]},
+{"t":"Новое время и маго-ядерная катастрофа","y":"14.024 – 17.022 от пробуждения Оркена","items":[{"y":"14.024 от пр.","h":"Начало Парваджэлита","p":"Началась Парваджэлита — штампанковая эпоха нового времени. Мир, оставшийся без единой империи, вновь раздробился на конкурирующие державы."},
+{"y":"14.033 от пр.","h":"Первый международный порт","p":"В Нире открылся первый международный порт, связавший державы нового времени морской торговлей."},
+{"y":"14.034 – 17.008 от пр.","h":"Дизельпанковое равновесие","p":"Почти три тысячи лет государства развивались до уровня дизельпанка и так плотно контролировали друг друга, что всякая война становилась самоубийственной. Хрупкое равновесие держалось до великого посольства."},
+{"y":"17.008 – 17.010 от пр.","h":"Путешествие Фон Гейсера и начало войны","p":"Великое дипломатическое путешествие Вольдемара Фон Гейсера — от весны 17.008 до лета 17.010 года — обернулось катастрофой: вспыхнула маго-ядерная война, уничтожившая цивилизации Тораны."},
+{"y":"17.010 – 17.019 от пр.","h":"Битва за Закрытый Город","p":"От осени 17.010 до лета 17.019 года длилась битва за Закрытый Город — важнейшее сражение мировой истории, в определённой степени ключевое для самого жанра. Цивилизации были разрушены окончательно, технологии откатились до эпохи бронзы с редкими остатками дизельпанка."},
+{"y":"17.020 – 17.022 от пр.","h":"Гражданская война в Орговии","p":"Древняя Орговия разорвалась гражданской войной, из которой вышел маг безумия Андж Еус — новая сила постапокалиптического мира."}]},
+{"t":"Великая битва за Закрытый Город","y":"17.010–17.019 Г. от П.О.","items":[{"y":"17.010 Г. от П.О.","h":"Артефакт «Огненного Льва» под Восточной стеной","p":"Коалиция королевы Никс — Ваапх, муравьи, Ассилия и Фолькхот — узнала, что под Закрытым Городом скрыт артефакт, снимающий все ограничения. Спецназ Ваапха пробился под землю и ценой сотен Ночных Кисонок добыл «Огненного Льва», после чего древнейшая магия перестала останавливать муравьёв на карте Тораны. Началась битва всех армий мира за один город."},
+{"y":"17.012–17.013 Г. от П.О.","h":"Падение Скерийской империи и воскресение Данки","p":"Никс тайно увела основные силы морем, а в Христине воскресла легендарная героиня Данка, когда-то перенёсшая живой город через море. Христина была телепортирована прямо к стенам Меломы, и к концу лета Скерийская империя со столицей пала. Оборона Закрытого Города тем временем отразила подземные атаки буров и торпеды Ваапха."},
+{"y":"17.014 Г. от П.О.","h":"Гибель Нира: Дракон и Эрик Нирсон","p":"Безумие, навеянное тёмной магией Никс, обернулось против союзника Орговии — остатков Нира. С огромным трудом был убит Дракон, погиб Эрик Нирсон, и Нирская сторона окончательно разгромлена. Проклятия Никс тем временем лишили Закрытый Город десятков миллионов защитников, каждый погибший приближал врагов к победе."},
+{"y":"зима 17.015 Г. от П.О.","h":"«Явь»: потопление Мариканского флота","p":"Король Граандий решился на давний план: диверсионные войска города подплыли под водой и, жертвуя собой, взорвали и потопили огромный Мариканский флот. В живых не уцелел никто, а сам подвиг укрепил обороняющихся верой в правое дело. Современники назвали этот эпизод «Явью» — самым ярким событием Великого Сражения."},
+{"y":"17.016–17.017 Г. от П.О.","h":"Эльфийские диверсии обескровливают Орговию","p":"Проснувшиеся от многолетней медитации эльфы встали лагерем под городом и провели серию диверсий: ложные атаки, порча припасов, убийства. Погибли герои гражданской войны — генералы Кан Рузец, Юлий Серпантье, Рудольф Вальтаген, Роман Балатунов, Дмитрий Рапин; позднее были убиты Ньюст и Вольт, а Аристарху Блэку подстроили самоубийство. Армия и страна дрогнули: десятки миллионов покинули Орговию."},
+{"y":"лето 17.019 Г. от П.О.","h":"Взрыв, погубивший Закрытый Город и Меридиан","p":"Обезглавленные орговцы обрушили на город мега-заклинания и бомбы, ответный залп породил небывалый взрыв, уничтоживший Закрытый Город со всей областью и столицу Орговии Меридиан. Погибли королева Никс, верхушка Орговии и эльфийский король; выжили лишь 21 эльф, наложивший последнее заклинание на Огненный источник. Орговия осталась без лидера и силы — начался её распад."}]},
+{"t":"Гражданская война в Орговии","y":"17.020–17.022 Года от Пробуждения Оркена","items":[{"y":"весна 17.020 Г. от П.О.","h":"Распад Орговии на враждующие партии","p":"Орговия — некогда великая республика со столицей Меридианом и Закрытым Городом — лежала в руинах после Великой войны. Оргет держался лишь в Александросовске, а провинции поделили Баслано-Фирентийский освободительный совет тирана Баслана, Орговийская гибридная формация, союз гильдий Обитус Трибус во главе с вампирами-мессорами, анархо-христинистская Чёрная гвардия Яна Ациста и либеральное движение «Братья и сёстры за толерантность». Страна вступила в гражданскую войну."},
+{"y":"весна 17.020 Г. от П.О.","h":"Провал штурма дворца Оргета","p":"Чёрная гвардия Яна Ациста пошла на приступ дворца Оргета в Александросовске, но отставные вояки и гвардейская элита отбили атаку: город потерял около 20 тысяч жителей, гвардия — 18 тысяч бойцов, погиб министрий Лекс Бенсипунш. Именно этот провал начал горячую стадию гражданской войны и заставил Оргет впервые вступить в неё."},
+{"y":"весна–лето 17.020 Г. от П.О.","h":"Походы Баслана на Юго-Запад","p":"Баслано-Фирентийцы вырезали и изгоняли птице-людей, за считаные месяцы подчинив три провинции на забытом Юго-Западе и основав казарменную столицу Тасадам. Лишь сражение за Орлиное ущелье остановило их марш на север, к Шару; слухи о пытках и работорговле Баслана ползли по всей Орговии."},
+{"y":"лето 17.021 Г. от П.О.","h":"Бескровное падение Оргета","p":"Агенты интригана Юлиха настроили Александросовск против власти, а лисолюд Эт фон Лус публично отрёкся от дворянства и возглавил толпу. Марш военных, рабочих и жандармов нашёл дворец пустым: Оргет был распущен, власть взял Республиканский рабочий союз, а город раскололся на республиканцев, анархистов и военных генерала Вадима Билибина."},
+{"y":"лето 17.021 Г. от П.О.","h":"Птице-люди поднимаются, кобольды спускаются в набег","p":"Чистки ксеносов в Саргоне и завоевания Баслана породили движение птице-людей за объединение: Шар стал их городом, вождём провозглашён Барсллимон Влассильвский. Тем временем Подземная империя кобольдов за три дня взяла соседнюю провинцию, угнав всё население в подземное рабство, и испробовала на врагах искусственные болезни."},
+{"y":"осень 17.021 Г. от П.О.","h":"Осеннее наступление и война кобольдов со Снежными эльфами","p":"Баслано-Фирентийское наступление оттеснило птице-людей к Шару — их армия потеряла 106 тысяч воинов из 120. Кобольды с пауками-арахнороками и чумными монахами атаковали Снежных эльфов в горах: тысячи эльфов полегли, но кобальтов разбили. Союз Саргона с Басланом так и не состоялся."},
+{"y":"зима 17.021 Г. от П.О.","h":"Падение Шара","p":"Баслано-Фирентийцы взяли Шар — последний оплот птице-людей, которые пали окончательно. Помощь вампиров Обитус Трибус опоздала: обращённые стригои оказались неуправляемы и погибли, зато разведка обнаружила гномий портал, за который позже будут сражаться все стороны."},
+{"y":"весна 17.021 Г. от П.О.","h":"Фронт Человечества и новые силы","p":"Баслано-Фирентийский совет переименовался во Фронт Человечества, провозгласив истребление нелюдей и наследие Царя Олега и Старой Меломы. На арену вышли Краснорусское царство, тайный Республиканский фронт — союз старых элит, объявивший себя истинным наследником Орговской республики, — и культ некромантов Бледной Длани."},
+{"y":"лето 17.022 Г. от П.О.","h":"Битва за портал и мобилизация Чёрной гвардии","p":"Обитус Трибус бросил на провинцию Чёрной гвардии ополчение, стригоев и элитную невидимую длань, но форсирование реки провалилось — портал остался у гвардии. Ян Ацист мобилизовал 900 тысяч человек, перенёс столицу Союза Самообороны в Валлузи и национализировал её заводы под военное производство; генерал Билибин был взят в плен."},
+{"y":"лето 17.022 Г. от П.О.","h":"Обвал туннелей: гибель двух провинций","p":"Кобольты обрушили проходы под землёй, погребя 50-тысячное войско Акамира Ляова и вызвав землетрясение, уничтожившее две провинции вместе с 1,3 миллиона жителей; почву убила кобальтская чума. Чумные монахи доказали, что их мощь сравнима с маго-ядерным оружием, а кобольды ушли массовой миграцией в Нортфулк."},
+{"y":"лето 17.022 Г. от П.О.","h":"Республиканский фронт собирает Орговию","p":"Краснорусь присягнула Республиканскому фронту, а северные провинции вошли в него миром — современники назвали это величайшим парадом победы дипломатии. Шар вновь отбили Баслано-Фирентийцы, Обитус Трибус поглотил южные провинции и заключил конфедерацию с Бледной Дланью, Чёрная гвардия взяла штурмом дворец, но Академия магии и подземелья держались."},
+{"y":"лето 17.022 Г. от П.О.","h":"Возвращение Аристарха Блэка и исход войны","p":"Над Александросовском выросла чёрная сфера: маг времени Аристарх Блэк, инсценировавший гибель перед падением Закрытого Города, соединил лучшие времена города и вернул его — вместе с Академией — под контроль Федерации. К исходу второго лета 17.022 война выдохлась в противостояние укрепляющихся партий: именно из её выживших вырастет будущая Орговская угроза."}]},
+{"t":"Разгром Бора и Скрытая война","y":"после гражданской войны (точные годы в источнике не названы)","items":[{"y":"в годы после гражданской войны","h":"Разгром Бора","p":"Воинство Бора угрожало землям Казилина на краю Торана, а мессор Маратаниэль едва не погиб в борском плену. Войска Алехио Щурса, бывшего офицера Орговии, прошли по воинам Бора и взяли большинство в плен; победа сделала Покирстодову землю одним из ключевых племён провинции, а Щурса — её первым полководцем."},
+{"y":"в годы после гражданской войны","h":"Скрытая война с магом Манэром","p":"Дуалистический маг Огня и Зимы Манэр выведал, что под Покирстодом скрыт Эфирный источник, и заключил союз с древним аристократическим родом Эрлов. Его 17 Гигантских богомолов стерли с лица земли Чудиково поселение; Казилин раскрыл заговор через пленённого Эрла и перешёл к активной обороне — плотина на реке, ловушки, мобильные отряды в лесах и горах."},
+{"y":"в годы после гражданской войны","h":"Открытие Орговской флотилии","p":"Пленный Эрл поведал о флоте выживших орговцев на реке Оргов: его возглавил Ян Цист, опорой стали клан Обитус Трибус и войска Республиканского фронта. Объединяясь, орговцы истребили собственных соотечественников, их корабли остались последними из погибшего мира, а потомки выживших жили в цивилизации на Южном континенте. Гигантские богомолы оказались лишь прелюдией большой войны."}]},
+{"t":"Орговская угроза","y":"спустя пару лет после гражданской войны","items":[{"y":"в годы конфликта","h":"Племя Циста и цисто-христинизм","p":"Пережившие войну орговские партии отказались от испытаний и слились в одно большое племя под началом Яна Циста, проповедующего цисто-христинизм: апогей человечества — в отсталости. Орговцы методично разрушали все цивилизации, что пытались выйти за пределы бронзового века, и потому стали угрозой всему миру Торана."},
+{"y":"в годы конфликта","h":"Орговцы идут на север","p":"Орговцы штурмовали и брали северные полисы, Цист обзавёлся артиллерией, а его корабли двинулись к Гравитграду, требуя сдачи города. Казилинова земля отвечала частоколами, магическим барьером и бомбами; гвардия Ланы разгромила орговские диверсионные группы на севере, а мессор Маратаниэль выбил орговцев из окрестностей поселения."},
+{"y":"в годы конфликта","h":"Стратегия выживания Покирстода","p":"Геро Гериймар-Сиэнмор сформулировал три столпа обороны — защита, изматывание, минимальные потери, — а Щурс готовил удары в тыл наступающим. Лана по видению древы-матери предрекала падение города, если Покирстод не ударит первым; посланников отправили в Великую Пустыню с вестью об Орговской угрозе, и мир начал готовиться к затяжной войне."}]},
+{"t":"Космическое изгнание и явление Казилина","y":"17.022 – 19.520 от пробуждения Оркена","items":[{"y":"17.022 – 19.500 от пр.","h":"Корабль «Александросовск»","p":"Почти два с половиной тысячелетия корабль с людьми в крио-сне бороздил моря, а интриги Анджа Еуса продолжились уже на космическом корабле, где команда ОПО-РФ подчинила А-Тору, а её наследники возвели новое государство на Южном континенте. В конце концов «Александросовск» причалил к Западному континенту, и его пассажиры разбрелись по миру, утратив память о космосе."},
+{"y":"19.500 от пр.","h":"Явление Казилина","p":"Андж Еус, новый Реальный Бог Покирстод и воин Казилин Тройгардер явились первым поселенцам будущей Империи Тораны у Великой Пустыни. Выжившие присягнули Казилину — так началось его правление и родословная Империи."},
+{"y":"19.501 от пр.","h":"Саросова эпидемия","p":"В Покирстодовом поселении разразилась эпидемия сыпного тифа, унёсшая многих сподвижников Казилина и едва не погубившая его самого. Врач Вольмарштейн остановил мор за неделю, а почивший духовный наставник Аксель был причислен к Блаженным."},
+{"y":"19.520 от пр.","h":"Расширение Казилиновой земли","p":"Казилинова земля расширилась; вокруг неё развиваются провинциальные государства, на просторах которых ведётся нынешняя игра. Опустошённый войной мир начал заселяться заново."}]},
+{"t":"Космическая эпоха: исход из Орговии","y":"19 500 год и далее","items":[{"y":"канун космической эпохи","h":"Армии перенесены на «Александросовск»","p":"Маг Андж Еус прервал вечную войну партий Орговии: во время мирных переговоров в таверне «В мамке Ферда» он перенёс армии всех враждующих сторон на борт гигантского корабля «Александросовск». Задачей партий стала колонизация секторов корабля и всех «планов», а победителю обещали престол Южного континента. Этим шагом закончилась старая эпоха и начался космический этап Тораны."},
+{"y":"19 500","h":"Падение Александросовска и бронзовый век","p":"Мир пережил конец Орговского мира: в 19 500 году пал древний Александросовск вместе с Академией, знания предтеч были утрачены окончательно, и вся Торана скатилась в бронзовый век полисной системы. Слово «Орговия» превратилось в миф. На обломках сложились новые народы: Вартемберская конфедерация на Западе, островитяне на севере, смуглые полисы на южных побережьях — хронисты писали о «зачатках одной очень великой страны»."},
+{"y":"третья неделя полёта","h":"Мир открыл планету А-Тора","p":"Мессоры обнаружили в недрах корабля двигатель, связанный переходами со всеми этажами, а из-за перебоев фильтров взорвался отсек №19 — «Александросовск» начал деградировать, хотя автоматика продолжала восстанавливать повреждения. Тогда же малый корабль ОПО-РФ впервые покинул станцию и достиг планеты А-Торы, где примитивные существа приняли пришельцев за богов. Планета раскололась на верующих и еретиков, а путь к ней сократился с недели до трёх дней."}]},
+{"t":"Цена прогресса: заря Империи Торана","y":"19506–19527 гг. от пр. Оркена","items":[{"y":"до 19506 г. от пр. О.","h":"Присяга Казилину и основание Покирстода","p":"Казилин I Тройгардер, ведомый богом Покирстодом, собрал первых сподвижников — вампира Маратаниэля, воина Алехио Щурса, целительницу Эхидну Стингс, зодчую Лале, жрицу Ванору Гармс, чудовище Вольмарштейна и иных — и принял их присягу на верность. На пустыре был заложен город Покирстод, будущая столица Казилиновой земли, а рядом выросло священное салатовое дерево."},
+{"y":"19506–19508 гг. от пр. О.","h":"Орговское нашествие отбито диверсией","p":"Орговцы двинулись на юное поселение, но Щурс отсрочил их удар, дав мессору Маратаниэлю время на диверсию: пожар уничтожил практически всю наземную армию противника. Гибель лучших умов врага окончательно свела Циста с ума, а отрубленные головы орговцев месяцами рассылали неприятелю, ломая его моральный дух. Похищение триеры позволило устроить диверсию до конца."},
+{"y":"19520-е гг. от пр. О.","h":"Поход Вайта на Покирстод","p":"Царство Вайта обрушилось на Казилинову землю: Покирстод пережил позорное поражение, враг занял Щурск, а Довелли даже пленил правителя. Патриарх Вильгельм с отрядом в 280 воинов и взрывчаткой нанёс наступавшим ощутимый урон без больших потерь, но выбить чужаков не удалось. Население столицы сократилось до тысячи жителей, и страна ушла в изоляционизм."},
+{"y":"около 19527 г. от пр. О.","h":"Гибель Циста и сон Довелли: конец эпохи","p":"Безумный творец Цист, развязавший войну против Казилиновой земли и Тёмной области, пал в собственной войне, а его напарник Довелли, окончательно утратив рассудок, убил союзника. В финале эпохи Дориана усыпила Довелли так же, как спит Оркен, произнеся приговор: вот она, цена прогресса — пасть со всеми технологиями мира прошлого. На этом завершилась эпоха становления Империи Торана."}]},
+{"t":"Эпоха Казилиновой земли и провинций","y":"после 19.520 от пр. (точные годы в источниках не названы)","items":[{"y":"год в источнике не назван, эпоха после 19.520 от пр.","h":"Смерть Казилина Тройгардера","p":"Основателя Казилиновой земли предали: собственный воспитанник покушался на него, но убить смогла лишь магическая зараза. Власть принял Трей Тройгардер, заточивший всех заподозренных в измене; эпоху прозвали Тюрьмой Трея Тройгардера."},
+{"y":"год в источнике не назван, эпоха после 19.520 от пр.","h":"Падение двух Халифатов","p":"Пираты, могущественные на юге со времён Мариканских разбойников, разграбили Окситанский и Абердинский Халифаты, продали уцелевших в рабство и добили оба государства. Юг в одночасье лишился двух держав."},
+{"y":"год в источнике не назван, эпоха после 19.520 от пр.","h":"Гибель Улья и конец страны Ру","p":"Улей Ру`гзы втянули в новый переполох, в котором он был окончательно уничтожен, хотя и успел повлиять на ход войны. Жуки армии Ру обрели сознание и разбежались по свету — с этим страна Ру прекратила существование."},
+{"y":"год в источнике не назван, эпоха после 19.520 от пр.","h":"Конец Ганзы Красного Черепа","p":"Ганза покинула Покирстодову Землю. Увлёкшись идеями Ассилии, её остатки пришли к одноимённому лордству, где воцарился Царь Хайзенберг и основал династию Хайзенбергидов."},
+{"y":"год в источнике не назван, эпоха после 19.520 от пр.","h":"Гибель Володского Княжества","p":"Володское Княжество подмяло под себя Конунгство Олафьенс, воспользовавшись внутренними междоусобицами. В отместку за разрушенную де-юре столицу островитяне вырезали всех Володчан до единого."}]},
+{"t":"Эпоха ураганов: Кисквасикр","y":"19 530-е годы","items":[{"y":"19 530-е","h":"Сезон ураганов обрушился на мир","p":"Мир столкнулся с Кисквасикром — загадочным магическим вихрем, сносившим поселения в случайном порядке, и ураганы убивали целые табуны и ордена. Изоляционизм Казилина Тройгардера IV провалился: к 19 530 году в единственном городе Покирстоде оставалось лишь 7 000 обитателей. Казилин созвал вождей, магов и некромантов на великий совет, а лекари открыли «метку сезона ураганов» — болезнь, гнавшую безумцев навстречу вихрям."},
+{"y":"19 530-е","h":"Дориана гасит вихри и меняет порядок","p":"Кодул Великой Пустыни Дориана, дочь Алехио Щурса, раскрыла, что источником катаклизма был сам Казилин, и закрыла все ураганы, остановив битву за Асферот. Почти все земли лежали в руинах: Свободные поселения и магические полисы были уничтожены полностью — нетронутыми остались лишь Покирстод и Царство Вайта. По мирному договору Асферот отошёл Вайту, Форпост Андрэ — Дориане, а эльфы и маги ушли в Великую Пустыню, покорившись новому порядку Покирстодова."}]},
+{"t":"Форт Хаоса","y":"19554–19582 гг. от пр. Оркена","items":[{"y":"19554 г. от пр. О.","h":"Форт Хаоса, Вальмерцкое нашествие и падение Маррэ","p":"Великий маг Эттэ занял бывший столичный полис магов и превратил его в Форт Хаоса — угрозу всей провинции. Одновременно вальмерский диктатор Унирит перешёл Вальмерцкую стену с семидесятитысячным войском, а в Свободных поселениях Кира сверг кровавую Маррэ, основав Вольный город Нозрань; при штурме её замка пал славный ландскнехт Георг фон Фрундсберг."},
+{"y":"01.02.19582 г. от пр. О.","h":"Битва за Форт Хаоса и рождение Солнцебойска","p":"Коалиция Казилина, Дорианы, гномов, Ганзы и магов Архонта Смегмы сошлась с Эттэ, его Неубиваемыми и миллионами механизмов Монолита. Смегма сразил вождя багровых Саида, а пророк Солнцебой, породив миниатюрное солнце, разрушил Форт и основал на его месте Солнцебойск под покровительством Казилина. Дориана чудом вывела телепортацией остатки своего войска — не более двухсот тысяч воинов — из клещей Монолита."}]},
+{"t":"Тюремный остров: эпоха Трея","y":"годы правления Трея (дуэльные турниры — в 100 и 102 гг.)","items":[{"y":"годы правления Трея","h":"Эпоха Тюрьмы и войны Трея Тройгардера","p":"Новый Наставник Трей обезопасил трон массовой посадкой знати и принуждением Тройгардеров к отречению от претензий на престол; эпидемия сифилиса убила большую часть рода. Он отразил атаки грибнитов и кровавых эльфов, покорил Вальмерские земли, разгромил Вартемберцев и двинулся на зверолюдский край. Его войны остановил лишь явившийся на тюремном острове маг безумия."},
+{"y":"те же годы","h":"Улей против Рингердинцев: война без объявления","p":"Рингердинские войска без объявления войны сожгли леса вокруг Улья — для народа Вечного Роя началась Великая Отечественная война с захватчиками, сам Улей оказался в осаде. На Севере в это время лидеры Роя, эльфов и Арии вышли на борьбу за власть над всеми территориями."},
+{"y":"те же годы","h":"Ахарон становится Повелителем Червей","p":"Звездочёт Ахарон провёл страшный ритуал: вырезая руны на собственной душе и питая их ментальной силой червей, он покинул истерзанное тело и закрепился между созвездиями. Среди звёзд появился Повелитель Червей — новая сила, чьё влияние на мир никому не ведомо; вскоре он присвоил себе и город Нордланд."}]},
+{"t":"Таверна «Фердова Мамка»: игра мага безумия","y":"переигрывание эпох 0–19614 гг.; кульминация — конец 17023 г. от пр. О.","items":[{"y":"конец 17023 г. от пр. О.","h":"Александросская битва и рождение Кругов магов","p":"Маг безумия Андж Еус собрал более сотни существ в таверне «Фердова Мамка» и заставил их переиграть эпохи мира, кульминацией стала Александросская битва. Чёрная и Белая гвардии истребили друг друга: Академия магов пала, главу белых Антония Гуса убили свои, мир был заключён без победителей. Эльф Пандроникс сумел усыпить самого мага безумия; Жергод и Пандроникс были отправлены в будущее, положив начало Людскому и Эльфийскому Кругам Магов."},
+{"y":"эпилог таверны (настоящее время)","h":"Уход Лу Думанского","p":"Лу Думанский, столп Покирстодовых земель эпохи становления, окончательно ослабнул и завершил свой путь; в народе верят, что он ушёл в колонию Эдем. С его уходом закрылась целая глава ранней истории Империи Торана."}]},
+{"t":"Смешанный план: интриги и завоевания","y":"до конца 19 630 года","items":[{"y":"годы перемирия","h":"Ксозимит Завоеватель и интриги Пусси","p":"Державы разделились на коалиции: против Покирстодовых земель плёл интриги Монте Пусси, втягивая нейтральные стороны, а Покирстодова коалиция поставила целью его убийство. Правитель Ксозимит Тройгардер едва заключил десятилетнее перемирие с Вартемберцами и обрушился на юг: за несколько месяцев он захватил столько земель, сколько его предшественник Трей — за всё правление. Народ прозвал его «Завоевателем»."},
+{"y":"конец 19 630","h":"Мир и распад Антипокирстодовой коалиции","p":"В конце 19 630 года был подписан мир: Антипокирстодова коалиция распалась, а её вдохновитель Монте Пусси был отравлен — по заговору, который он сам готовил против себя на случай беспамятства. Его владения стали Северной Мессорией под властью чужих ставленников, а гроб скрыли в катакомбах Бригантиума. Ксозимит тем временем разгромил сильнейшие страны юга — Мерцев и Писания, — и над победителями нависла эпидемия «Убийственная Комедия»."}]},
+{"t":"Синдром Отмены: нашествие Подгорья","y":"после 19 630 года","items":[{"y":"пролог события","h":"Тёмный Дракон снял барьер Подгорья","p":"Мир едва не рухнул: маги во главе с Иннокентием совершили ритуал «Тёмный Дракон», барьер Подгорьского Царства пал, и орды Подгорья с союзниками хлынули на все земли. Армия Тройгардеров потерпела страшнейшее поражение — Казилин и Ксозимит оставили Вальмерцию, собирая ополчения; спасти мир можно было лишь убийством четырёх стихийных магов, скрытых среди универсалов. Красный дракон над Храмовником был сочтён знаком скорого конца натиска."},
+{"y":"135 — 190 годы","h":"Реформатор и война с гномами","p":"Казилин II «Реформатор» ввёл магию в повседневность Покирстода, принял титул «Верховный вождь людей», выпустил первые деньги зонсекам и переименовал столицу в «Вождество Яльва». Вызванная его грубостью гномье-эльфийская коалиция разбила Яльву: северные провинции отошли гномам, а король Федр Балерлог закрепил за ними и Подгорье. Покирстод едва удалось отстоять."},
+{"y":"эпилог события","h":"Фьёрдлинг наступает на пустоши","p":"Друиды Фьёрдлинга открыли способ обращать вспять серую пустошь — это открыло путь к новой волне колонизации, на которую не было конкурентов. Были основаны восемь новых герцогств, и княжество выросло в целую федерацию земель. Отразив нападения островитян, кристальную заразу и шантаж тёмных эльфов, Фьёрдлинг вступил в свой золотой век."},
+{"y":"эпилог события","h":"Восход и закат Островитянской Республики","p":"Аскольд Келий объединил и возродил величие островитян, завершив захват Чёрного Пламени — последнего царства тёмных эльфов, выжившие из которого стали изгнанниками по всему миру. Республика подчинила осколки Великой Федерации, а Катход стал независимой Басло-Фирентийской Республикой. Но на вершине могущества державу начал подтачивать упадок: к 190 году островитяне отказались от Восточного континента."}]},
+{"t":"Время технологий: мировой скачок","y":"эпоха великого скачка","items":[{"y":"начало эпохи","h":"Мир резко скачнул вперёд","p":"Набеги островитян открыли континенты друг другу, кристальная болезнь прокатилась по всему миру, а впервые за долгое время возникла держава, чьи земли лежали сразу на нескольких континентах. Эти потрясения сблизили народы и толкнули Торану к невиданному технологическому скачку: знания стали главным богатством эпохи."},
+{"y":"первые годы эпохи","h":"Аркебузы и революция Тронии","p":"Гномья Трония освоила аркебузы, её банки раздавали кредиты половине мира, а за 18 лет население выросло на 15 300 дворфов. Затем конгломерат сверг королевскую семью и передал власть парламенту, а позднее Трония провозгласила республику с паспортами и пограничными пунктами. Впрочем, горные кланы вскоре разлетелись под крыло возрождённой Снежной Полосы — буфера Эльфийского Альбиона, сохранив лишь банковские династии по всему миру."},
+{"y":"первая половина эпохи","h":"Рождение Сарранитской Империи","p":"Сарранидский Султанат пережил Танзимат — эпоху реформ: школы и больницы, железные дороги и паровые големы, пароходофрегаты и первые танки, а шахтёры отыскали металл, которому не страшна магия. Султан Суладан покорил Восточный остров и умер, увидев плоды трудов, — наследник Абдулхаммид реорганизовал державу в Сарранитскую Империю. Пираты ещё успели проклясть флот Ржавой чумой, за что их вожак Шаграт был назначен Капудан пашой."},
+{"y":"середина эпохи","h":"Машины и пар Медиката","p":"Медикат стоял на пороге нового века: к запуску готовились Аналитический двигатель и Великий арифмометр, обещавшие толчок всем технологиям и производству, а по морям уже ходили медикатские пароходы. Министры спорили о вечном равновесии войны и роста, но в стране расцветало общество всех рас и вер."},
+{"y":"середина эпохи","h":"Взлёт и гибель Сигмарата","p":"Орочий Сигмарат за 12 лет построил дороги, верфи и шахты, создав армию улучшенных воинов Угрурр-Хаев, — но его «экономическое чудо» стояло на глиняных ногах. Когда рухнул Акджарский Султанат, Сигмарат на время поглотил его земли, однако затем Конклав птицелюдей, подогреваемый Эльфийским Альбионом, уничтожил державу полностью. Орков изгнали в Орочью степь, и более они здесь не появлялись."},
+{"y":"эпилог эпохи","h":"Паровая Федерация Филийских островов","p":"Торговая Федерация стала монополистом лёгкой промышленности всего Торана: Христинийский текстильный комбинат, Патентная биржа и фондовая биржа в древней Христине закрепили власть валюты мерката. Паровые машины, нарнийский угольный бассейн, серебро и золотой резерв питали рост, а консервация специй накормила флот. Проекты полисов и малоселений подняли периферию архипелага."},
+{"y":"эпилог эпохи","h":"Великое переселение сильвов","p":"Мир стал свидетелем чуда: 90% жителей Фьёрдлинга пересекли океан и нашли священную землю сильвов — Закрытый город и золотой трон правителей всея расы. Королевские маги подняли в небо целый искусственный остров, где разместились академия ФАЧ и орден алхимиков, а в вере был утверждён лояльный «Южный Храмовник». Затем сильвы сошлись в крупнейшей войне памяти с ордами разумных жуков за святой город."},
+{"y":"эпилог эпохи","h":"Белканское чудо","p":"Молодая Белканская Федерация за девять лет победила безграмотность и совершила «Белканское чудо»: железные дороги с паровозами, дирижабли, трудовой кодекс и регулярная армия с передовыми технологиями. Геологическое общество державы засылало экспедиции по всему миру, а промышленность росла с нуля до величия."},
+{"y":"эпилог эпохи","h":"Конец эпохи Тройгардеров","p":"Казилин III правил Яльвой без единой войны, расширяя страну выкупом земель, но пал от интриг; власть перешла к номинальному Казилину IV при всевластии Великих Семейств, а Казилин V Торговец сделал ставку на ярмарки и сделки. Хроники зафиксировали перелом: Эпоха Тройгардеров завершена, начата новая эпоха."}]},
+{"t":"Колониальная эпоха: передел мира","y":"новейшее время","items":[{"y":"новейшее время","h":"Державы делят мир","p":"Державы и династии ринулись захватывать новые земли на разных континентах, добиваясь места под солнцем и титула губернатора самопровозглашённых колониальных компаний. Точкой интереса стал Асавшур — вольный город ассилийцев у Гномьих гор, а ведущей экономической силой мира объявила себя торговая компания «Тигриная Лапа», обошедшая всех конкурентов. Борьба за влияние шла между дуксами за каждую колонию."},
+{"y":"новейшее время","h":"Колонии и новые рубежи","p":"Колониальные державы закладывали форты и порты: Нигойл налаживал экспорт древесины с восточных владений, Пршибрам вырос в пять раз, запретил рабство и выкупил 50 000 рабов за морем, а Фьёрдлинг завёл заморские колонии и контакты с подводными цивилизациями. В Яльве казилином был избран вампир Стефан II Чтивый, и разгорелась большая игра за передел сфер влияния между колониальными державами."}]},
+{"t":"Смуты Яльвы: Война Совета и Дорога Праведников","y":"эпоха Войны Совета (точные годы в источнике не названы)","items":[{"y":"эпоха Войны Совета","h":"Война Совета и Восстание Династий в Яльве","p":"Крупнейшее событие Яльвы — Война Совета — перепахала власть: Кеджины пали, Херсы возглавили восстание и удержали Амеороссию, а Вальтеры вышли из войны нейтралами. Республика прошла через Филийско-Яльвинскую войну и короткую яростную схватку с Федерацией, потеряв флот Эваудов. Победившие перекроили дукаты, и старые великие династии уступили место новым."},
+{"y":"тот же период","h":"Дороги Праведников и падение Интерона","p":"Четыре великих пути — Калический, Балеорлогский, Басланийский и Северный — стали предметом борьбы династий: сильнейший контролёр получал статус Неубиваемой Династии, чьё падение исключено из любых планов. В эти же годы Интерон развалился от внутренних конфликтов, и волна некроморфов смахнула остатки страны; подгорьские вассалы Яльвы вычистили земли от нежити и присоединили их."}]},
+{"t":"Война Инквизиций","y":"эпоха раскола веры в Яльве (год в источнике не указан)","items":[{"y":"эпоха раскола веры","h":"Вспышка инквизиций в Яльве","p":"Под покровом благочестия в Торговую Республику Яльву пришёл религиозный раскол: ортодоксы столкнулись с новыми ветвями веры, а учёных, философов и художников ждали гонения. Начали формироваться Покирстодоверующая, Северная, Подгорьская и Иностранные инквизиции, боровшиеся за умы и провинции. Война за веру стала глобальным сюжетом, определившим следующий век Яльвы."},
+{"y":"эпоха Войны Инквизиций","h":"Битва за Апостольск и уход Леонарда Великого","p":"В битве за Апостольск смертельное облако яда едва не убило Патриарха Джейкоба Роббертса; написав «Книгу основ Покистордоверия», он тихо скончался в соборе, и с ним прощалась вся Яльва. Леонард Роббертс, прозванный Великим, сложил пост Казилина, решив последний кризис государства. «Белый мир» кончился: Яльва рванулась в колониальную эпоху, разыгрывая Дорогу Праведников как главный приз для дукатов."}]},
+{"t":"Новый порядок держав (наши дни)","y":"до 271 года нового календаря (679 Ход)","items":[{"y":"271 год нового календаря (679 Ход)","h":"Вторая Филийско-Яльвинская война","p":"Торговая Федерация Филии столкнулась с коалицией во главе с Яльвой: Казилин Яльвы при поддержке Патриарха объявил войну за торговые пути. В решающей битве у острова Саррад флот Федерации отступил. По миру на пятнадцать лет Филия лишилась южных колоний, разделённых между Аттаманской Империей, Фьёрдлингом и орками Сигмарата, а её граждане затаили реваншизм."},
+{"y":"271 год нового календаря (679 Ход)","h":"Возвышение Яльвы","p":"После победы авторитет Казилина и Патриарха вырос: святилище в землях гигантов объединило верующих, а Кодул Роуд одолел древнее чудище — тёмного единорога. Западный континент вступил в шаткий мир, где бал правят шпионские игры и интриги наследников."},
+{"y":"271 год нового календаря (679 Ход)","h":"Золотой век Фьёрдлинга","p":"Королевство Фьёрдлинг, выиграв Последнюю войну — её звали то «Степным пожаром», то «Войной двух орлов», — разгромило Конклав Птицелюдей и вступило в Золотой век. Военная диктатура сменилась просвещённой аристократией, появились паровые мануфактуры, а Великий «Мост двух Владык» соединил цивилизованные и дикие земли южного континента."},
+{"y":"271 год нового календаря (679 Ход)","h":"Аттаманская держава и конец нежити","p":"Аттаманская Империя вернула статус великой державы, хотя султану Абдулхамиду пришлось бороться с еретическим культом Нурги. Белканцы и граждане Басло окончательно одолели повелителей нежити и принялись обживать отвоёванные земли."},
+{"y":"271 год нового календаря (679 Ход)","h":"Обжитой Восток и новые измерения","p":"Восточный континент становится всё более обжитым: Королевство Пршибрам пережило вассалитет под империей Мандера и продолжает колонизацию востока. Летописи обещают открытие новых земель и измерений — колонизация растёт с новой силой."}]}];
+
+var BESTIARY = [{"n":"Крылатые и морские эльфы","cat":"раса","d":"Первые эльфы Торана, рождённые эфиром Дракона Торана: крылатые считаются Детьми Драконов, ментально схожи с ними и играют роль наблюдателей, не лезя в чужие дела. Морские эльфы зародились одновременно с альфами и долго оставались единственными, кто не враждовал с ними в водах. Позже крылатые создали высших эльфов в противовес тёмным.","where":"эльфийские края, моря и океаны Торана","danger":"низкая — наблюдатели, редко вмешиваются"},
+{"n":"Лесные эльфы","cat":"раса","d":"Вышли из земли, из эфира, опавшего в почву, и стали ускорять рост лесов, прячась в них от агрессивного мира; вся их философия связана с лесом. Лесными жителями правит фея — Королева Леса, чей совет готовил удар по Скерийской империи, а часть лесного народа защищала Щит. Эльфы своих, даже полукровок, не убивают.","where":"Лесное королевство, Казилинов лес, земли Щита","danger":"низкая/средняя — воинственны лишь при угрозе лесу"},
+{"n":"Кровавые и тёмные эльфы","cat":"раса","d":"Самые суровые виды эльфов: кровавые вышли из огня и приобрели имя из-за жестокости, тёмные созданы кровавыми порчей остальных видов и умеют дипломатировать. Их союз с Силами Падших развязал Войну Чёрного Пламени, закончившуюся Лурзским миром и экономическим кризисом тёмных эльфов. Кровавый эльф-чародей защищал Филийскую федерацию в битве у острова Саррад.","where":"южные земли, порт Лурз, Филия","danger":"высокая"},
+{"n":"Высшие эльфы","cat":"раса","d":"Горделивые контролёры эльфийского рода, созданные крылатыми; их магия породила новые, серые, дикие, пустынные и горные виды эльфов. Серые лишены морали и служат приказу, дикие нарушают гармонию, горные стерегут эльфийский мир, пустынные сильны лишь в Великой Пустыне. Рядом с ними живут солнечные и лунные эльфы, появившиеся с первым светилом и первой луной.","where":"эльфийские края, горы, Великая Пустыня","danger":"средняя/высокая — зависит от вида"},
+{"n":"Орки","cat":"раса","d":"Тёмная сущность эльфа: непотребно живший эльф после смерти перерождается эфиром в орка. Дикие племена кочуют по Великой Пустыне и отсталым краям, благородные северные и южные орки живут среди других народов и стремятся исправиться. Вождь Гра правил Аванпостом с костяного трона, а с исчезновением богини Цильи цивилизованные орки пропали из мира.","where":"Великая Пустыня, Аванпост, Южный континент","danger":"средняя/высокая"},
+{"n":"Урки","cat":"раса","d":"Деградировавший подвид орков: тело урка пожирает время, прежде чем превратиться в эфир, размножаются они спорами, жрут камни и друг друга, поэтому воины используют их для тренировок. Некоторые урки способны на примитивную речь и политику. Полуразумные урки Форпоста гнали неразумных размножаться, чтобы растить полчища против Скерии.","where":"Великая Пустыня, Форпост","danger":"средняя — опасны числом, а не умом"},
+{"n":"Тролли, огры и гоблины","cat":"раса","d":"Орочьи метисы: тролли, смешение орков со средними альфами, имеют средний разум и силу, огры — низкий интеллект при огромной мощи, гоблины, от мелких альфов, — высокий ум при слабом теле. Тролли уносили жителей Ланаграда в подземелья Щурского холмогорья и жили общинами в Гномьих горах, а пещерные гоблины прятались от кочевого племени вождя Гунгаза. Гоблинов-рабов Орговия держала даже в банках.","where":"горы, пещеры, степи Орговии, Великая Пустыня","danger":"средняя/высокая"},
+{"n":"Гномы","cat":"раса","d":"Древний народ, рождённый из эфира павших эльфов и их изделий: редкие магические гномы прячутся и шутят, технологические живут в горах и не идут на контакт, классические приспособлены к чужому обществу. Гномья цивилизация Центроземья старше Пробуждения Оркена и тайно саботирует соседей, а гномьи войска держали оборону у Форта Хаоса. По легенде алчность гномьего короля породила червя Чечувея.","where":"Гномьи горы, Центроземье, Форт Хаоса","danger":"средняя — страшны инженерией и упорством"},
+{"n":"Альхорнцы","cat":"раса","d":"Спящая раса — полукровки суккуба и эльфа с крыльями и дарами тёмной, огненной и кровяной магии: способны спать до двухсот лет и страдают долгосрочной амнезией. Следовали за Огненным Львом, пережили маго-ядерную войну, унёсшую около трёх миллионов жизней расы, и разделились на пустынных, ганзейских и ордокосов. Предводительница Валентина привела три тысячи альхорнцев в состав Ганзы.","where":"Огненные земли, Акджарский халифат, Великая Пустыня, Ганза","danger":"средняя"},
+{"n":"Люди-альги","cat":"раса","d":"Первые люди, выведенные альвами эволюционным путём с ускорением магией: первый человек Яльва был назван в честь первого эльфа. Белые, чёрные, синие, жёлтые, зелёные и смуглые ветви воевали между собой, пока белые и смуглые не объединили остальных и не одолели альвов. Именно Синюю расу позже драконы превратили в отмороженных.","where":"всея Торана","danger":"пояснение — угроза как у любого людского народа"},
+{"n":"Живые вампиры","cat":"раса","d":"Порождение Первозданной магии крови в Фолькхоте: классические вампиры живут семьями, платят поселениям за кровь и несут военную службу, вапыри Гофского острова почти не нуждаются в крови, а вриколакасы — учёные-одиночки, основатели мёртвой группы. Почти истреблены Драконами Торана за вторжение на территорию Бога А. К эльфам питают симпатию, к магам — презрение.","where":"Фолькхот, Гофский остров, Норд-Сторм, Южный континент","danger":"пояснение — социализированы, опасны лишь при жажде"},
+{"n":"Вурдалаки","cat":"нежить","d":"Северная ветвь вампиров из Норд-Сторма: эксперименты с Друидовой магией обезумили их, и теперь они стремятся заразить вампиризмом всех вокруг. Живут единым военизированным государством под властью Верховного, которого сменяют лишь свержением в поединке; обращают только белых и синих людей. Кровь кипит в их жилах при температуре выше нуля, потому держатся северных земель.","where":"Норд-Сторм, север Западного континента","danger":"высокая"},
+{"n":"Мессоры","cat":"нежить","d":"Бесполые вампиры-слуги, вышедшие из-под власти хозяев: живут кланами в катакомбах, требуют много крови и уступают способностями лишь высшим. Мёртвая группа Парваджэлита дала мир также упырей, дампиров, катакано, эмпуса и ламий, а по заказу мессоров из птицелюдов выведены летающие стригои. Мессор Маратаниэль стал героем Казилиновой земли, победив гигантских богомолов, но позже мессоров истребили все до единого как слишком опасных.","where":"Обитус Трибус, катакомбы Западного и Южного континентов","danger":"высокая"},
+{"n":"Высшие вампиры","cat":"нежить","d":"Самые сильные вампиры Торана, созданные Тёмной империей к восьмому тысячелетию: всего около 370 особей под властью Совета Высших. Способны становиться невидимыми, обращаться во что угодно и объявлять охоту любому вампиру; убить высшего может лишь дневной свет. Их сородичи ламии живут матриархальными домами и соблазняют мужчин, а стриксы — истребители вампиров из Великой Пустыни.","where":"бывшие Мрсдавские земли, Южный континент","danger":"чрезвычайная"},
+{"n":"Зверолюди-альфы","cat":"зверолюди","d":"Древняя раса мутантов, что эволюционировали из животных под действием эфира: звери имеют наполовину звериную, наполовину людскую часть тела, а животные выглядят как гуманоиды с животными чертами. Альвы веками истребляли их как мутантов, но зверолюди заселяют весь мир: от птицелюдов и выдровых людей Орговии до крысиного народа Теократической республики Аргонов. Пираты-зверолюди Южного континента принимали у себя ордокосов.","where":"всея Торана","danger":"пояснение — от мирных торговцев до свирепых воинов"},
+{"n":"Оборотни","cat":"зверолюди","d":"Появились, когда эфирные расы испили крови альфов: сознательные оборотни обращаются по своей воле, чаще в волков и медведей, бессознательные — лишь в полнолуние против желания, из проклятий первых. Ликантропия считается болезнью, и в Покирстоде даже искали лекарство от неё. Скерийские оборотни-тролли плели интриги против Лесного королевства.","where":"всея Торана","danger":"высокая"},
+{"n":"Муравьи Ваапха","cat":"зверолюди","d":"Воинство Королевы Муравьёв из державы Ваапх: муравьиные легионы зависели от огненной манны источника, который искусственно создали Храмовники, и без него войско на Западном континенте немыслимо. Королева Никс срывала военный союз Орговии и Скерии и управляла землями через провокации. Отряды муравьёв-диверсантов держали в страхе целые побережья.","where":"держава Ваапх, Западный континент","danger":"высокая"},
+{"n":"Отмороженные и донгосорцы","cat":"раса","d":"Потомки Синей расы людей, которую Драконы Торана превратили в отмороженных по итогам Войны Белой и Синей расы: беловолосы, с жёлтыми глазами без зрачков и кожей цвета замерзающего человека, но не разваливаются от удара. Правит ими совет в северном Донгонсре, а соседняя Кристальная королева наотрез отказывается вести дела с чужаками. Донгосорцы же — синие люди, ставшие коллективным разумом, питающимся магическим насыщением: они исчезли, закрыв собой все дыры мира при падении богов.","where":"крайний север, государство Донгонср","danger":"средняя"},
+{"n":"Лесные народы: феи, кентавры, энты, лешие","cat":"раса","d":"Совокупность лесных существ Центроземья и иных краёв — феи, кентавры, энты и ещё огромное количество других, почти все, кроме эльфов. Феи связаны с природой схожими с эльфами возможностями, энты племени самодревов заключали мир с людьми, а древний дикий энт способен наслать проклятие за сломанную ветку. Хищные энты нападали на города, леший искал заклинание против великого сна, а кентавры служили даже в республиканских войсках Орговии.","where":"леса Центроземья, Казилинов лес","danger":"средняя — лес отвечает на обиду"},
+{"n":"Кобольды","cat":"раса","d":"Народ Подземной империи с гладкой лоснящейся шерстью: их магия со временем деградировала, зато инженерия и чумное искусство усовершенствовались. В бой кобольды водили огромных пауков-арахнороков и пауков-кошмаров, а отряды крысолюдов — кланокрысов и штормокрысов — наводили ужас в тоннелях. Обвал туннелей кобольдов погубил две провинции Орговии вместе с миллионами жителей.","where":"Подземная империя, Нортфулк","danger":"высокая"},
+{"n":"Птицелюди","cat":"раса","d":"Раса крылатых людей с психологией и философией свободы, из-за чего курьерская служба Обитуса Трибуса была им обременительна, а деньги интересовали мало. Кровососы обращали птицелюдов в летающих стригоев, а павшему народу Баслан сулил истребление. После падения Шара основная масса птицелюдов укрылась на севере, где Бавд Бауд собрал новую партию.","where":"Орговия, Шар, северные земли","danger":"средняя"},
+{"n":"Декадиты","cat":"раса","d":"Зверолюдий народ, входивший в изначальный союз Орговии вместе со змеелюдами, орками и альхорнцами. Радикальные декадиты попытались поссорить союзников и подорвать единство Орнета, а позже декадитские бюрократы недолго держали власть в разорённых землях. Среди них встречаются и белобрысые путешественники, и острые на язык завсегдатаи таверн.","where":"Орговия, Меридиан","danger":"низкая/средняя"},
+{"n":"Сильвы","cat":"раса","d":"Лесной народ, ставший верховной элитой и кастой управленцев королевства Фьёрдлинг: люди и сильвы обжили тайные города сильванских предков. Сильвы-разведчики планируют на химерах, снабжали армию лекарственными травами, а их охлаждённые соки во льду подарили миру мороженое. Военное искусство сильвов помогло Фьёрдлингу выстоять в войнах и бунтах.","where":"Фьёрдлинг, южный континент","danger":"низкая"},
+{"n":"Змеелюди и амфибии","cat":"раса","d":"Змеелюди — древняя цивилизация юга, что возникла после извержения вулкана Сарартиса: зелёномордые маги-целители вроде Титоса служили и пыткам Гангрины, а их государство постепенно растворилось среди людей. Амфибии — водный народ-союзник королевств; их государство Ферханат пало от прислужников Эттэ. Оба народа составляли костяк изначальной Орговии.","where":"Южный континент, Орговия","danger":"средняя"},
+{"n":"Русалки и сирены","cat":"раса","d":"В озёрах и реках Торана живут русалки — не воинственный народ, помогающий путникам и тонущим; в морях и океанах обитают сирены, что заманивают людей в пучину и по слухам делают их рабами или пожирают. Пять тысяч русалок-диверсантов Ниро-Киридов потопили флот Закрытого Города, потеряв лишь полторы сотни своих. Русалки общаются псионической связью, а ритуал превращает человека в русала.","where":"озёра, реки и моря Торана","danger":"русалки низкая, сирены высокая"},
+{"n":"Болотники","cat":"раса","d":"Болотные жители, каждый из которых представляет собой живое болото с болотническим нутром вместо эфира: их магия обратила целые земли Юго-Востока Орговии в трясину. Твари болотников взрывчаты от природы, а тупые покладистые создания с шестью лапами, питающиеся эфиром и болотом, выводились сотнями тысяч при помощи Первозданного мага. Поклоняются богу Блоду, призывали Деда Болот, а после великого взрыва народ исчез.","where":"болота Юго-Востока Орговии","danger":"высокая"},
+{"n":"Гиганты","cat":"раса","d":"Древний народ, чьи земли упоминаются на юге Яльвы, где Патриарх отстроил огромное святилище, а в Дукате активно распространялась религия гигантов. Маги пустынных войн призывали песчаных гигантов, разносивших штабы и линии врага, хотя половина призывных гигантов гибли в бою. Сами гиганты появляются в хрониках редко, но память о них способна укреплять веру целых земель.","where":"земли гигантов южной Яльвы, Дукат, Великая Пустыня","danger":"высокая"},
+{"n":"Духи, ангелы и атланты","cat":"прочее","d":"Светлые существа, рождённые от смешения магов и способнейших: ангелы предназначены для божественной службы, атланты — для мирской. Злых духов по замыслу нет, но духи подвержены скверне — эфиру, испорченному тёмными магиями; сильные духи исполняют желания и материализуют вещи. Из-за обилия скверн раса редка во многих краях.","where":"всея Торана","danger":"пояснение — опасна лишь скверна, а не сам дух"},
+{"n":"Демоны и инфернальные твари","cat":"чудище","d":"Тёмные существа, созданные магией из злой составляющей людей: черти — низшие твари, к которым по определению относят и всю нежить, демоны — высшие владыки вроде личей. Суккубы и инкубы инфернального круга даруют долголетие верующим и породили экспериментами расу альхорнцев. Древний демон Кшитр Нак, главный противник матери-древа, вёл воинов тьмы на Покирстод.","where":"тёмные земли, Форт Хаоса, Казилинова земля","danger":"высокая/чрезвычайная"},
+{"n":"Нежить","cat":"нежить","d":"Общий класс восставших мертвецов: по классификации альвов вся нежить считается чертями, а тёмные маги поднимали её целыми легионами и разрешали жрецам обращаться к ней. Повелителей нежити одолели белканцы и граждане Басло, нежить Падших Сил была развеяна странным ритуалом магов, а кочевой форпост даже числил нежить союзниками. Инквизиции и охоты на неё шли веками.","where":"всея Торана","danger":"пояснение — от бродячих скелетов до легионов личей"},
+{"n":"Магические творения: големы, элементали, химеры","cat":"прочее","d":"Големы альвов без сознания, но в них обязана быть заточена чужая душа; в склепе Северо-Западных пещер девушке явился голем гигантских размеров. Элементали обладают собственным сознанием и распадаются на мономенталей с коллективным псионическим разумом. Химеры служат летающими разведчиками, магия крови обращает живых в химер, а биохимеры кунсткамер — неуправляемые мутанты с псионикой, вроде беглянки Ведьмы.","where":"лаборатории магов, пещеры, академии","danger":"высокая — непредсказуемы"},
+{"n":"Драконы Торана","cat":"чудище","d":"Первая эфирная раса: Драконы Торана, чьё оптимальное число — 400 представителей, контролируют судьбы мира, а с приближением конца Измерения их катастрофически убывает. Великопустынные драконы сильны лишь в Великой Пустыне, где их можно подчинить, а вне её справится даже крупный отряд бандитов. Пробудившись в 845 году, они истребили первых вампиров и обратили Синюю расу в отмороженных, а дракон Мутаре Дрейк правил троглодитами Нигона как живой бог.","where":"всея Торана, Великая Пустыня, Нигон","danger":"чрезвычайная"},
+{"n":"Огненный Лев","cat":"чудище","d":"Древнее чудовище-покровитель Огненных земель, за которым следовали альхорнцы, покоряя почти весь континент, пока существа мира не объединились и не нанесли поражение. Его роль в войнах сопоставима с Великим Червём Чечувеем: огненный владыка ведёт за собой полчища и держит регион в границах страха. Память о Льве жива в преданиях о войне с Огненными землями.","where":"Огненные земли Ваапха","danger":"чрезвычайная"},
+{"n":"Чечувей","cat":"чудище","d":"Древнее чудище гномов, гигантский червь с шестью рядами зубов длиной до трёх метров и трёхметровым жировым слоем: он слеп и без обоняния, но чувствует вибрации так, что слышит упавшее яблоко в пяти километрах под землёй. По преданию алчность гномьего короля, копавшего шахты всё глубже, навлекла кару богов — и Чечувей разрушил всё царство. Закопанный гномами глубоко под землёй, он вновь вышел на волю, обретя сознание мага Ашера.","where":"глубины под Великой Пустыней, Гномьи горы","danger":"чрезвычайная"},
+{"n":"Гигантские богомолы","cat":"чудище","d":"Творение дуалистического мага Манэра: семнадцать хищных гигантов до семи человек в длину, быстрых, внимательных и мастерски маскирующихся, но уязвимых к холоду и зиме. Богомолы стёрли с лица земли Чудиково поселение и поубивали его жителей, а мессор Маратаниэль остановил их, став паразитом в теле огромного вождя. Хронисты называли их лишь прелюдией больших войн.","where":"Казилинова земля, Чудиково","danger":"чрезвычайная"},
+{"n":"Тёмный единорог","cat":"чудище","d":"Чудище с древних времён, устрашавшее граждан южной Яльвы. Лишь чародей Кодул Роуд лично одолел его и вновь снискал уважение народа после Филийско-Яльвинской войны. Обычные же единороги при этом служат эльфам тотемными животными.","where":"южная Яльва","danger":"высокая — пал от руки великого чародея"},
+{"n":"Форораксы","cat":"чудище","d":"Гигантские нелетающие хищные птицы, чьё нашествие на южный континент началось на шестом году от Пробуждения Оркена и гнало эльфов в изнурительные странствия. В 1595 году у эльфийских земель разыгралось величайшее сражение первобытности, где фороракс бился с грифоном, терзая даже мёртвого наездника. К 1700 году форораксов полностью истребили.","where":"Южный континент, земли у эльфов","danger":"высокая"},
+{"n":"Оркен","cat":"чудище","d":"Главный антагонист мира Торана, чьё пробуждение стало точкой отсчёта летоисчисления всех земель. Реальные Боги повторно отправили Оркена в сон, но его зов всё равно звучит: источник Великой Пустыни не смели активировать, чтобы не будить чудище с сознанием древних тварей. Против Оркена стоит Орден Трезубца — орден борцов с ним, а крепость Азрона хранит древние обеты.","where":"глубины мира, изнанка Торана","danger":"чрезвычайная — гибельна для всего Измерения"},
+{"n":"Грифоны, пегасы и единороги","cat":"природное","d":"Магические звери-альры, наделённые сознанием и даром приобретённой магии. Грифоны составляют тысячи воздушных всадников войск Вайта и Асферота, их детёнышей разводили и дарили династии; пегасов приручили троглодиты Нигона и возили багаж дипломатов, а единороги ходят при эльфийских оазисах среди тотемных животных. Все трое — ездовые и боевые спутники элитных воинов.","where":"оазисы, эльфийские земли, Нигон","danger":"низкая — опасны лишь под седлом врага"},
+{"n":"Боги Торана","cat":"прочее","d":"Реальные Боги отправили Оркена в сон и вершили судьбы Измерения, а в поздние века их Совет заседал в прямом смысле: Антор, Амеллия, Сильвиссия, Блод, Цилья и с трудом принятый Покирстод. Покирстод — бог, видящий хитрости мирские, ему молится Империя Торана и от него рождён полубог; Блод правит Болотниками, Сильвиана — покровительница Храмовников, Оргия — богиня орговцев, а вар, тем, бер и баббах лишь самые известные из прочих. Лесную веру хранит древо-матерь, чьим мечом была воительница Лана.","where":"всея Торана, храмы и святилища","danger":"чрезвычайная — божественное вмешательство непредсказуемо"}];
+
+var NATIONS = [{"tab":"nation","n":"Покирстодова земля","kind":"держава","d":"Экспансионная держава юга Западного континента, основанная Казилином I Тройгардером во славу Бога, чьё имя носит столица. При Наставнике Трее I Тройгардере за двадцать лет выросла в пять раз, но платила за это децентрализацией и войной с Антипокирстодовой коалицией. Позже её войска под Казилиновой землёй отличились в Разгроме Бора, а против племени Циста встала вся война Орговской угрозы.","facts":[["Столица","Покирстод (также Асферот, Униритск, Ганзейск, Лалеград)"],
+["Правители","Казилин I Тройгардер Основатель, затем Наставник Трей I Тройгардер Гиена"],
+["Сила","около 940 000 жителей и армия 50 000 (на этапе сотых годов)"],
+["Вера и язык","Покирстодоверие (75 %), вальмерцкий язык"]]},
+{"tab":"nation","n":"Антипокирстодова коалиция","kind":"организация","d":"Союз вартемберских феодалов, собранный графом Монте Пусси против экспансии Покирстода. Ядро — Графство Дальневестополис, Властитель Лессан Пий IV и феодалы Долины Лилий, сумевшие остановить Трея у Плато Хинда. Под ружьём коалиция держала до 270 000 воинов.","facts":[["Лидер","граф Монте Пусси"],
+["Столица","Дальневестополис"],
+["Союзники","Властитель Лессан Пий IV, граф Делир Дюссо, барон Коэн Лью"],
+["Особенность","выросла из торговли сырьём гор с зверолюдским царством Вайт"]]},
+{"tab":"nation","n":"Вартемберская Конфедерация","kind":"держава","d":"Объединение вартемберских земель Центроземья, живущих по рыцарским и феодальным канонам: задел честь — готовься к дуэли, а то и войне. Край крепостей и замков, где каждый глава считает себя самостоятельным правителем; рабство запрещено, но крепостное право процветает, а магов губят инквизиции. С Яльвой конфедерация заключила мир и торговые отношения.","facts":[["Столица","Лессан Пий"],
+["Язык","вартемберский"],
+["Вера","вартемберское ортодоксальное верование"],
+["Особенность","феодальные войны из ничего: строят дольше, чем разрушают"]]},
+{"tab":"nation","n":"Храмовник","kind":"держава","d":"Религиозный центр вартемберцев, управляющий всеми церквями Конфедерации и главный экспансионист религиозных конфликтов Торана. Одно время Лордом был Эпос I Сисл, поставленный представителем почти всех религий: он раздавал странные, но безобидные законы и разгромил интриганские фракции, хотя исход верующих при нём был массовым.","facts":[["Правитель","Лорд Храмовников (в известные годы — Эпос I Сисл)"],
+["Регион","Запад Центроземья"],
+["Боги","Вар, Тем, Бер, Баббах, Покирстод, Сильвиана и многие иные"],
+["Особенность","священный престол и армия верующих всех культов"]]},
+{"tab":"nation","n":"Смуглые Земли","kind":"народ","d":"Упадочный регион смуглых людей на востоке Центроземья: сохранившиеся страны платят дань вартемберцам и спасаются лишь торговлей по побережьям Запада и Юга. Среди части народов растёт радикальное учение Баббаха, призывающее к священному джихаду против неверных.","facts":[["Регион","восток Центроземья"],
+["Язык","умийский (вальмерская группа)"],
+["Вера","радикальный баббахизм"],
+["Особенность","торговые войны: захват точек и похищение купцов"]]},
+{"tab":"nation","n":"Дети Покирстодовы","kind":"народ","d":"Отсталый первобытный народ юга Центроземья — совокупность племён без собственной страны. Постоянный источник рабов для смуглых и крепостного труда для вартемберцев: их поселения регулярно подвергаются набегам и уводу людей.","facts":[["Регион","юг Центроземья"],
+["Язык","автохтонный, вышедший из Великой Пустыни"],
+["Строй","только племена, народов не выделяют"],
+["Особенность","набеги и работорговля людьми"]]},
+{"tab":"nation","n":"Центроземье","kind":"держава","d":"Собирательное имя края Западного континента, смешавшего десятки культур: от племени Земфр и первой цивилизации Меломы до руин Скерийской Империи. После маго-ядерной войны беглецы стали одним вартемберским народом, но традиции войн не изменились. Здесь переплетены интриги, торговые и религиозные войны, а гномы веками тайно саботируют чужие стройки.","facts":[["Регион","Западный континент"],
+["Народы","вартемберцы, смуглые, дети Покирстодовы, вампиры, лесные расы, гномы"],
+["Прошлое","родина Меломской языковой группы и Скерийской Империи"],
+["Особенность","здесь вас может предать кто угодно"]]},
+{"tab":"nation","n":"Островитяне","kind":"народ","d":"Народы Северных островов и севера Западного континента, тысячи лет жившие набегами: их походы построили Дарлонскую цивилизацию, подчинившую весь мир. Единого лидера нет — конунги, ярлы и вожди сменяют друг друга, а островитянский язык во всех диалектах остаётся общим.","facts":[["Регион","Северные острова и Крайний Север"],
+["Язык","островитянский"],
+["Прошлое","пророк Левита и Дарлонская эпопея 5.000–14.000 годов"],
+["Народности","ариане, фрусы, фросы, штормы, вальтранцы и другие"]]},
+{"tab":"nation","n":"Бродячие Флоты","kind":"организация","d":"Кочевая морская культура стран, обитающих на флотах и временных береговых базах; в ней звучат почти все языки Торана, но преобладает островитянский. Для пиратов север скорее убежище, а символом пиратского подъёма стал орк Шаграт Смотрящий — нынешний Главный Маг мира Торана.","facts":[["Тип","кочевые морские страны"],
+["Язык","островитянский преобладает"],
+["Известная фигура","Шаграт Смотрящий, Главный Маг Торана"],
+["Особенность","убежище пиратов Крайнего Севера"]]},
+{"tab":"nation","n":"Патриция","kind":"держава","d":"Страна бестий, появившаяся пару сотен лет назад из Крепости проклятых существ на севере и захватившая островитянское население; в летописях имя пишут и как Партиция. Правит королева Сибелла, опираясь на культ матерей и ламийских приближённых. После колониальной войны подчинила западные территории, где через Патриарха Яльвы начало распространяться Покирстодоверие.","facts":[["Правитель","королева Сибелла"],
+["Дипломат","ламия Герберт Валом"],
+["Народы","бестии, ламии, покорённые островитяне"],
+["Актуально","участница Лурзского альянса, получила остров Чёрного Пламени"]]},
+{"tab":"nation","n":"Ария Великая","kind":"держава","d":"Островитянская держава, уважаемая за силу: её аристократические роды славятся воинскими подвигами со времён великого северного переполоха. На Лурзских переговорах выступила арбитром и инициатором торгового союза, выторговав два северных острова Чёрного Пламени и торговые точки на материке.","facts":[["Дипломат","Аарон Сын Сечи"],
+["Регион","острова"],
+["Особенность","аристократия воинов, фамильный меч как символ"],
+["Архив","страна Ария значится в делах Империи 244–246 годов"]]},
+{"tab":"nation","n":"Королевство Чёрного Пламени","kind":"держава","d":"Держава тёмных эльфов, развязавшая Войну Чёрного Пламени вместе с Силами Падшими сразу в двух частях света и закончившая её экономическим кризисом. Переговоры шли в их порту Лурз, объявленном нейтральной землёй. По Лурзскому миру королевство уступило острова Арии и Патриции, вернуло часть рабов и вступило в альянс с северными силами.","facts":[["Народ","тёмные эльфы"],
+["Порт","Лурз"],
+["Дипломат","тёмный эльф Кареон Рон Фермаунт"],
+["Особенность","рабовладение и репарации кораблями по миру"]]},
+{"tab":"nation","n":"Силы Падших","kind":"организация","d":"Союз тёмных сил, союзник Чёрного Пламени в войне на севере; дипломатию на Лурзе вёл тёмный орк Грогар Зелёный. Силы Падших обещали базы для миротворцев, репарации по 20 кораблей в течение 20 лет и помощь Пламени в случае войны.","facts":[["Народ","тёмные орки и союзные тёмные силы"],
+["Дипломат","Грогар Зелёный"],
+["Актуально","участник Лурзского альянса и торгового союза"],
+["Особенность","репарации кораблями пострадавшим странам"]]},
+{"tab":"nation","n":"Флориана Кристалл","kind":"держава","d":"Кристальное королевство — полноценная страна с собственными властными институтами и дипломатами, чем удивила участников Лурзского мира. Король Эдриан Джеймс и адмирал Александр Смолет отбили вторжение тёмных эльфов, построили первый кристальный корабль и довели армию до 43 500 воинов.","facts":[["Правитель","кристальный король Эдриан Джеймс"],
+["Полководец","адмирал Александр Смолет"],
+["Армия","43 500 воинов"],
+["Особенность","помощь кристаллами и взаимопомощь с эльфами по миру"]]},
+{"tab":"nation","n":"Донгонсор","kind":"держава","d":"Страна Отмороженных за Кристальной Королевой — заточённая в ограниченные земли Синяя раса, которую все боятся, не зная за что: по легендам донгонсорцы охраняют Божьи дыры. Их магия создаёт переговорные комнаты, где каждый видит желаемое, а договоры материализуются вместе с копиями.","facts":[["Правитель","Кристальная Королева"],
+["Народ","отмороженные (Синяя раса)"],
+["Особенность","охрана Божьих дыр"],
+["Дипломатия","договор со Скерией, добытый Вольдемаром фон Гейсером"]]},
+{"tab":"nation","n":"Племийский Султанат","kind":"держава","d":"Государство племиев, возрождённое после всеобщего восстания рабов на землях тёмных эльфов. Султан Мухаммад из рода Хашам готовил сына Абдула в дипломаты; по Лурзскому миру довоенные границы султаната вернулись, а эльфы отказались от территориальных уступок.","facts":[["Правитель","султан Мухаммад (род Хашам)"],
+["Наследник","дипломат Племий Абдул"],
+["Вера","Бог-Фаррах"],
+["Особенность","рождён из восстания рабов"]]},
+{"tab":"nation","n":"Оазис","kind":"держава","d":"Процветающее убежище, созданное гарпием Люцифером посреди Великой Пустыни после бегства с родины первородных гарпий. Государство живёт торговлей, в том числе работорговлей, и держит нейтралитет: около 40 % жителей — выкупленные рабы, а сам Люцифер правит через десяток жён и теневых агентов.","facts":[["Правитель","Гарпий Люцифер, хранитель первородных гарпий"],
+["Регион","Великая Пустыня"],
+["Особенность","работорговля и миротворческие инициативы"],
+["Сила","клан жены-мага огня подавляет мятежников"]]},
+{"tab":"nation","n":"Рой Дру`Ру","kind":"держава","d":"Государство инсектоидов под властью королевы-матки и королей Роя, говорящее телепатическим языком жуков. После тотального краха армии Дру`Ру дипломат Валь`Ру требовал на Лурзских переговорах земли и пленных, но получил лишь право прохода на юго-восток.","facts":[["Народ","инсектоиды (жуки)"],
+["Правители","королева-матка и короли Роя"],
+["Дипломат","аристократ Валь`Ру"],
+["Особенность","инсектоиды-рабочие ценятся как выносливая рабочая сила"]]},
+{"tab":"nation","n":"Филийская Торговая Федерация","kind":"держава","d":"Торговая держава Филийских островов с технологическим перевесом и колониями в южном море. Проиграв Вторую Филийско-Яльвинскую войну, лишилась колоний, выплатила репарации и подписала мир на 15 лет с Антифилийской коалицией; в гражданах зреет реваншизм и клятва вернуть былую силу.","facts":[["Строй","торговая федерация островов"],
+["Противники","Антифилийская коалиция, Фьёрдлинг, Аттаманская империя"],
+["Актуально","мир на 15 лет, колонии разделены оккупантами"],
+["Особенность","сильнейший флот и колониальная сеть"]]},
+{"tab":"nation","n":"Торговая Республика Яльва","kind":"держава","d":"Объединённая республика, объявившая войну Филии из-за атак на корабли и споров о защите торговых путей. Победа у острова Саррад подняла авторитет Казилина и совета; Патриарх отстроил огромное святилище в землях гигантов, а чародей Кодул Роуд сразил древнего тёмного единорога.","facts":[["Правитель","Казилин во главе совета"],
+["Святой","Патриарх Яльвы"],
+["Чародей","Кодул Роуд"],
+["Актуально","держит остров Саррад, мир и торговля с Вартембрией"]]},
+{"tab":"nation","n":"Королевство Пршибрам","kind":"держава","d":"Королевство с северо-восточных островов, разбогатевшее на успешных рейдах на Федерацию и северную ректорию. Несмотря на гнев Патриарха, попало в вассалитет к империи Мандера, но выжило там, где другие колонии гибли, и продолжает колонизировать Восточный континент.","facts":[["Регион","северо-восточные острова и Восточный материк"],
+["Статус","вассал империи Мандера"],
+["Особенность","морские рейды и колониальная экспансия"],
+["Соседи","дружественные острова пиратов, обращённые в веру Яльвы"]]},
+{"tab":"nation","n":"Нигойл","kind":"держава","d":"Королевство Востока, ставшее при последнем повелителе довольно закрытой страной без частого присмотра извне. В архивных делах Империи значится с формулировкой «ушли в другой план» после 270 года от основания Империи.","facts":[["Регион","Восточный материк"],
+["Особенность","политика закрытости"],
+["Архив","130–270 годы от основания Империи, игра № 1"]]},
+{"tab":"nation","n":"Мандеровская Империя","kind":"держава","d":"Империя Мандера на восточных землях, под власть которой после гнева Патриарха Яльвы попало вассальное Королевство Пршибрам. О внутренних делах империи хроники говорят мало, но именно она держит северо-восточный вассалитет.","facts":[["Регион","Восточный материк"],
+["Вассал","Королевство Пршибрам"],
+["Известно из","итогов последних событий и анкет игроков"]]},
+{"tab":"nation","n":"Альбион эльфов","kind":"держава","d":"Эльфийский Альбион Южного континента, чьё Эльфийское королевство возродилось с помощью снежных эльфов Срединных гор после битвы за Закрытый Город. В новейшие времена высшие круги впали в эйфорию гедонизма и «весёлых» веществ, и даже масштабные войны материка их мало волнуют.","facts":[["Регион","Южный континент"],
+["Народ","эльфы под влиянием снежных эльфов Срединных гор"],
+["Особенность","гедонизм высших кругов"],
+["Связь","назначала Вожака вриколакасов в старые годы"]]},
+{"tab":"nation","n":"Аттаманская Империя","kind":"держава","d":"Южная империя, вернувшая статус великой державы после Последней войны. Султан Абдулхамид борется с еретическим культом Нурги, а империя вместе с Фьёрдлингом и орками Сигмарата получила в оккупацию треть бывших колоний Филии. В анкетах игроков фигурирует и как Аттаманский Фирмат.","facts":[["Правитель","султан Абдулхамид"],
+["Регион","Южный континент"],
+["Проблема","еретический культ Нурги"],
+["Актуально","оккупация части колоний Филии"]]},
+{"tab":"nation","n":"Королевство Фьёрдлинг","kind":"держава","d":"Королевство, вошедшее в Золотой век после Последней войны («Войны двух орлов»): разгром Конклава Птицелюдей освободил небо, а военная диктатура сменилась просвещённой аристократией. Король с эпитетом Освободитель основал Академию науки и магии имени Павших Героев; в стране появились паровые мануфактуры и Великий Мост двух Владык.","facts":[["Правитель","король Освободитель"],
+["Символ","грифон, сжимающий молнию и оливковую ветвь"],
+["Актуально","Золотой век, торговля по Великому Восточному тракту"],
+["Постройка","Великий Мост двух Владык к границам Аттаманской империи"]]},
+{"tab":"nation","n":"Белкания","kind":"держава","d":"Страна белканцев, которая вместе с гражданами Басло окончательно одолела повелителей нежити. Победа принесла новые земли и ресурсы, а народ начал пересматривать отношение к другим народам; в архивах Империи белканская династия значится ушедшей в самоизоляцию.","facts":[["Народ","белканцы"],
+["Подвиг","победа над повелителями нежити вместе с Басло"],
+["Актуально","освоение новых земель"],
+["Архив","династия 245–251 годов, самоизоляция"]]},
+{"tab":"nation","n":"Басло","kind":"держава","d":"Держава юга, граждане которой вместе с белканцами сломили повелителей нежити. О внутреннем устройстве хроники говорят мало, отдавая должное вкладу Басло в общую победу и последующее освоение новых земель.","facts":[["Союзник","Белкания"],
+["Подвиг","окончательная победа над повелителями нежити"],
+["Регион","юг Торана"]]},
+{"tab":"nation","n":"Орки Сигмарата","kind":"держава","d":"Орочья держава, вошедшая в число победителей Антифилийской коалиции. По мирному договору орки Сигмарата получили треть оккупационных зон бывших филийских колоний на южном континенте.","facts":[["Народ","орки"],
+["Приобретение","треть колоний Филии на юге"],
+["Коалиция","Антифилийская"]]},
+{"tab":"nation","n":"Республика Сарранидов","kind":"держава","d":"Западный остров Сарранидов, получивший независимость по итогам Второй Филийско-Яльвинской войны. Республика сохранила торговые отношения и с Федерацией, и с южным континентом.","facts":[["Статус","независимое государство"],
+["Экономика","торговля с Федерацией и югом"],
+["Регион","Западный остров Сарранидов"]]},
+{"tab":"nation","n":"Ганза","kind":"организация","d":"Могущественный союз, к которому предводительница альхорнцев Валентина сумела присоединить свой народ. Ганзейские альхорнцы, коих было 600 особей, ушли вместе с союзом в сторону Старой Ассилии.","facts":[["Тип","союз держав"],
+["Связь","приняла часть альхорнцев (600 особей)"],
+["Актуально","отход в сторону Старой Ассилии"]]},
+{"tab":"nation","n":"Магократия Северо-Западных Пещер","kind":"держава","d":"Государство магов, где правит совет архимагов во главе с архимагом огненной стихии Годиусом. Пещеры заключили договор о ненападении с Орговией и одновременно союз со Щитом, ведя двойную игру; рядовые маги носят чёрные мантии, а розовые маги — высшие маги Пещер и Круга Магов в Скерии, что управляют магическим миром.","facts":[["Глава","архимаг Годиус"],
+["Строй","совет архимагов"],
+["Дипломатия","пакт о ненападении с Орговией, союз со Щитом"],
+["Особенность","суд отступников: арест до пятидесяти лет или казнь"]]},
+{"tab":"nation","n":"Щит","kind":"держава","d":"Держава умийцев, собравшая под своим началом почти все анклавы Скерийской Империи против неё самой. Владеет маго-биологическим оружием и подводными лодками, полученными от Кудирана, а её печать — механизированные рыбы на фиолетовом фоне, дань наследию Мрсдавцев.","facts":[["Народ","умийцы (новые Мрсдавцы)"],
+["Союзники","Аванпост, Форпост, Трезубец, Азрона, Гаррория, Болотники, Далматор, Маги, Лесное Королевство"],
+["Особенность","маго-биологическое оружие массового поражения"],
+["Герб","механизированные рыбы на фиолетовом фоне"]]},
+{"tab":"nation","n":"Скерийская Империя","kind":"держава","d":"Величайшая держава старого Запада — скорее конфедерация враждующих легатов, феодалов и титулованных владык, жившая на грани распада. Анклавы внутри её территорий произвели первые взрывы маго-ядерной войны, сделав Скерию первой крупной жертвой. В предвоенные годы реальной властью обладал магистр Ротальд Мидольф при формальных императорах.","facts":[["Правители","императоры (фактически магистр Ротальд Мидольф)"],
+["Строй","конфедерация легатов и феодалов"],
+["Армия","200 000 воинов к началу лета"],
+["Особенность","главная цель — утилизация анклавов"]]},
+{"tab":"nation","n":"Орговия","kind":"держава","d":"Орговское Царство со столицей Меридианом и портом Александросовск, где правит диктатор Гангрина через Оргет — совет, голосующий древними весами Ангеусских правителей. Зверолюди составляют большой процент населения; страна обзавелась мегазаклинаниями совы-учёного Ньюста и союзом с Королевой муравьёв Ваапх.","facts":[["Столица","Меридиан"],
+["Правитель","диктатор Гангрина"],
+["Порт","Александросовск"],
+["Особенность","Оргет, мегазаклинания и проект Ветер Перемен"]]},
+{"tab":"nation","n":"Гномье Королевство","kind":"держава","d":"Горное королевство гномов, где после долгого регентства царствует Дадри, а Страж Алборд докладывает о бедах: военщина требует выбрать сторону, Западные Горы готовят заговор сепаратистов, Портальное Войско отдано Щиту. Король объявил верность союзническому долгу и встал на сторону Щита.","facts":[["Правитель","король Дадри"],
+["Регент","Страж Алборд"],
+["Особенность","Портальное Войско"],
+["Политика","нейтралитет с опорой на Щит"]]},
+{"tab":"nation","n":"Фийсия","kind":"держава","d":"Держава троллей в Великой Горе, где тысячелетиями правит Великий вождь Гронтеваль, некогда служитель храмовников. Тролли живут рабовладельческим укладом с оброчниками, пьют эрбл и отказались от союзов против Скерии, презирая чужую политику.","facts":[["Правитель","Великий вождь Гронтеваль"],
+["Народ","тролли"],
+["Регион","Великая Гора"],
+["Особенность","рабы, оброчники и каменные туннели отцов"]]},
+{"tab":"nation","n":"Улей Ваапх","kind":"держава","d":"Сила Королевы муравьёв Ваапх (в летописях фигурирует и как Никс) — древнего зла, погубившего Нир и ставшего союзником Орговии. Её летающие муравьи переносили бойцов через море, сфера влияния держится в Фолькхоте, а провокации срывают опасные союзы Скерии и Орговии.","facts":[["Правитель","Королева Ваапх (Никс)"],
+["Народ","муравьи"],
+["Сфера влияния","Фолькхот"],
+["Особенность","выведенные летающие муравьи и провокации"]]},
+{"tab":"nation","n":"Роббертсы","kind":"народ","d":"Игровой род (династия) из архивных дел Империи: запись о Роббертсах закрывается уходом на пенсию после 254 года, а отдельное дело для Робертц отмечает их пропажу ещё в 246 году.","facts":[["Годы","240–254 от основания Империи"],
+["Судьба","архивное дело № 147, уход на пенсию"],
+["Родня","архивное дело № 128, Робертц (пропали)"]]},
+{"tab":"nation","n":"Коготь Тигра","kind":"организация","d":"Торговая компания Еро Друма из анкет Империи; в архивных делах значится как Торговая Кампания Коготь (248–256 годы), которая завершилась превращением в Собрание.","facts":[["Основатель","Еро Друм"],
+["Годы","248–256 от основания Империи"],
+["Судьба","стала Собранием (архивное дело № 155)"]]},
+{"tab":"race","n":"Альвы","kind":"раса","d":"Древняя магическая раса, рождённая из эфира — пальцы, оставшейся от дыхания Дракона Торана. При смерти альвы обращаются обратно в эфир и со временем могут возродиться с полной или частичной памятью — сами, при столкновении эфирных частей или через ритуал. К альвам относят драконов, эльфов, орков и гномов.","facts":[["Происхождение","эфир от дыхания Дракона Торана"],
+["Подгруппы","драконы, эльфы, орки, гномы"],
+["Особенности","сознательный эфиризм и возрождение через ритуал"]]},
+{"tab":"race","n":"Драконы Торана","kind":"вид","d":"Первая эфирная раса, контролирующие существа, не стремящиеся править миром. Их осталось около 50 во главе со Старшим Сыном Торана; живут в Драконьих Горах, владеют самой мощной Магией Торана и не позволяют никому разрабатывать горные богатства. Карают целые народы за творение искусственных драконов.","facts":[["Облик","могущественные ящеры первой эфирной расы"],
+["Где живут","Драконьи Горы на севере Западного континента"],
+["Численность","около 50 особей, оптимум для мира — 400"],
+["Особенности","Магия Торана решает, как устроен мир"]]},
+{"tab":"race","n":"Эльфы","kind":"раса","d":"Подгруппа альвов, выросшая из смеси эфира Драконов и стихий разных местностей. Известны крылатые, морские, лесные, кровавые, тёмные, высшие, солнечные и лунные виды, а также серые, дикие, пустынные и горные (снежные) подвиды. Снежные эльфы Срединных гор возродили павшее Эльфийское королевство юга.","facts":[["Облик","гуманоиды эфирного происхождения, схожие с людьми"],
+["Где живут","леса, горы и юг Тораны; Срединные и Гномьи горы"],
+["Особенности","философия гармонии и баланса"],
+["Виды","высшие, тёмные, кровавые, снежные и другие"]]},
+{"tab":"race","n":"Орки","kind":"раса","d":"Тёмная сущность альва: эльф, живший непотребно, возрождается из эфира орком. Дикие орки и урки — деградировавший подвид, размножающийся спорами — живут в Великой Пустыне, а благородные северные и южные орки стремятся жить по законам окружающих народов и исправиться обратно в эльфов.","facts":[["Облик","мощные гуманоиды тёмной сущности эфира"],
+["Где живут","Великая Пустыня, отсталые регионы, Южный континент"],
+["Особенности","путь исправления обратно в эльфа"],
+["Подвиды","дикие, урки, северные и южные благородные"]]},
+{"tab":"race","n":"Гномы","kind":"раса","d":"Раса, рождённая из эфира павших эльфов, впитанного их творениями из камня и материалов. Магические гномы редки, скрытны и любят проказничать, технологические живут в горах и ни с кем не контактируют, классические приспособлены к жизни среди других народов. Гномы — древнейший народ Центроземья и Гномьих гор.","facts":[["Облик","низкорослые горцы и ремесленники"],
+["Где живут","Гномьи и Срединные горы, Центроземье"],
+["Численность","около 400 000 в Гномьих горах"],
+["Особенности","древнейший эфирный язык и кланы"]]},
+{"tab":"race","n":"Альфы (зверолюди)","kind":"раса","d":"Раса, возникшая эволюционно от животных под действием расширяющегося эфира; альвы воевали с ними как с мутантами. Делятся на зверей (полуживотных) и животных (гуманоидов с животными примесями), каждая группа — на летающих, землепередвигающихся и плавающих.","facts":[["Облик","от полузверей до гуманоидов с животными чертами"],
+["Где живут","по всей Торане; много зверолюдей в Орговии и на Юге"],
+["Особенности","их кровь породила оборотней, метисы — орочьих"]]},
+{"tab":"race","n":"Вампиры","kind":"раса","d":"Альпы, рождённые попытками воскресить эльфов кровью: живокровные живут кланами и династиями с аристократическими повадками, мертвокровные — жестокие монстры вроде мессоров и вурдалаков. В Торане известны живые вампиры, вурдалаки Норд-Сторма, вапыри Гофского острова, вриколакасы-одиночки и мёртвая группа вплоть до высших вампиров.","facts":[["Облик","живые — как люди; мёртвые — монструозные виды"],
+["Где живут","вся Торана: Гофский остров, Фолькхот, Норд-Сторм, юг"],
+["Особенности","слабости от серебра и огня до солнца зависят от вида"],
+["Совет","370 высших вампиров судят всех через Совет Высших"]]},
+{"tab":"race","n":"Ламии","kind":"вид","d":"Мёртвые вампиры, созданные вриколакасом из собственной плоти с помощью магии крови. Живут матриархальными Домами под Двором Матриархов, связаны пионической связью и соблазняют мужчин ради крови. Могут дублировать внешность и голос любой женщины.","facts":[["Облик","женщины с зелёными или огненными глазами"],
+["Где живут","Дома по всей Торане, особенно юг и Людской Альбион"],
+["Численность","450 Домов на юге, 79 на Западном континенте"],
+["Особенности","самый долгоживущий вид вампиров"]]},
+{"tab":"race","n":"Оборотни","kind":"вид","d":"Существа, появившиеся после того, как эфирные расы испили крови альфов, сохраняя прежний облик. Сознательные обращаются в зверя своего происхождения по желанию — чаще в волков и медведей; бессознательные обращаются лишь в полнолуние и против воли, по проклятию.","facts":[["Облик","гуманоиды, обращающиеся в волков и медведей"],
+["Где живут","среди других народов по всей Торане"],
+["Особенности","способность передаётся по наследству"]]},
+{"tab":"race","n":"Тролли","kind":"вид","d":"Орочьи, рождённые смешением орков со средними альфами: интеллект и сила выше орочьих. Живут в подземельях и горах — от державы Фийсии до Гномьих гор, куда ушли из Щурского подземелья. Родичи-огры (смесь с крупными альфами) тупы и страшны силой, гоблины (с мелкими) хитры и слабы телом.","facts":[["Облик","крупные крепкие гуманоиды"],
+["Где живут","Великая Гора (Фийсия), Гномьи горы, подземелья"],
+["Численность","около 2 000 на Западном континенте"],
+["Особенности","подземные технологии позднего средневековья"]]},
+{"tab":"race","n":"Люди","kind":"раса","d":"Альги — раса, выведенная альвами эволюционным путём для баланса сил; первый человек Яльва был сделан в противовес первому эльфу Альве. Белые стали самыми продвинутыми, чёрные — крепкими, синие, жёлтые и зелёные завершили палитру экспериментов, смуглые уравновесили всё — но жестокость погубила многие ветви.","facts":[["Облик","гуманоиды ветвей: белые, чёрные, синие, жёлтые, зелёные, смуглые"],
+["Где живут","все континенты, доминирующий народ Тораны"],
+["Происхождение","выведены альвами, первый человек — Яльва"],
+["Особенности","единственные, кто создавал собственные расы"]]},
+{"tab":"race","n":"Синие люди","kind":"вид","d":"Древняя ветвь людей, расселившаяся у Истока Воздуха на Крайнем Севере и проигравшая войну белой расе с Западного континента. Заточённая в ограниченных землях ветвь стала донгосорцами — коллективным разумом, которому важнее магическое насыщение, чем биологические потребности.","facts":[["Облик","люди синей ветви; донгосорцы — единый коллективный разум"],
+["Где живут","Крайний Север и Донгонсор"],
+["Особенности","магическое насыщение вместо еды"]]},
+{"tab":"race","n":"Альхорнцы","kind":"раса","d":"Спящая раса фиолетовых огненных созданий с крыльями, рождённая массовым экспериментом над суккубами и эльфами. Из-за строения духовной энергии могут спать до двухсот лет и страдают долгосрочной амнезией, потому любят технологии — чаще чужие и украденные. После войн уцелели около 30 000 особей в Пустыне и две-три тысячи на родине.","facts":[["Облик","крылатые фиолетовые огненные создания"],
+["Где живут","Великая Пустыня, родные пещеры у моря, Акджарский Халифат"],
+["Особенности","спячка до 200 лет, дары тёмной, огненной магии и крови"],
+["Современность","Пустынные, Ганзейские и Ордокосы; предводительница Валентина"]]},
+{"tab":"race","n":"Альпы","kind":"раса","d":"Метисы альфов и альвов, которых обе родни считали вторым сортом, пока те не построили собственные системы отношений. К альпам относят вампиров, оборотней и орочьих — троллей, огров и гоблинов. В очень редких случаях могут обратиться в эфир и восстановиться, как прародитель.","facts":[["Облик","сочетание черт альфов и альвов"],
+["Где живут","кланы и семьи по всей Торане"],
+["Особенности","происхождение от вынужденных союзов древних рас"]]},
+{"tab":"race","n":"Инсектоиды","kind":"вид","d":"Народ Роя Дру`Ру: рабочие следуют инстинктам и феромонам королевы, а редкие аристократы рождаются у аристократов на пороге смерти и владеют телепатическим языком жуков. Инсектоидов по всей Торане ценят как выносливых и неприхотливых рабочих, за которых Рой требовал земли на Лурзских переговорах.","facts":[["Облик","гуманоиды-жуки с хитином"],
+["Где живут","подземный Рой Дру`Ру"],
+["Особенности","феромонная дисциплина, телепатия аристократов"],
+["Уязвимость","кристальная болезнь унесла 2 000 рабочих"]]},
+{"tab":"race","n":"Муравьи","kind":"вид","d":"Разумные муравьи — слуги Королевы Ваапх; её выведенные летающие муравьи переносили бойцов над морем. Отдельный огромный клан ушёл в Срединные горы, обрёл сознание, чтил свою великую историю и жил изоляционистами, сохранив технологии вплоть до электрической лампочки.","facts":[["Облик","крупные разумные муравьи, в том числе летающие"],
+["Где живут","ульи Ваапх (Фолькхот) и Срединные горы"],
+["Численность","около 12 000 в Срединных горах"],
+["Особенности","изоляционизм и отряды похитителей для опытов"]]},
+{"tab":"race","n":"Альры","kind":"раса","d":"Магические и механические существа, созданные альгами: пегасы и сознательные магические твари — с одной стороны, механизмы — с другой. Часть магических сущностей бессознательна, как живые корни для засад. Эволюционные механические сознательные считаются венцом расовой эволюции, хотя каждый прорыв вызывал глобальные откаты.","facts":[["Облик","живые магические твари и разумные механизмы"],
+["Где живут","по всей Торане, чаще при людских державах"],
+["Особенности","два пути развития: магия и техника"]]},
+{"tab":"race","n":"Альмы","kind":"раса","d":"Первозданные маги, големы и элементали. Первозданного мага получили насильным смешением с эльфами при помощи Драконов Торана: каждый владел единственной неповторимой магией, а сексуальное воздержание усиливало силу. Големы несут в себе чужую душу, элементали мыслят коллективно и распадаются на мономенталей.","facts":[["Облик","гуманоиды-маги, големы, стихийные элементали"],
+["Где живут","отшельничества и цветки сна по всей Торане"],
+["Особенности","маг безумия поднял бунт против альгов"],
+["Сила","душа — основа магических способностей"]]},
+{"tab":"race","n":"Альсы","kind":"раса","d":"Тёмные и светлые существа, созданные магией альгов из их фантазий. Черти — любые низшие тёмные твари, включая нежить; демоны — высшие руководители тьмы, вроде личей. Духи подвержены сквернам, а ангелы и атланты, рождённые от Богов и Полуреальных, служат один Божественной, другой мирской службе.","facts":[["Облик","черти, демоны, духи, ангелы и атланты"],
+["Где живут","тёмные земли и божественные сферы"],
+["Особенности","скверны портят эфир духов"]]},
+{"tab":"race","n":"Альки","kind":"раса","d":"Раса конца времён Первого Мира, единственная постоянно обновляемая и пополняемая другими существами. Эволюционные — гибриды вроде полуэльфов, сотворённые — мутанты и донгосорцы, стихийные — существа воздуха, земли, огня и воды, включая альхорнскую и камронскую ветви огненных.","facts":[["Облик","все возможные гибриды и стихийные существа"],
+["Где живут","вся Торана"],
+["Особенности","единственная раса, пополняемая извне постоянно"]]}];
+</script>
+<script>
+/* ═══════════ ХАБ-МЕНЮ «ЛЕТОПИСЬ ТОРАНА» ═══════════ */
+(function(){
+'use strict';
+function q(s){ return document.querySelector(s); }
+var hub = q('#hub');
+function hubShow(id){
+  ['hubMain','hubDyn','hubWip'].forEach(function(v){
+    var el = q('#' + v);
+    if(el) el.hidden = (v !== id);
+  });
+}
+function openHub(view){
+  if(!hub) return;
+  hub.classList.add('open');
+  hubShow(view || 'hubMain');
+  try{ hub.focus(); }catch(e){}
+}
+function closeHub(){
+  if(!hub) return;
+  hub.classList.remove('open');
+}
+window.robreHubOpen = function(){ openHub('hubMain'); };
+window.robreHubEnterSite = function(){
+  closeHub();
+  if(!document.body.classList.contains('reveal')) document.body.classList.add('reveal');
+};
+window.robreHubGo = function(what){
+  if(what === 'dyn'){ openHub('hubDyn'); return; }
+  if(what === 'wchron' || what === 'besti' || what === 'nations'){
+    window.robreHubEnterSite();
+    if(typeof openDlg === 'function') openDlg(what);
+  }
+};
+if(hub){
+  hub.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('[data-hub]') : null;
+    if(b){ window.robreHubGo(b.dataset.hub); return; }
+    var d = e.target.closest ? e.target.closest('[data-dyn]') : null;
+    if(d){
+      if(d.dataset.dyn === 'robberts'){ window.robreHubEnterSite(); return; }
+      var nm = d.querySelector('.hd-n');
+      var wip = q('#hubWipName');
+      if(wip) wip.textContent = 'Летопись дома «' + ((nm ? nm.textContent : 'дом').trim()) + '» ещё пишется — хронисты Торана трудятся над свитками.';
+      openHub('hubWip');
+      return;
+    }
+    var bk = e.target.closest ? e.target.closest('[data-hubback]') : null;
+    if(bk){ openHub(bk.dataset.hubback); return; }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key !== 'Escape' || !hub.classList.contains('open')) return;
+    if(!q('#hubWip').hidden){ openHub('hubDyn'); return; }
+    if(!q('#hubDyn').hidden){ openHub('hubMain'); return; }
+    /* с главного экрана Esc открывает летопись дома (или закрывает хаб, если сайт уже открыт) */
+    window.robreHubEnterSite();
+  }, true);
+}
+var btnHub = q('#btnHub');
+if(btnHub) btnHub.addEventListener('click', function(){
+  if(hub && hub.classList.contains('open')) closeHub(); else openHub('hubMain');
+});
 })();
 </script>
 </body>
