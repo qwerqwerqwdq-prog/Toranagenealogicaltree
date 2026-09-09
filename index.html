@@ -1230,15 +1230,18 @@ body.reveal #hint{animation:fin 1.1s ease .65s both}
 @media (hover:hover){ .tl2-name:hover{color:var(--text)} }
 .tl2-bar{position:absolute;height:14px;top:6px;border-radius:7px;cursor:pointer;opacity:.92;transition:opacity .25s}
 @media (hover:hover){ .tl2-bar:hover{opacity:1;box-shadow:0 0 12px rgba(200,165,101,.4)} }
-.tl2-bar.ghost{opacity:.5;border:1px dashed rgba(255,255,255,.3)}
+.tl2-bar.ghost{opacity:.58;filter:saturate(.5) brightness(.72);border:1px dashed rgba(255,255,255,.45)}
 .tl2-bar.approx{opacity:.8;border:1px dashed rgba(232,207,133,.6)}
 @media (hover:hover){ .tl2-bar.approx:hover{opacity:.95} }
 .tl2-bar.alive{animation:tl2pulse 2.8s ease-in-out infinite}
 .tl2-bar.tl2-live{opacity:1;box-shadow:0 0 10px rgba(232,207,133,.45)}
+.tl2-bar.dead{filter:saturate(.6) brightness(.74)}
+.tl2-bar.dead.tl2-live{filter:none}
 .tl2-barlbl{position:absolute;left:9px;top:1px;right:6px;font-style:normal;font-size:9px;font-weight:600;color:rgba(255,255,255,.93);
   letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-shadow:0 1px 2px rgba(0,0,0,.6);pointer-events:none;display:none}
 .tl2-bar.haslbl .tl2-barlbl{display:block}
 .tl2-die{position:absolute;top:5px;font-size:10px;color:var(--faint);transform:translateX(-50%);line-height:1;pointer-events:none}
+.tl2-qm{position:absolute;top:6px;font-size:10px;font-weight:700;color:rgba(236,207,133,.8);transform:translateX(-50%);line-height:1;pointer-events:none;text-shadow:0 1px 3px rgba(0,0,0,.85)}
 .tl2-bar.tl2flash{animation:tl2flash .8s ease 2}
 @keyframes tl2pulse{0%,100%{box-shadow:0 0 0 rgba(200,165,101,0)}50%{box-shadow:0 0 9px rgba(232,207,133,.5)}}
 @keyframes tl2flash{0%,100%{box-shadow:0 0 0 rgba(200,165,101,0)}35%{box-shadow:0 0 0 5px rgba(232,207,133,.5)}}
@@ -1249,19 +1252,30 @@ body.reveal #hint{animation:fin 1.1s ease .65s both}
 .tl2-xhc{position:absolute;top:calc(var(--tlsh) + 4px);z-index:6;padding:2px 8px;border-radius:6px;background:#1d1811;
   border:1px solid rgba(200,165,101,.4);color:#eccf85;font-size:9.5px;letter-spacing:.05em;font-variant-numeric:tabular-nums;
   pointer-events:none;display:none;white-space:nowrap}
+.tl2-now.tl2-nowflip i{left:auto;right:6px;background:rgba(17,14,10,.94);padding:2px 4px 2px 7px;border-radius:4px}
+.tl2-pin{position:absolute;z-index:5;width:0;border-left:1px solid rgba(236,207,133,.8);pointer-events:none;display:none}
+.tl2-pin::after{content:'';position:absolute;top:-5px;left:-4px;width:7px;height:7px;background:#eccf85;
+  transform:rotate(45deg);box-shadow:0 0 9px rgba(232,207,133,.85)}
+.tl2-pinc{position:absolute;z-index:8;display:none;align-items:center;gap:7px;padding:3px 5px 3px 9px;border-radius:7px;
+  background:#241d12;border:1px solid rgba(232,207,133,.55);color:#eccf85;font-size:9.5px;letter-spacing:.05em;
+  font-variant-numeric:tabular-nums;white-space:nowrap;box-shadow:0 8px 22px rgba(0,0,0,.5)}
+.tl2-pinx{pointer-events:auto;cursor:pointer;flex:none;width:16px;height:16px;border:none;border-radius:5px;
+  background:rgba(255,255,255,.07);color:var(--muted);font-size:9px;line-height:1;font-family:inherit;padding:0}
+@media (hover:hover){ .tl2-pinx:hover{background:rgba(232,207,133,.25);color:#eccf85} }
 .tl2-strip{position:sticky;top:0;z-index:7;height:var(--tlsh);background:rgba(17,14,10,.98);border-bottom:1px solid var(--hair)}
 .tl2-corner{position:sticky;left:0;z-index:2;width:var(--tlg);height:100%;background:rgba(17,14,10,.98);
   display:flex;align-items:center;padding-left:12px;box-sizing:border-box;font-size:8px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--faint);box-shadow:8px 0 14px -10px rgba(0,0,0,.9)}
 .tl2-tick{position:absolute;top:5px;font-size:8.5px;letter-spacing:.08em;color:var(--faint);transform:translateX(-50%);font-variant-numeric:tabular-nums;z-index:1}
 .tl2-tick::after{content:'';position:absolute;left:50%;top:12px;bottom:-9px;border-left:1px dashed rgba(255,255,255,.07)}
-.tl2-band{position:absolute;bottom:-1px;height:22px;background:rgba(178,74,62,.12);overflow:hidden;cursor:help;z-index:1;
+.tl2-band{position:absolute;bottom:-1px;height:22px;background:rgba(178,74,62,.12);cursor:help;z-index:1;
   border-left:1px dashed rgba(178,74,62,.45);border-right:1px dashed rgba(178,74,62,.45)}
 .tl2-band i{position:absolute;left:4px;top:2px;writing-mode:vertical-rl;font-style:normal;font-size:8px;letter-spacing:.13em;
   text-transform:uppercase;color:rgba(207,146,132,.9);white-space:nowrap}
 .tl2-mark{position:absolute;bottom:2px;font-size:9px;color:#c97e6a;transform:translateX(-50%);cursor:help;z-index:1}
 .tl2-mark i{position:absolute;left:8px;top:-2px;writing-mode:vertical-rl;font-style:normal;font-size:8px;letter-spacing:.12em;
   text-transform:uppercase;color:rgba(207,146,132,.85);white-space:nowrap}
+.tl2-band i,.tl2-mark i{text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 7px rgba(0,0,0,.75)}
 .tl2-now{position:absolute;top:0;bottom:-1px;border-left:1px solid rgba(200,165,101,.6);z-index:1}
 .tl2-now i{position:absolute;left:5px;top:4px;font-style:normal;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--accent);white-space:nowrap}
@@ -1278,6 +1292,17 @@ body.reveal #hint{animation:fin 1.1s ease .65s both}
 #tl2Tip .tp-go{margin-top:8px;padding-top:7px;border-top:1px solid rgba(255,255,255,.07);font-size:9.5px;letter-spacing:.09em;
   text-transform:uppercase;color:var(--accent);pointer-events:auto;cursor:pointer}
 @media (hover:hover){ #tl2Tip .tp-go:hover{color:#eccf85} }
+
+.tl2-legend{display:flex;flex-wrap:wrap;gap:5px 16px;max-width:1180px;margin:5px auto 0;padding:0 14px;box-sizing:border-box;width:100%}
+.tl2-lg{display:inline-flex;align-items:center;gap:6px;font-size:9px;letter-spacing:.05em;color:var(--faint);white-space:nowrap}
+.tl2-lg .sw{width:20px;height:9px;border-radius:5px;flex:none}
+.tl2-lg-h{color:var(--muted);letter-spacing:.09em;text-transform:uppercase;font-size:8.5px;opacity:.95;margin-left:2px}
+.sw-alive{background:linear-gradient(90deg,#e8cf85,#c8a565);box-shadow:0 0 6px rgba(232,207,133,.55)}
+.sw-dead{background:linear-gradient(90deg,#8d7c54,#6e5f3e)}
+.sw-spouse{background:linear-gradient(90deg,#7d7160,#5a5142)}
+.sw-ghost{background:rgba(255,255,255,.1);border:1px dashed rgba(255,255,255,.5)}
+.sw-approx{background:repeating-linear-gradient(45deg,rgba(232,207,133,.5) 0 4px,rgba(232,207,133,.12) 4px 8px);border:1px dashed rgba(232,207,133,.6)}
+.sw-dim{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);opacity:.45}
 
 @media (max-width:760px){
   .tl2-wrap{--tlg:118px;--tlsh:40px;padding:6px 8px 4px}
@@ -1602,7 +1627,21 @@ body.reveal #hint{animation:fin 1.1s ease .65s both}
     </div>
   </div>
   <div class="lib-shelf-wrap"><div class="tl2-wrap" id="tlWrap"></div>
-    <div class="lib-note">Ctrl+колесо или щипок — масштаб · перетаскивание — панорама · двойной клик — приблизить · клик по полосе — карточка в древе · пунктирные полосы — условные годы (ок.) · эпохи показаны приблизительно</div>
+    <div class="tl2-legend">
+      <span class="tl2-lg tl2-lg-h">цвет полосы — её линия:</span>
+      <span class="tl2-lg"><i class="sw" style="background:linear-gradient(90deg,rgba(255,255,255,.3),rgba(255,255,255,0) 55%),#c8a565"></i>кровные Роббертсы</span>
+      <span class="tl2-lg"><i class="sw" style="background:linear-gradient(90deg,rgba(255,255,255,.3),rgba(255,255,255,0) 55%),#7f9779"></i>дом Кадас</span>
+      <span class="tl2-lg"><i class="sw" style="background:linear-gradient(90deg,rgba(255,255,255,.3),rgba(255,255,255,0) 55%),#8b7fa8"></i>дом Сар</span>
+      <span class="tl2-lg"><i class="sw" style="background:linear-gradient(90deg,rgba(255,255,255,.3),rgba(255,255,255,0) 55%),#5c8a85"></i>дом Вум</span>
+      <span class="tl2-lg"><i class="sw sw-spouse"></i>супруги (не кровные)</span>
+      <span class="tl2-lg tl2-lg-h">состояние:</span>
+      <span class="tl2-lg"><i class="sw sw-alive"></i>яркая — жива сейчас</span>
+      <span class="tl2-lg"><i class="sw sw-dead"></i>приглушена — умерла · † год смерти</span>
+      <span class="tl2-lg"><i class="sw sw-ghost"></i>пунктир и «?» — рождение неизвестно</span>
+      <span class="tl2-lg"><i class="sw sw-approx"></i>штриховка — годы условны (ок.)</span>
+      <span class="tl2-lg"><i class="sw sw-dim"></i>наведи или закрепи год — светятся живые тогда</span>
+    </div>
+    <div class="lib-note">Ctrl+колесо или щипок — масштаб · перетаскивание — панорама · двойной клик — приблизить · клик по полосе — карточка в древе · клик по шкале — закрепить линию года, ✕ или повторный клик — снять · эпохи показаны приблизительно</div>
   </div>
 </div>
 
@@ -6284,13 +6323,21 @@ function tlPl(n, one, few, many){
 
 var TL2 = { built:false, k:1, fold:new Set(), onlyAlive:false, branch:'all',
             bars:[], secs:[], scroll:null, inEl:null, scale:null, under:null,
-            xh:null, xhc:null, tip:null, tipFor:null, tipT:0, tipHideT:0, raf:0, pend:null };
+            xh:null, xhc:null, tip:null, tipFor:null, tipT:0, tipHideT:0, raf:0, pend:null,
+            pin:null, pinEl:null, pinC:null, pinT:null, pinX:null, tipLock:false };
 
 function tlGut(){ return window.innerWidth <= 760 ? 118 : 190; }
 function tlX(y){ return (Math.max(TL_MIN, Math.min(TL_NOW + 9, y)) - TL_MIN) * TL_UNIT * TL2.k; }
 function tlSpan(){ return (TL_NOW + 9 - TL_MIN) * TL_UNIT * TL2.k; }
-function tlK2V(k){ return Math.round(1000 * Math.log(k / TL_KMIN) / Math.log(TL_KMAX / TL_KMIN)); }
-function tlV2K(v){ return TL_KMIN * Math.exp(v / 1000 * Math.log(TL_KMAX / TL_KMIN)); }
+/* отдаляться ниже «вся шкала» нельзя: минимальный зум всегда заполняет ширину окна,
+   иначе справа остаётся мёртвая пустота (багрепорт владельца) */
+function tlFitK(){
+  var w = (TL2.scroll ? TL2.scroll.clientWidth : 0) - tlGut() - 26;
+  return Math.max(0.06, Math.min(1, w / ((TL_NOW + 9 - TL_MIN) * TL_UNIT)));
+}
+function tlKFloor(){ return tlFitK(); }
+function tlK2V(k){ var f = tlKFloor(); return Math.round(1000 * Math.log(k / f) / Math.log(TL_KMAX / f)); }
+function tlV2K(v){ var f = tlKFloor(); return f * Math.exp(v / 1000 * Math.log(TL_KMAX / f)); }
 
 /* ── данные: разделы (дома → ветви → родоначальники) и строки ── */
 function buildTlSections(){
@@ -6322,6 +6369,9 @@ function buildTlSections(){
 var TL_APPROX = {
   robbert: { b:TL_MIN, d:39, dA:true, note:'Точных дат летопись не сохранила — только «умер в 80 лет»; последняя зацепка: к уходу Диалтона на юг (39 г.) Робберт уже не упоминается.' }
 };
+/* супруги — не кровная линия: в таймлайне им выделен свой светлый тауп (темнее он читался
+   как «чёрная полоса» и сливался с графитовыми призраками — багрепорт владельца) */
+var TL_SPOUSE_C = '#6e6353';
 function buildTlRows(secOfM){
   var rows = [];
   for(const [id, info] of people){
@@ -6329,7 +6379,8 @@ function buildTlRows(secOfM){
     var ap = TL_APPROX[id];
     if(ap){ if(ap.b != null) y.b = ap.b; if(ap.d != null) y.d = ap.d; if(ap.dA) y.dA = true; y.approx = true; }
     if(y.b == null && y.d == null && !y.alive) continue;
-    rows.push({ id:id, name:info.p.name, years:info.p.years, c:colorOf(id),
+    rows.push({ id:id, name:info.p.name, years:info.p.years, c:info.isSpouse ? TL_SPOUSE_C : colorOf(id),
+                sp:!!info.isSpouse,
                 b:y.b, d:y.d, alive:y.alive, bA:y.bA, dA:y.dA, approx:y.approx,
                 note:ap ? ap.note : null,
                 sec:secOfM.get(id) || 'sec:founders' });
@@ -6363,6 +6414,7 @@ function tlRestore(){
 /* ── раскладка: ширина мира, шкала, эпохи, полосы ── */
 function tlLayout(){
   if(!TL2.inEl) return;
+  TL2.k = Math.max(tlKFloor(), Math.min(TL_KMAX, TL2.k));
   var G = tlGut();
   var wrapEl = TL2.inEl.parentElement;
   if(wrapEl) wrapEl.style.setProperty('--tlg', G + 'px');
@@ -6375,17 +6427,22 @@ function tlLayout(){
     tScale += '<span class="tl2-tick" style="left:' + x + 'px">' + y + '</span>';
     tUnder += '<i class="tl2-gl" style="left:' + x + 'px"></i>';
   }
+  var lblX = -1e9;
   TL_EVENTS.forEach(function(ev){
     var x1 = G + tlX(ev.y1), x2 = ev.y2 != null ? G + tlX(ev.y2) : null;
+    var lx = Math.max((x2 == null ? x1 + 8 : x1 + 4), lblX + 15);
+    lblX = lx;
+    var off = ' style="left:' + (lx - x1).toFixed(1) + 'px"';
     if(x2 == null){
-      tScale += '<span class="tl2-mark" style="left:' + x1.toFixed(1) + 'px" title="' + esc(ev.t) + ' (ок.)">◆<i>' + esc(ev.t) + '</i></span>';
+      tScale += '<span class="tl2-mark" style="left:' + x1.toFixed(1) + 'px" title="' + esc(ev.t) + ' (ок.)">◆<i' + off + '>' + esc(ev.t) + '</i></span>';
     } else {
       var w = Math.max(2, x2 - x1);
-      tScale += '<span class="tl2-band" style="left:' + x1.toFixed(1) + 'px;width:' + w.toFixed(1) + 'px" title="' + esc(ev.t) + ' (ок.)"><i>' + esc(ev.t) + '</i></span>';
+      tScale += '<span class="tl2-band" style="left:' + x1.toFixed(1) + 'px;width:' + w.toFixed(1) + 'px" title="' + esc(ev.t) + ' (ок.)"><i' + off + '>' + esc(ev.t) + '</i></span>';
       tUnder += '<i class="tl2-era" style="left:' + x1.toFixed(1) + 'px;width:' + w.toFixed(1) + 'px"></i>';
     }
   });
-  tScale += '<span class="tl2-now" style="left:' + (G + tlX(TL_NOW)).toFixed(1) + 'px"><i>сейчас · ' + TL_NOW + '</i></span>';
+  var nx = G + tlX(TL_NOW);
+  tScale += '<span class="tl2-now' + (nx > G + tlSpan() - 96 ? ' tl2-nowflip' : '') + '" style="left:' + nx.toFixed(1) + 'px"><i>сейчас · ' + TL_NOW + '</i></span>';
   tUnder += '<i class="tl2-nown" style="left:' + (G + tlX(TL_NOW)).toFixed(1) + 'px"></i>';
   TL2.scale.innerHTML = tScale;
   TL2.under.innerHTML = tUnder;
@@ -6398,11 +6455,17 @@ function tlLayout(){
       bar.style.left = x1.toFixed(1) + 'px';
       bar.style.width = w.toFixed(1) + 'px';
       bar.classList.toggle('haslbl', w >= 76);
+      if(r.qm) r.qm.hidden = true;
     } else {
       var xd = G + tlX(r.d), xs = G + tlX(Math.max(TL_MIN, r.d - 55));
       bar.style.left = xs.toFixed(1) + 'px';
       bar.style.width = Math.max(3, xd - xs).toFixed(1) + 'px';
       bar.classList.remove('haslbl');
+      if(r.qm){
+        r.qm.hidden = false;
+        r.qm.style.left = xs.toFixed(1) + 'px';
+        r.qm.title = 'Год рождения неизвестен — полоса условна';
+      }
     }
     if(!r.alive && r.d != null){
       r.die.hidden = false;
@@ -6410,6 +6473,7 @@ function tlLayout(){
       r.die.title = 'Смерть: ' + (r.dA ? 'ок. ' : '') + r.d;
     } else r.die.hidden = true;
   });
+  if(TL2.pin) tlPinApply();
 }
 function tlSyncZoom(){
   var s = q('#tl2ZS'), v = q('#tl2ZV');
@@ -6424,7 +6488,7 @@ function tlSetK(k2, anchorX){
   var vx = anchorX == null ? rect.width * 0.5 : Math.max(0, Math.min(rect.width, anchorX - rect.left));
   var cx = TL2.scroll.scrollLeft + vx;
   var y = TL_MIN + (cx - tlGut()) / (TL_UNIT * TL2.k);
-  TL2.k = Math.max(TL_KMIN, Math.min(TL_KMAX, k2));
+  TL2.k = Math.max(tlKFloor(), Math.min(TL_KMAX, k2));
   tlLayout();
   var G = tlGut(), W = G + tlSpan() + 20;
   var cx2 = Math.max(0, Math.min(W, G + (Math.max(TL_MIN, Math.min(TL_NOW + 9, y)) - TL_MIN) * TL_UNIT * TL2.k));
@@ -6439,6 +6503,7 @@ function tlApplyFilters(){
   TL2.bars.forEach(function(r){
     var hide = (TL2.onlyAlive && !r.alive) || (TL2.branch !== 'all' && r.sec !== TL2.branch);
     r.row.classList.toggle('tl2-rowhide', hide);
+    if(hide && TL2.tipFor === r.id) tlTipHide();
     r.row.classList.toggle('tl2-fdim', !hide && !!rf && !rf.has(r.id));
   });
   TL2.secs.forEach(function(s){
@@ -6486,6 +6551,9 @@ function tlTipShow(barEl){
   else if(r.b != null && r.d != null) h += '<div class="tp-a">прожил ~' + (r.d - r.b) + ' ' + tlPl(r.d - r.b, 'год', 'года', 'лет') + ' · † ' + (r.dA ? 'ок. ' : '') + r.d + '</div>';
   else if(r.alive) h += '<div class="tp-a">жив · годы рождения неизвестны</div>';
   else h += '<div class="tp-a">† ' + (r.dA ? 'ок. ' : '') + r.d + ' · годы рождения неизвестны</div>';
+  if(r.sp) h += '<div class="tp-d">Полоса серо-коричневая: это супруг(а) — не кровная линия рода.</div>';
+  if(r.b == null && !r.approx) h += '<div class="tp-d">Пунктир и «?»: год рождения не сохранился — полоса условна.</div>';
+  else if(!r.alive && r.d != null) h += '<div class="tp-d">Полоса приглушена: человек уже умер — ярко горят живые на выбранный год.</div>';
   if(typeof DEATHS !== 'undefined' && DEATHS[r.id]) h += '<div class="tp-d">' + esc(DEATHS[r.id]) + '</div>';
   h += '<div class="tp-go">Открыть в древе ↗</div>';
   TL2.tip.innerHTML = h;
@@ -6502,8 +6570,51 @@ function tlTipShow(barEl){
 /* ── кросс-хейр года (только мышь) ── */
 function tlXhOff(){
   if(!TL2.built) return;
+  if(TL2.pin){ tlPinApply(); return; }   /* есть закрепление — гасим не всё, а до его состояния */
   TL2.xh.style.display = 'none';
   TL2.xhc.style.display = 'none';
+  TL2.bars.forEach(function(r){
+    r.row.classList.remove('tl2-rowdim');
+    r.bar.classList.remove('tl2-live');
+  });
+}
+/* подсветить только тех, кто был жив в году y; вернуть число живых */
+function tlDimYear(y){
+  var aliveN = 0;
+  TL2.bars.forEach(function(r){
+    var on = r.b != null && r.b <= y && (r.alive || (r.d != null && r.d >= y));
+    r.row.classList.toggle('tl2-rowdim', !on);
+    if(on){ r.bar.classList.add('tl2-live'); aliveN++; }
+    else r.bar.classList.remove('tl2-live');
+  });
+  return aliveN;
+}
+function tlShTop(){
+  return parseFloat(getComputedStyle(TL2.scroll).getPropertyValue('--tlsh')) || 46;
+}
+/* закреплённая линия года: линия + плашка «год · сколько лет назад · живых» */
+function tlPinApply(){
+  if(!TL2.pin || !TL2.built) return;
+  var G = tlGut(), cx = G + tlX(TL2.pin.y);
+  var top = TL2.scroll.scrollTop + tlShTop();
+  TL2.pinEl.style.display = 'block';
+  TL2.pinEl.style.left = cx.toFixed(1) + 'px';
+  TL2.pinEl.style.top = top + 'px';
+  var ago = TL_NOW - TL2.pin.y;
+  var n = tlDimYear(TL2.pin.y);
+  TL2.pinT.textContent = TL2.pin.y + ' · ' + ago + ' ' + tlPl(ago, 'год', 'года', 'лет') + ' назад · живых: ' + n;
+  TL2.pinC.style.display = 'flex';
+  TL2.pinC.style.top = (top + 4) + 'px';
+  TL2.pinC.style.left = cx.toFixed(1) + 'px';
+  var rect = TL2.scroll.getBoundingClientRect();
+  var vx = cx - TL2.scroll.scrollLeft;
+  TL2.pinC.style.transform = (vx > rect.width - TL2.pinC.offsetWidth - 26) ? 'translate(calc(-100% - 10px),0)' : 'translate(10px,0)';
+}
+function tlPinClear(){
+  TL2.pin = null;
+  if(!TL2.built) return;
+  TL2.pinEl.style.display = 'none';
+  TL2.pinC.style.display = 'none';
   TL2.bars.forEach(function(r){
     r.row.classList.remove('tl2-rowdim');
     r.bar.classList.remove('tl2-live');
@@ -6519,18 +6630,16 @@ function tlXhTick(){
   if(cx < G + 2){ tlXhOff(); return; }
   var y = TL_MIN + (cx - G) / (TL_UNIT * TL2.k);
   if(y > TL_NOW + 6 || y < TL_MIN - 2){ tlXhOff(); return; }
+  var top = TL2.scroll.scrollTop + tlShTop();
   TL2.xh.style.display = 'block';
   TL2.xh.style.left = cx.toFixed(1) + 'px';
+  TL2.xh.style.top = top + 'px';
   TL2.xhc.style.display = 'block';
   TL2.xhc.style.left = cx.toFixed(1) + 'px';
+  TL2.xhc.style.top = (top + 4) + 'px';
   TL2.xhc.style.transform = (cx > TL2.scroll.scrollLeft + rect.width - 190) ? 'translate(calc(-100% - 10px),0)' : 'translate(10px,0)';
-  var yr = Math.round(y), ago = TL_NOW - yr, aliveN = 0;
-  TL2.bars.forEach(function(r){
-    var on = r.b != null && r.b <= y && (r.alive || (r.d != null && r.d >= y));
-    r.row.classList.toggle('tl2-rowdim', !on);
-    if(on){ r.bar.classList.add('tl2-live'); aliveN++; }
-    else r.bar.classList.remove('tl2-live');
-  });
+  var yr = Math.round(y), ago = TL_NOW - yr;
+  var aliveN = tlDimYear(y);
   TL2.xhc.textContent = yr + ' · ' + ago + ' ' + tlPl(ago, 'год', 'года', 'лет') + ' назад · живых: ' + aliveN;
 }
 
@@ -6560,10 +6669,50 @@ function tlQJump(id){
   r.bar.classList.add('tl2flash');
   setTimeout(function(){ r.bar.classList.remove('tl2flash'); }, 1800);
   if(window.matchMedia && matchMedia('(hover:hover) and (pointer:fine)').matches){
+    TL2.tipLock = true;   /* скролл-скрытие не сработает, пока тултип ведёт нас к полосе */
     tlTipShow(r.bar);
     clearTimeout(TL2.tipT);
-    TL2.tipT = setTimeout(tlTipHide, 2600);
+    TL2.tipT = setTimeout(function(){ TL2.tipLock = false; tlTipHide(); }, 2600);
   }
+}
+
+/* ── легенда: краска полосы = её линия рода, яркая/приглушённая = жив/умер ──
+   Палитра собирается из фактических цветов таймлайна — легенда всегда matches данные */
+function tlLegend(){
+  var lg = document.querySelector('.tl2-legend');
+  if(!lg || !TL2.built) return;
+  var colSet = new Set();
+  TL2.secs.forEach(function(s){ colSet.add(s.color); });
+  var hasSp = false, hasGhost = false, hasApprox = false;
+  TL2.bars.forEach(function(r){
+    if(r.sp) hasSp = true;
+    if(r.b == null) hasGhost = true;
+    if(r.approx) hasApprox = true;
+  });
+  var PAL = [
+    ['#c8a565', 'кровные Роббертсы'],
+    ['#c68363', 'ветвь дочери'],
+    ['#8a93a6', 'приёмные'],
+    ['#7f9779', 'дом Кадас'],
+    ['#8b7fa8', 'дом Сар'],
+    ['#5c8a85', 'дом Вум']
+  ];
+  var fill = function(c){ return 'linear-gradient(90deg,rgba(255,255,255,.3),rgba(255,255,255,0) 55%),' + c; };
+  var h = '<span class="tl2-lg tl2-lg-h">цвет полосы — её линия:</span>';
+  var seen = new Set();
+  PAL.forEach(function(p){
+    if(!colSet.has(p[0]) || seen.has(p[0])) return;
+    seen.add(p[0]);
+    h += '<span class="tl2-lg"><i class="sw" style="background:' + fill(p[0]) + '"></i>' + p[1] + '</span>';
+  });
+  if(hasSp) h += '<span class="tl2-lg"><i class="sw" style="background:' + fill(TL_SPOUSE_C) + '"></i>супруги (не кровные)</span>';
+  h += '<span class="tl2-lg tl2-lg-h">состояние:</span>';
+  h += '<span class="tl2-lg"><i class="sw sw-alive"></i>яркая — жива сейчас</span>';
+  h += '<span class="tl2-lg"><i class="sw sw-dead"></i>приглушена — умерла · † год смерти</span>';
+  if(hasGhost) h += '<span class="tl2-lg"><i class="sw sw-ghost"></i>пунктир и «?» — рождение неизвестно</span>';
+  if(hasApprox) h += '<span class="tl2-lg"><i class="sw sw-approx"></i>штриховка — годы условны (ок.)</span>';
+  h += '<span class="tl2-lg"><i class="sw sw-dim"></i>наведи или закрепи год — светятся живые тогда</span>';
+  lg.innerHTML = h;
 }
 
 /* ── сборка ── */
@@ -6597,18 +6746,20 @@ function renderTline(){
       html += '<div class="tl2-row" data-id="' + r.id + '" style="--d:' + Math.min(di * 14, 260) + '">' +
               '<span class="tl2-name" title="' + esc(r.name) + ' · ' + esc(r.years) + '">' + esc(r.name) + '</span>' +
               '<span class="tl2-bar' + (r.approx ? ' approx' : '') + '" data-id="' + r.id + '"><i class="tl2-barlbl">' + esc(r.name) + '</i></span>' +
-              '<span class="tl2-die" hidden>†</span></div>';
+              '<span class="tl2-die" hidden>†</span><span class="tl2-qm" hidden>?</span></div>';
       di++;
     });
     html += '</div></div>';
   });
   html += '</div>';
   html += '<div class="tl2-xh" id="tl2Xh"></div><div class="tl2-xhc" id="tl2Xhc"></div>';
+  html += '<div class="tl2-pin" id="tl2Pin"></div><div class="tl2-pinc" id="tl2Pinc"><span id="tl2PinT"></span><button class="tl2-pinx" id="tl2PinX" type="button" title="Снять закрепление" aria-label="Снять закрепление">✕</button></div>';
   html += '</div></div>';
   wrap.innerHTML = html;
 
   TL2.scroll = q('#tl2Scroll'); TL2.inEl = q('#tl2In'); TL2.scale = q('#tl2Scale');
   TL2.under = q('#tl2Under'); TL2.xh = q('#tl2Xh'); TL2.xhc = q('#tl2Xhc');
+  TL2.pinEl = q('#tl2Pin'); TL2.pinC = q('#tl2Pinc'); TL2.pinT = q('#tl2PinT'); TL2.pinX = q('#tl2PinX');
   TL2.tip = document.createElement('div');
   TL2.tip.id = 'tl2Tip';
   document.body.appendChild(TL2.tip);
@@ -6619,16 +6770,22 @@ function renderTline(){
     if(!src) return;
     var barEl = rowEl.querySelector('.tl2-bar');
     var dieEl = rowEl.querySelector('.tl2-die');
+    var qmEl = rowEl.querySelector('.tl2-qm');
     if(src.approx){
       barEl.classList.add('approx');
       barEl.style.background = 'repeating-linear-gradient(45deg, rgba(232,207,133,.50) 0 6px, rgba(232,207,133,.15) 6px 12px)';
+    } else if(src.b == null){
+      /* год рождения неизвестен: краска та же (цвет линии), но пунктир, «?» и сильнее глушение —
+         единое правило «краска = линия, стиль = состояние» (багрепорт владельца) */
+      barEl.style.background = 'linear-gradient(90deg, rgba(255,255,255,.18), rgba(255,255,255,0) 55%), ' + src.c;
     } else {
       barEl.style.background = 'linear-gradient(90deg, rgba(255,255,255,.30), rgba(255,255,255,0) 55%), ' + src.c;
     }
     barEl.classList.toggle('alive', src.alive);
     if(src.b == null) barEl.classList.add('ghost');
-    TL2.bars.push({ row:rowEl, bar:barEl, die:dieEl, id:id, name:src.name, years:src.years,
-                    b:src.b, d:src.d, alive:src.alive, bA:src.bA, dA:src.dA, approx:src.approx, note:src.note, sec:src.sec });
+    else if(!src.alive) barEl.classList.add('dead');
+    TL2.bars.push({ row:rowEl, bar:barEl, die:dieEl, qm:qmEl, id:id, name:src.name, years:src.years,
+                    b:src.b, d:src.d, alive:src.alive, bA:src.bA, dA:src.dA, approx:src.approx, sp:src.sp, note:src.note, sec:src.sec });
   });
 
   var sel = q('#tl2Sec');
@@ -6642,6 +6799,7 @@ function renderTline(){
   tlLayout();
   tlApplyFilters();
   tlSyncZoom();
+  tlLegend();
   window.robreTl2Sync = function(){ try{ tlApplyFilters(); }catch(e){} };
 }
 
@@ -6653,8 +6811,7 @@ function tlBind(){
   q('#tl2ZOut').addEventListener('click', function(){ tlSetK(TL2.k / 1.45, null); });
   q('#tl2ZS').addEventListener('input', function(){ tlSetK(tlV2K(+this.value), null); });
   q('#tl2Fit').addEventListener('click', function(){
-    var rect = sc.getBoundingClientRect(), G = tlGut();
-    TL2.k = Math.max(TL_KMIN, Math.min(1, (rect.width - G - 26) / ((TL_NOW + 9 - TL_MIN) * TL_UNIT)));
+    TL2.k = tlFitK();
     tlLayout();
     sc.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
     tlSyncZoom(); tlSave();
@@ -6665,10 +6822,24 @@ function tlBind(){
   });
 
   sc.addEventListener('wheel', function(e){
+    TL2.tipLock = false;
     if(!e.ctrlKey) return;
     e.preventDefault();
     tlSetK(TL2.k * Math.exp(-e.deltaY * 0.0022), e.clientX);
   }, { passive:false });
+
+  /* вертикальная прокрутка: курсоры года «липнут» к верхней кромке, тултип гаснет */
+  function tlStickyCur(){
+    if(!TL2.built) return;
+    var top = sc.scrollTop + tlShTop();
+    if(TL2.xh.style.display === 'block') TL2.xh.style.top = top + 'px';
+    if(TL2.xhc.style.display === 'block') TL2.xhc.style.top = (top + 4) + 'px';
+    if(TL2.pin){ TL2.pinEl.style.top = top + 'px'; TL2.pinC.style.top = (top + 4) + 'px'; }
+  }
+  sc.addEventListener('scroll', function(){
+    tlStickyCur();
+    if(!TL2.tipLock) tlTipHide();
+  }, { passive:true });
 
   sc.addEventListener('dblclick', function(e){
     if(e.target.closest('.tl2-bar') || e.target.closest('.tl2-name')) return;
@@ -6678,6 +6849,7 @@ function tlBind(){
   /* панорама перетаскиванием + подавление «клика после тащения» */
   var dg = null, dragMoved = false;
   sc.addEventListener('mousedown', function(e){
+    TL2.tipLock = false;
     if(e.button !== 0) return;
     dg = { x:e.clientX, y:e.clientY, sl:sc.scrollLeft, st:sc.scrollTop };
     dragMoved = false;
@@ -6704,13 +6876,30 @@ function tlBind(){
     if(go){
       var row = go.closest('.tl2-row');
       if(row && row.dataset.id) tlNav(row.dataset.id);
+      return;
     }
+    /* клик мимо полос — закрепить/снять линию года */
+    if(e.target.closest('.tl2-pinc')) return;
+    var G = tlGut(), rect = sc.getBoundingClientRect();
+    var cx = sc.scrollLeft + (e.clientX - rect.left);
+    if(cx < G + 2) return;
+    var yv = TL_MIN + (cx - G) / (TL_UNIT * TL2.k);
+    if(yv > TL_NOW + 6 || yv < TL_MIN - 2) return;
+    if(TL2.pin && Math.abs(G + tlX(TL2.pin.y) - cx) < 7){ tlPinClear(); return; }
+    TL2.pin = { y: Math.max(TL_MIN, Math.min(TL_NOW, Math.round(yv))) };
+    tlPinApply();
   }, true);
+  TL2.pinX.addEventListener('click', function(e){
+    e.stopPropagation();
+    tlPinClear();
+  });
+  window.addEventListener('blur', tlTipHide);
 
   /* пинч-зум и двухпальцевая панорама */
   var tc = null;
   function tDist(t){ var dx = t[0].clientX - t[1].clientX, dy = t[0].clientY - t[1].clientY; return Math.hypot(dx, dy) || 1; }
   sc.addEventListener('touchstart', function(e){
+    TL2.tipLock = false;
     if(e.touches.length === 2){
       tc = { d:tDist(e.touches), k:TL2.k,
              mx:(e.touches[0].clientX + e.touches[1].clientX) / 2,
@@ -6795,7 +6984,7 @@ function tlBind(){
   var rzT = 0;
   window.addEventListener('resize', function(){
     clearTimeout(rzT);
-    rzT = setTimeout(function(){ if(TL2.built) tlLayout(); }, 180);
+    rzT = setTimeout(function(){ if(TL2.built){ tlLayout(); tlSyncZoom(); } }, 180);
   });
 }
 
@@ -7067,6 +7256,8 @@ var F16_RETURN = null;   /* куда вернуть фокус после зак
 function openDlg(id){
   var target = q('#' + id);
   if(!target) return;
+  if(TL2.built) tlTipHide();   /* висящий тултип таймлайна не должен переживать смену диалога */
+
   var ae = document.activeElement;
   if(ae && ae !== target && !target.contains(ae)) F16_RETURN = ae;
   F16_DLGS.forEach(function(d){
@@ -7088,6 +7279,7 @@ function closeDlg(id){
   var el = q('#' + id);
   if(!el || !el.classList.contains('open')) return;
   el.classList.remove('open');
+  if(TL2.built) tlTipHide();
   var back = F16_RETURN; F16_RETURN = null;
   try{ if(back && back.focus) back.focus(); }catch(e){}
 }
