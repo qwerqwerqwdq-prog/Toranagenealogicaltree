@@ -278,6 +278,146 @@ a{color:var(--accent-light)}button{font-family:inherit;cursor:pointer}
 
 /* === Verdict editor + form headers: make sticky offset === */
 .form-progress-wrap.compact{margin:-16px -16px 8px}
+
+/* === Field cards (Variant D) === */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:12px}
+.field-card{background:rgba(24,33,31,0.5);border:1px solid var(--border);border-radius:6px;padding:14px;cursor:pointer;transition:all 0.2s;position:relative;display:flex;flex-direction:column;gap:4px}
+.field-card:hover{border-color:var(--accent);background:rgba(24,33,31,0.8);transform:translateY(-2px);box-shadow:0 4px 12px rgba(58,125,116,0.15)}
+.field-card.list-card{grid-column:1 / -1}
+.field-card-icon{width:32px;height:32px;border-radius:6px;background:rgba(58,125,116,0.15);border:1px solid rgba(58,125,116,0.3);display:flex;align-items:center;justify-content:center;color:var(--accent);margin-bottom:4px}
+.field-card-icon svg{width:18px;height:18px}
+.field-card-label{font-family:'Cinzel',serif;font-size:10px;color:var(--fg-muted);text-transform:uppercase;letter-spacing:0.1em}
+.field-card-value{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--fg);line-height:1.2}
+.field-card-unit{font-size:11px;color:var(--fg-dim);margin-left:4px;font-weight:400}
+.field-card-value-text{font-size:14px;color:var(--fg);line-height:1.4}
+.field-card-edit{position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:4px;background:rgba(58,125,116,0.2);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;color:var(--accent-light)}
+.field-card-edit svg{width:12px;height:12px}
+.field-card:hover .field-card-edit{opacity:1}
+.field-card.changed{border-color:var(--success);box-shadow:0 0 0 2px rgba(93,186,132,0.2)}
+.field-card.changed.down{border-color:var(--danger);box-shadow:0 0 0 2px rgba(196,77,77,0.2)}
+.field-card-delta{position:absolute;top:6px;right:8px;font-family:'Cinzel',serif;font-size:11px;font-weight:700;padding:2px 6px;border-radius:3px}
+.field-card-delta.up{background:rgba(93,186,132,0.2);color:var(--success)}
+.field-card-delta.down{background:rgba(196,77,77,0.2);color:var(--danger)}
+.list-card-label{font-family:'Cinzel',serif;font-size:11px;color:var(--fg-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.list-card-item{font-size:14px;padding:4px 0;border-bottom:1px solid rgba(58,125,116,0.1);display:flex;gap:8px}
+.list-card-item:last-child{border-bottom:none}
+.list-card-item::before{content:'•';color:var(--accent);flex-shrink:0}
+
+/* === Quick edit modal === */
+.quick-edit-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(17,24,26,0.95);border:1px solid var(--accent);border-radius:8px;padding:24px;width:340px;max-width:90vw;max-height:85vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.6),0 0 24px rgba(58,125,116,0.3);z-index:200}
+.quick-edit-modal h3{font-size:16px;color:var(--accent-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;font-family:'Cinzel',serif}
+.quick-edit-modal h3 svg{width:16px;height:16px}
+.quick-edit-modal label{display:block;font-size:10px;color:var(--fg-muted);text-transform:uppercase;letter-spacing:0.1em;font-family:'Cinzel',serif;margin-bottom:4px;margin-top:12px}
+.quick-edit-modal input,.quick-edit-modal textarea{width:100%;padding:8px 12px;background:rgba(10,15,15,0.6);border:1px solid var(--border);border-radius:4px;color:var(--fg);font-family:'Cinzel',serif;font-size:16px}
+.quick-edit-modal textarea{font-family:'Cormorant Garamond',serif;font-size:15px;min-height:80px;resize:vertical}
+.quick-edit-modal input:focus,.quick-edit-modal textarea:focus{outline:none;border-color:var(--accent)}
+.quick-edit-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+
+/* === Delta journal (VerdictEditor + PostDetail) === */
+.delta-banner{background:linear-gradient(135deg,rgba(58,125,116,0.08),rgba(17,24,26,0.6));border:1px solid rgba(58,125,116,0.4);border-radius:8px;padding:16px;margin-top:12px}
+.delta-banner-title{font-family:'Cinzel',serif;font-size:13px;color:var(--accent-light);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.1em;display:flex;align-items:center;gap:8px}
+.delta-banner-title svg{width:14px;height:14px}
+.delta-row{display:flex;align-items:center;gap:12px;padding:8px 0;font-size:14px;border-bottom:1px solid rgba(58,125,116,0.1)}
+.delta-row:last-child{border-bottom:none}
+.delta-row-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.delta-row-icon.up{background:rgba(93,186,132,0.15);color:var(--success)}
+.delta-row-icon.down{background:rgba(196,77,77,0.15);color:var(--danger)}
+.delta-row-icon.set{background:rgba(58,125,116,0.15);color:var(--accent-light)}
+.delta-row-icon svg{width:14px;height:14px}
+.delta-row-content{flex:1;min-width:0}
+.delta-row-field{font-family:'Cinzel',serif;font-size:13px;color:var(--fg)}
+.delta-row-change{font-size:13px;margin-top:2px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.delta-row-change .old{color:var(--fg-dim);text-decoration:line-through}
+.delta-row-change .arrow{color:var(--fg-muted)}
+.delta-row-change .new{color:var(--fg);font-weight:600}
+.delta-row-change .amount.up{color:var(--success);font-weight:700}
+.delta-row-change .amount.down{color:var(--danger);font-weight:700}
+.delta-row-note{font-size:12px;color:var(--fg-muted);font-style:italic;margin-top:2px}
+
+/* === Post card delete button (overlay top-right) === */
+.post-card-delete{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:6px;background:rgba(10,15,15,0.85);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--fg-muted);opacity:0;transition:opacity 0.18s,background 0.18s,color 0.18s,border-color 0.18s;cursor:pointer;z-index:2}
+.post-card-delete:hover{background:rgba(196,77,77,0.2);border-color:var(--danger);color:var(--danger)}
+.post-card-delete svg{width:14px;height:14px}
+.card-hover:hover .post-card-delete{opacity:1}
+@media(max-width:768px){.post-card-delete{opacity:1}}
+
+/* === Wiki Editor === */
+.wiki-editor{border:1px solid var(--border);border-radius:6px;overflow:hidden;background:rgba(10,15,15,0.4)}
+.wiki-toolbar{display:flex;flex-wrap:wrap;gap:2px;padding:6px;background:rgba(17,24,26,0.6);border-bottom:1px solid var(--border)}
+.wiki-toolbar button{padding:6px 8px;min-width:30px;height:30px;border:1px solid transparent;background:transparent;color:var(--fg-muted);border-radius:4px;cursor:pointer;transition:all 0.15s;font-family:'Cinzel',serif;font-size:12px;display:flex;align-items:center;justify-content:center}
+.wiki-toolbar button:hover{background:rgba(58,125,116,0.15);color:var(--accent-light);border-color:var(--border)}
+.wiki-toolbar button.active{background:var(--accent);color:var(--bg)}
+.wiki-toolbar button svg{width:16px;height:16px}
+.toolbar-divider{width:1px;background:var(--border);margin:4px 2px}
+.wiki-content{display:flex;min-height:200px}
+.wiki-textarea{flex:1;min-height:200px;padding:12px;background:rgba(10,15,15,0.6);border:none;color:var(--fg);font-family:'Cormorant Garamond',serif;font-size:15px;line-height:1.6;resize:vertical;outline:none;width:100%}
+.wiki-textarea:focus{background:rgba(10,15,15,0.8)}
+.wiki-preview{flex:1;padding:16px;overflow-y:auto;max-height:600px;border-left:1px solid var(--border);background:rgba(17,24,26,0.4);min-width:0}
+.wiki-preview:empty::before{content:'Превью появится здесь';color:var(--fg-dim);font-style:italic}
+.wiki-editor.split .wiki-content{display:flex}
+.wiki-editor.preview-only .wiki-textarea{display:none}
+.wiki-editor.preview-only .wiki-preview{border-left:none}
+.wiki-editor:not(.split):not(.preview-only) .wiki-preview{display:none}
+.wiki-help{padding:6px 12px;background:rgba(17,24,26,0.4);border-top:1px solid var(--border);text-align:right}
+.wiki-help-link{font-size:11px;color:var(--fg-muted);text-decoration:none;font-family:'Cinzel',serif;letter-spacing:0.05em}
+.wiki-help-link:hover{color:var(--accent-light);text-decoration:underline}
+
+/* === Callouts === */
+.callout{padding:12px 16px;margin:12px 0;border-radius:6px;border-left:3px solid;font-size:14px;line-height:1.6}
+.callout-info{background:rgba(58,125,116,0.1);border-color:var(--accent);color:var(--fg)}
+.callout-info::before{content:'ℹ';color:var(--accent-light);font-weight:bold;margin-right:8px}
+.callout-warning{background:rgba(212,165,67,0.1);border-color:var(--warning);color:var(--fg)}
+.callout-warning::before{content:'⚠';color:var(--warning);font-weight:bold;margin-right:8px}
+.callout-danger{background:rgba(196,77,77,0.1);border-color:var(--danger);color:var(--fg)}
+.callout-danger::before{content:'⚠';color:var(--danger);font-weight:bold;margin-right:8px}
+.callout-success{background:rgba(93,186,132,0.1);border-color:var(--success);color:var(--fg)}
+.callout-success::before{content:'✓';color:var(--success);font-weight:bold;margin-right:8px}
+.callout-quote{background:rgba(143,191,181,0.08);border-color:var(--accent-light);color:var(--fg);font-style:italic}
+
+/* === Spoiler === */
+.spoiler{background:var(--fg-dim);color:transparent;border-radius:3px;padding:0 4px;cursor:pointer;transition:all 0.2s;user-select:none}
+.spoiler:hover{background:var(--fg-muted)}
+.spoiler.revealed{background:transparent;color:inherit}
+
+/* === Markdown extras === */
+.markdown h4{font-size:14px;margin:10px 0 4px;font-family:'Cinzel',serif;letter-spacing:0.04em}
+.markdown h1,.markdown h2,.markdown h3,.markdown h4{scroll-margin-top:80px}
+.markdown u{text-decoration:underline;color:var(--fg)}
+.markdown del{color:var(--fg-dim);text-decoration:line-through}
+.markdown mark{background:rgba(212,165,67,0.3);color:var(--fg);padding:0 4px;border-radius:3px}
+.markdown sup{font-size:0.75em;vertical-align:super;color:var(--accent-light)}
+.markdown sub{font-size:0.75em;vertical-align:sub;color:var(--accent-light)}
+.markdown sup a,.markdown .fn-back{text-decoration:none;color:var(--accent-light)}
+.markdown sup a:hover,.markdown .fn-back:hover{text-decoration:underline}
+.markdown img{max-width:100%;border-radius:6px;margin:8px 0;border:1px solid var(--border)}
+.markdown a{color:var(--accent-light);text-decoration:underline;text-decoration-color:rgba(143,191,181,0.3)}
+.markdown a:hover{text-decoration-color:var(--accent-light)}
+.markdown pre{background:rgba(10,15,15,0.8);border:1px solid var(--border);border-radius:6px;padding:12px;overflow-x:auto;margin:12px 0}
+.markdown pre code{background:none;color:var(--fg);padding:0;font-family:'JetBrains Mono','Consolas',monospace;font-size:13px;line-height:1.5}
+.markdown .ornament{margin:16px 0}
+
+/* === Tables in markdown === */
+.markdown table{width:100%;border-collapse:collapse;margin:12px 0;border:1px solid var(--border);border-radius:6px;overflow:hidden;font-size:14px;display:table}
+.markdown th{background:rgba(58,125,116,0.15);padding:8px 12px;text-align:left;font-family:'Cinzel',serif;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:var(--accent-light);border-bottom:1px solid var(--border)}
+.markdown td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--fg)}
+.markdown tr:last-child td{border-bottom:none}
+.markdown tr:nth-child(even) td{background:rgba(24,33,31,0.3)}
+
+/* === Footnotes === */
+.markdown .footnotes{margin-top:24px;padding-top:12px;border-top:1px solid var(--border);font-size:13px;color:var(--fg-muted)}
+.markdown .footnotes ol{margin-left:16px;padding-left:0}
+.markdown .footnotes li{margin-bottom:4px}
+.markdown .footnotes li::marker{color:var(--accent-light);font-family:'Cinzel',serif}
+
+/* === Help modal table === */
+.help-table{border-collapse:collapse;width:100%}
+.help-table td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top;font-size:13px}
+.help-table tr:last-child td{border-bottom:none}
+.help-table .help-name{font-family:'Cinzel',serif;color:var(--accent-light);width:130px;letter-spacing:0.03em;font-size:12px}
+.help-table .help-syntax{font-family:'JetBrains Mono','Consolas',monospace;font-size:11px;color:var(--fg-muted);white-space:pre-wrap;word-break:break-word;width:40%}
+.help-table .help-result{font-size:13px}
+.help-table .help-result.markdown{padding:8px 10px}
+
 </style>
 </head>
 <body>
@@ -358,6 +498,30 @@ const ICONS={
   download:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
   heart:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
   refresh:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>',
+  trendingUp:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>',
+  trendingDown:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 7 9 13 13 9 21 17"/><polyline points="14 17 21 17 21 10"/></svg>',
+  balance:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><line x1="5" y1="7" x2="19" y2="7"/><path d="M5 7l-3 6a3 3 0 0 0 6 0z"/><path d="M19 7l-3 6a3 3 0 0 0 6 0z"/><line x1="8" y1="21" x2="16" y2="21"/></svg>',
+  gem:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 18 3 22 9 12 22 2 9"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="11" y1="3" x2="7" y2="9"/><line x1="13" y1="3" x2="17" y2="9"/></svg>',
+  bank:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 3 22 9 2 9"/></svg>',
+  equals:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/></svg>',
+  stats:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+  /* === Wiki editor toolbar icons === */
+  bold:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/></svg>',
+  italic:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="4" x2="10" y2="4"/><line x1="14" y1="20" x2="5" y2="20"/><line x1="15" y1="4" x2="9" y2="20"/></svg>',
+  underline:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v6a6 6 0 0 0 12 0V4"/><line x1="4" y1="20" x2="20" y2="20"/></svg>',
+  strikethrough:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><path d="M7 5h10a3 3 0 0 1 0 6"/><path d="M17 19H7a3 3 0 0 1 0-6"/></svg>',
+  listUl:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>',
+  listOl:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/><path d="M4 6h1v4"/><path d="M4 10h2"/><path d="M6 18H3c0-1 2-2 2-2s1-1 1-1.5-.5-1.5-1.5-1.5-1.5.5-1.5 1.5"/></svg>',
+  quote:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 5-1 5-5v-4c0-3-2-5-5-5"/><path d="M16 21c3 0 5-1 5-5v-4c0-3-2-5-5-5"/></svg>',
+  code:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+  hr:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><line x1="2" y1="8" x2="22" y2="8" opacity="0.4"/><line x1="2" y1="16" x2="22" y2="16" opacity="0.4"/></svg>',
+  link:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
+  image:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><polyline points="21 15 16 10 5 21"/></svg>',
+  info:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
+  warning:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+  eye:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>',
+  eyeOff:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>',
+  help:'<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
 };
 
 const $=(s,r=document)=>r.querySelector(s);
@@ -381,26 +545,504 @@ const el=(tag,attrs={},...children)=>{
 function escapeHtml(s){return s==null?'':String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function mdToHtml(md){
   if(!md)return '';
-  let h=escapeHtml(md);
-  h=h.replace(/```([\s\S]*?)```/g,(m,c)=>`<pre><code>${c}</code></pre>`);
-  h=h.replace(/`([^`]+)`/g,'<code>$1</code>');
-  h=h.replace(/^### (.+)$/gm,'<h3>$1</h3>');
-  h=h.replace(/^## (.+)$/gm,'<h2>$1</h2>');
-  h=h.replace(/^# (.+)$/gm,'<h1>$1</h1>');
-  h=h.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
-  h=h.replace(/\*(.+?)\*/g,'<em>$1</em>');
-  h=h.replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>');
-  h=h.replace(/^---$/gm,'<hr>');
-  h=h.replace(/^\d+\.\s(.+)$/gm,'<li>$1</li>');
-  h=h.replace(/^[-*]\s(.+)$/gm,'<li>$1</li>');
-  h=h.replace(/(<li>.*<\/li>\n?)+/g,m=>`<ul>${m}</ul>`);
-  h=h.replace(/\n\n/g,'</p><p>');
-  h='<p>'+h+'</p>';
-  h=h.replace(/<p><(h[1-3]|ul|ol|blockquote|pre|hr)/g,'<$1');
-  h=h.replace(/<\/(h[1-3]|ul|ol|blockquote|pre)><\/p>/g,'</$1>');
-  h=h.replace(/<p><\/p>/g,'');
-  return h;
+  let s=escapeHtml(md);
+  /* 1. Extract fenced code blocks (so they're not affected by other transformations) */
+  const codeBlocks=[];
+  s=s.replace(/```([\s\S]*?)```/g,(m,c)=>{
+    codeBlocks.push(c);
+    return `\u0000CB${codeBlocks.length-1}\u0000`;
+  });
+  /* 2. Extract inline code */
+  const inlineCodes=[];
+  s=s.replace(/`([^`\n]+)`/g,(m,c)=>{
+    inlineCodes.push(c);
+    return `\u0000IC${inlineCodes.length-1}\u0000`;
+  });
+  /* 3. Callout blocks :::type ... ::: */
+  s=s.replace(/(?:^|\n):::(info|warning|danger|success|quote)\s*\n([\s\S]*?)\n:::(?=\n|$)/g,(m,type,content)=>{
+    const inner=content.trim().replace(/\n/g,'<br>');
+    return `\n<div class="callout callout-${type}">${inner}</div>\n`;
+  });
+  /* 4. Tables (GFM) */
+  s=mdProcessTables(s);
+  /* 5. Footnote definitions */
+  const footnotes={};
+  s=s.replace(/^\[\^([^\]]+)\]:\s*(.+)$/gm,(m,id,text)=>{
+    footnotes[id]=text.trim();
+    return '';
+  });
+  /* 6. Ornament separator (=== on its own line) */
+  s=s.replace(/^===$/gm,'<div class="ornament"></div>');
+  /* 7. Horizontal rule --- on its own line */
+  s=s.replace(/^---$/gm,'<hr>');
+  /* 8. Headers (process from h4 to h1 to avoid double matching) */
+  s=s.replace(/^#### (.+)$/gm,'<h4>$1</h4>');
+  s=s.replace(/^### (.+)$/gm,'<h3>$1</h3>');
+  s=s.replace(/^## (.+)$/gm,'<h2>$1</h2>');
+  s=s.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  /* 9. Blockquotes — collapse consecutive > lines */
+  s=mdProcessBlockquote(s);
+  /* 10. Lists (ul/ol) — proper handling */
+  s=mdProcessLists(s);
+  /* 11. Inline: images first (because ![] also contains []) */
+  s=s.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g,(m,alt,url,title)=>{
+    return `<img alt="${alt}" src="${url}"`+(title?` title="${title}"`:'')+`>`;
+  });
+  /* 12. Links [text](url) */
+  s=s.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g,(m,text,url,title)=>{
+    return `<a href="${url}" target="_blank" rel="noopener noreferrer"`+(title?` title="${title}"`:'')+`>${text}</a>`;
+  });
+  /* 13. Bold **text** */
+  s=s.replace(/\*\*([^*]+?)\*\*/g,'<strong>$1</strong>');
+  /* 14. Underline __text__ */
+  s=s.replace(/__(.+?)__/g,'<u>$1</u>');
+  /* 15. Strikethrough ~~text~~ (must run before sub ~) */
+  s=s.replace(/~~(.+?)~~/g,'<del>$1</del>');
+  /* 16. Mark ==text== (must run before sup ^ — actually independent) */
+  s=s.replace(/==(.+?)==/g,'<mark>$1</mark>');
+  /* 17. Spoiler ||text|| */
+  s=s.replace(/\|\|(.+?)\|\|/g,'<span class="spoiler">$1</span>');
+  /* 18. Superscript ^(text) */
+  s=s.replace(/\^\(([^)]+)\)/g,'<sup>$1</sup>');
+  /* 19. Subscript ~(text) */
+  s=s.replace(/~\(([^)]+)\)/g,'<sub>$1</sub>');
+  /* 20. ^word^ superscript and ~word~ subscript (after ~~ strikethrough is processed) */
+  s=s.replace(/\^([^\s^()][^\n^()]*?)\^/g,'<sup>$1</sup>');
+  s=s.replace(/~([^\s~()][^\n~()]*?)~/g,'<sub>$1</sub>');
+  /* 21. Italic *text* (single asterisk, after bold is processed) */
+  s=s.replace(/(^|[^*])\*([^*\n]+?)\*(?!\*)/g,'$1<em>$2</em>');
+  /* 22. Footnote references [^id] — convert to <sup><a></a></sup>, append footnotes section */
+  if(Object.keys(footnotes).length>0){
+    let cnt=0;
+    const idMap={};
+    s=s.replace(/\[\^([^\]]+)\]/g,(m,id)=>{
+      if(!(id in footnotes))return m;
+      if(!(id in idMap)){cnt++;idMap[id]=cnt}
+      return `<sup><a href="#fn${idMap[id]}" id="fnref${idMap[id]}">${idMap[id]}</a></sup>`;
+    });
+    const fnItems=Object.entries(footnotes).map(([id,text])=>{
+      const n=idMap[id];
+      return n?`<li id="fn${n}">${text} <a href="#fnref${n}" class="fn-back">↩</a></li>`:'';
+    }).filter(Boolean).join('');
+    if(fnItems){
+      s+=`\n<div class="footnotes"><ol>${fnItems}</ol></div>`;
+    }
+  }
+  /* 23. Restore code placeholders */
+  s=s.replace(/\u0000CB(\d+)\u0000/g,(m,i)=>`\n<pre><code>${codeBlocks[+i]}</code></pre>\n`);
+  s=s.replace(/\u0000IC(\d+)\u0000/g,(m,i)=>`<code>${inlineCodes[+i]}</code>`);
+  /* 24. Wrap text in <p> tags */
+  s=mdWrapParagraphs(s);
+  return s.trim();
 }
+/* Helper: process GFM tables */
+function mdProcessTables(s){
+  const lines=s.split('\n');
+  const result=[];
+  let i=0;
+  while(i<lines.length){
+    const line=lines[i];
+    if(/^\|.+\|$/.test(line.trim())){
+      if(i+1<lines.length && /^\|[\s\-:|]+\|$/.test(lines[i+1].trim())){
+        const header=line.trim();
+        const bodyRows=[];
+        let j=i+2;
+        while(j<lines.length && /^\|.+\|$/.test(lines[j].trim())){
+          bodyRows.push(lines[j].trim());
+          j++;
+        }
+        const headerCells=header.replace(/^\||\|$/g,'').split('|').map(c=>c.trim());
+        let table='<table><thead><tr>'+headerCells.map(c=>`<th>${c}</th>`).join('')+'</tr></thead><tbody>';
+        bodyRows.forEach(row=>{
+          const cells=row.replace(/^\||\|$/g,'').split('|').map(c=>c.trim());
+          table+='<tr>'+cells.map(c=>`<td>${c}</td>`).join('')+'</tr>';
+        });
+        table+='</tbody></table>';
+        /* Wrap table in blank lines so paragraph splitter keeps it intact */
+        result.push('\n\n'+table+'\n\n');
+        i=j;
+        continue;
+      }
+    }
+    result.push(line);
+    i++;
+  }
+  return result.join('\n');
+}
+/* Helper: process blockquote (collapse consecutive > lines into single <blockquote>) */
+function mdProcessBlockquote(s){
+  const lines=s.split('\n');
+  const result=[];
+  let currentQuote=[];
+  let inQuote=false;
+  function flushQuote(){
+    if(inQuote){
+      /* Wrap in blank lines so paragraph splitter keeps it intact */
+      result.push('\n\n<blockquote>'+currentQuote.join('<br>')+'</blockquote>\n\n');
+      currentQuote=[];
+      inQuote=false;
+    }
+  }
+  for(let i=0;i<lines.length;i++){
+    const line=lines[i];
+    /* Match > or &gt; (escapeHtml converts > to &gt; before this runs) */
+    const m=line.match(/^(?:>|&gt;)\s?(.*)$/);
+    if(m){
+      currentQuote.push(m[1]);
+      inQuote=true;
+    }else{
+      flushQuote();
+      result.push(line);
+    }
+  }
+  flushQuote();
+  return result.join('\n');
+}
+/* Helper: process lists (ul and ol) */
+function mdProcessLists(s){
+  const lines=s.split('\n');
+  const result=[];
+  let currentList=null; /* {type:'ul'|'ol', items:[]} */
+  function flush(){
+    if(currentList){
+      const items=currentList.items.map(it=>`<li>${it}</li>`).join('');
+      /* Wrap list in blank lines so paragraph splitter keeps it intact */
+      result.push(`\n\n<${currentList.type}>${items}</${currentList.type}>\n\n`);
+      currentList=null;
+    }
+  }
+  for(let i=0;i<lines.length;i++){
+    const line=lines[i];
+    const ulMatch=line.match(/^\s*[-*]\s+(.+)$/);
+    const olMatch=line.match(/^\s*\d+\.\s+(.+)$/);
+    if(ulMatch){
+      if(!currentList||currentList.type!=='ul'){flush();currentList={type:'ul',items:[]}}
+      currentList.items.push(ulMatch[1]);
+    }else if(olMatch){
+      if(!currentList||currentList.type!=='ol'){flush();currentList={type:'ol',items:[]}}
+      currentList.items.push(olMatch[1]);
+    }else{
+      flush();
+      result.push(line);
+    }
+  }
+  flush();
+  return result.join('\n');
+}
+/* Helper: wrap text in <p> tags, leaving block-level elements alone */
+function mdWrapParagraphs(s){
+  /* Tags that need blank-line separation: top-level blocks (NOT ul/ol/li/table-internal) */
+  const sepTags='h[1-6]|blockquote|pre|hr|div|table|img';
+  /* Tags that should NOT be wrapped in <p> when starting a block (includes ul/ol/li) */
+  const blockCheckTags='h[1-6]|ul|ol|li|blockquote|pre|hr|div|table|img';
+  /* Insert blank lines AFTER closing tags */
+  s=s.replace(new RegExp('(<\/(?:'+sepTags+')>)','g'),'$1\n\n');
+  /* Insert blank lines BEFORE opening tags */
+  s=s.replace(new RegExp('(<(?:'+sepTags+')[\\s>])','g'),'\n\n$1');
+  /* Collapse 3+ newlines to 2 */
+  s=s.replace(/\n{3,}/g,'\n\n');
+  const blocks=s.split(/\n{2,}/);
+  const out=blocks.map(b=>{
+    const t=b.trim();
+    if(!t)return '';
+    /* If block starts with a block-level tag, leave as is */
+    if(new RegExp('^<('+blockCheckTags+')[\\s>]').test(t)){
+      return t;
+    }
+    /* Strip leading/trailing <br> */
+    const inner=t.replace(/^<br>|<br>$/g,'');
+    return `<p>${inner.replace(/\n/g,'<br>')}</p>`;
+  });
+  return out.filter(Boolean).join('\n');
+}
+/* ====== WikiEditor component ====== */
+/* WikiEditor(initialValue, onChange, placeholder, minHeight) — returns DOM element with .value, .getValue, .setValue, .onChange methods */
+function WikiEditor(value, oninput, placeholder, minHeight){
+  const wrap=el('div',{class:'wiki-editor'});
+  /* Toolbar */
+  const toolbar=el('div',{class:'wiki-toolbar'});
+  function addTextBtn(action,label){
+    const b=el('button',{type:'button',title:label,'data-action':action,'aria-label':label},label);
+    b.addEventListener('click',e=>{e.preventDefault();wikiAction(action)});
+    toolbar.appendChild(b);
+  }
+  function addIconBtn(action,label,iconKey){
+    const b=el('button',{type:'button',title:label,'data-action':action,'aria-label':label,html:ICONS[iconKey]||''});
+    b.addEventListener('click',e=>{e.preventDefault();wikiAction(action)});
+    toolbar.appendChild(b);
+  }
+  function addDivider(){toolbar.appendChild(el('span',{class:'toolbar-divider'}))}
+  /* H1/H2/H3 text buttons */
+  addTextBtn('h1','H1');
+  addTextBtn('h2','H2');
+  addTextBtn('h3','H3');
+  addDivider();
+  /* Format buttons */
+  addIconBtn('bold','Жирный','bold');
+  addIconBtn('italic','Курсив','italic');
+  addIconBtn('underline','Подчёркнутый','underline');
+  addIconBtn('strike','Зачёркнутый','strikethrough');
+  addDivider();
+  /* Structure buttons */
+  addIconBtn('ul','Маркированный список','listUl');
+  addIconBtn('ol','Нумерованный список','listOl');
+  addIconBtn('quote','Цитата','quote');
+  addIconBtn('code','Код','code');
+  addIconBtn('hr','Разделитель','hr');
+  addDivider();
+  /* Insert buttons */
+  addIconBtn('link','Ссылка','link');
+  addIconBtn('image','Изображение','image');
+  addIconBtn('callout-info','Инфо-блок','info');
+  addIconBtn('callout-warning','Предупреждение','warning');
+  addDivider();
+  /* Preview toggle */
+  const previewBtn=el('button',{type:'button',title:'Превью','data-action':'preview',class:'toggle-btn',html:ICONS.eye,'aria-label':'Превью'});
+  previewBtn.addEventListener('click',e=>{e.preventDefault();togglePreview()});
+  toolbar.appendChild(previewBtn);
+  wrap.appendChild(toolbar);
+  /* Content area */
+  const content=el('div',{class:'wiki-content'});
+  const textarea=el('textarea',{class:'wiki-textarea',placeholder:placeholder||''});
+  if(value)textarea.value=value;
+  if(minHeight){
+    textarea.style.minHeight=minHeight+'px';
+    content.style.minHeight=minHeight+'px';
+  }
+  const preview=el('div',{class:'wiki-preview markdown',style:{display:'none'}});
+  content.appendChild(textarea);
+  content.appendChild(preview);
+  wrap.appendChild(content);
+  /* Help link */
+  const help=el('div',{class:'wiki-help'});
+  const helpLink=el('a',{href:'#',class:'wiki-help-link',onclick:e=>{e.preventDefault();openWikiHelpModal()}},'Справка по разметке');
+  help.appendChild(helpLink);
+  wrap.appendChild(help);
+  /* State */
+  let previewMode=false;
+  let changeCallbacks=[];
+  /* Preview debounced update */
+  let previewTimer=null;
+  function schedulePreviewUpdate(){
+    if(previewTimer)clearTimeout(previewTimer);
+    previewTimer=setTimeout(updatePreview,200);
+  }
+  function updatePreview(){
+    if(previewMode||wrap.classList.contains('split')){
+      preview.innerHTML=mdToHtml(textarea.value);
+    }
+  }
+  function togglePreview(){
+    previewMode=!previewMode;
+    if(previewMode){
+      const isWide=window.innerWidth>900;
+      if(isWide){
+        wrap.classList.add('split');
+        wrap.classList.remove('preview-only');
+        textarea.style.display='';
+        preview.style.display='';
+      }else{
+        wrap.classList.add('preview-only');
+        wrap.classList.remove('split');
+        textarea.style.display='none';
+        preview.style.display='';
+      }
+      previewBtn.classList.add('active');
+      previewBtn.innerHTML=ICONS.eyeOff;
+      updatePreview();
+    }else{
+      wrap.classList.remove('split','preview-only');
+      preview.style.display='none';
+      textarea.style.display='';
+      previewBtn.classList.remove('active');
+      previewBtn.innerHTML=ICONS.eye;
+    }
+  }
+  function wikiAction(action){
+    const start=textarea.selectionStart;
+    const end=textarea.selectionEnd;
+    const val=textarea.value;
+    const selected=val.substring(start,end);
+    let newValue=val;
+    let newStart=start,newEnd=end;
+    function applyWrap(before,after,placeholderText){
+      if(selected){
+        newValue=val.substring(0,start)+before+selected+after+val.substring(end);
+        newStart=start+before.length;
+        newEnd=newStart+selected.length;
+      }else{
+        newValue=val.substring(0,start)+before+placeholderText+after+val.substring(end);
+        newStart=start+before.length;
+        newEnd=newStart+placeholderText.length;
+      }
+    }
+    function applyLinePrefix(prefix,placeholderText){
+      const lineStart=val.lastIndexOf('\n',start-1)+1;
+      const lineEnd=val.indexOf('\n',start);
+      const realLineEnd=lineEnd===-1?val.length:lineEnd;
+      const line=val.substring(lineStart,realLineEnd);
+      const newLine=prefix+(line||placeholderText);
+      newValue=val.substring(0,lineStart)+newLine+val.substring(realLineEnd);
+      newStart=lineStart+prefix.length;
+      newEnd=newStart+(line?line.length:placeholderText.length);
+    }
+    switch(action){
+      case 'h1':applyLinePrefix('# ','Заголовок 1');break;
+      case 'h2':applyLinePrefix('## ','Заголовок 2');break;
+      case 'h3':applyLinePrefix('### ','Заголовок 3');break;
+      case 'bold':applyWrap('**','**','полужирный текст');break;
+      case 'italic':applyWrap('*','*','курсив');break;
+      case 'underline':applyWrap('__','__','подчёркнутый');break;
+      case 'strike':applyWrap('~~','~~','зачёркнутый');break;
+      case 'ul':applyLinePrefix('- ','пункт');break;
+      case 'ol':applyLinePrefix('1. ','пункт');break;
+      case 'quote':applyLinePrefix('> ','цитата');break;
+      case 'code':{
+        if(selected&&selected.includes('\n')){
+          applyWrap('```\n','\n```','код');
+        }else if(selected){
+          applyWrap('`','`','код');
+        }else{
+          newValue=val.substring(0,start)+'`код`'+val.substring(end);
+          newStart=start+1;
+          newEnd=start+4;
+        }
+        break;
+      }
+      case 'hr':{
+        const lineStart=val.lastIndexOf('\n',start-1)+1;
+        const insert=(lineStart>0?'\n':'')+'---\n';
+        newValue=val.substring(0,lineStart)+insert+val.substring(lineStart);
+        newStart=lineStart+insert.length;
+        newEnd=newStart;
+        break;
+      }
+      case 'link':{
+        const url=prompt('Введите URL ссылки:','https://');
+        if(!url)break;
+        const text=selected||'текст ссылки';
+        const inserted='['+text+']('+url+')';
+        newValue=val.substring(0,start)+inserted+val.substring(end);
+        newStart=start;
+        newEnd=start+inserted.length;
+        break;
+      }
+      case 'image':{
+        const url=prompt('Введите URL изображения:','https://');
+        if(!url)break;
+        const alt=selected||'описание';
+        const inserted='!['+alt+']('+url+')';
+        newValue=val.substring(0,start)+inserted+val.substring(end);
+        newStart=start;
+        newEnd=start+inserted.length;
+        break;
+      }
+      case 'callout-info':
+      case 'callout-warning':
+      case 'callout-danger':
+      case 'callout-success':
+      case 'callout-quote':{
+        const type=action.replace('callout-','');
+        const inner=selected||'Текст блока';
+        const block=(start>0&&val[start-1]!=='\n'?'\n':'')+':::'+type+'\n'+inner+'\n:::\n';
+        newValue=val.substring(0,start)+block+val.substring(end);
+        newStart=start+block.length;
+        newEnd=newStart;
+        break;
+      }
+    }
+    if(newValue!==val){
+      textarea.value=newValue;
+      textarea.focus();
+      try{textarea.setSelectionRange(newStart,newEnd)}catch(e){}
+      if(oninput)oninput(newValue);
+      changeCallbacks.forEach(cb=>cb(newValue));
+      schedulePreviewUpdate();
+    }
+  }
+  /* Input listener */
+  textarea.addEventListener('input',e=>{
+    if(oninput)oninput(e.target.value);
+    changeCallbacks.forEach(cb=>cb(e.target.value));
+    schedulePreviewUpdate();
+  });
+  /* Public API — make wrap behave like a textarea */
+  wrap._wikiTextarea=textarea;
+  wrap.getValue=function(){return textarea.value};
+  wrap.setValue=function(v){
+    textarea.value=v||'';
+    if(oninput)oninput(textarea.value);
+    changeCallbacks.forEach(cb=>cb(textarea.value));
+    schedulePreviewUpdate();
+  };
+  wrap.onChange=function(cb){changeCallbacks.push(cb);return ()=>{changeCallbacks=changeCallbacks.filter(x=>x!==cb)}};
+  wrap.focus=function(){textarea.focus()};
+  /* Define .value as getter/setter on the wrap element (so el-like usage works) */
+  try{
+    Object.defineProperty(wrap,'value',{
+      get(){return textarea.value},
+      set(v){textarea.value=v||'';schedulePreviewUpdate()},
+      configurable:true
+    });
+  }catch(e){}
+  return wrap;
+}
+/* ====== Wiki help modal ====== */
+function openWikiHelpModal(){
+  const modal=el('div',{class:'modal-overlay'});
+  const card=el('div',{class:'card card-glow modal-card',style:{maxWidth:'760px'}});
+  card.appendChild(el('div',{class:'flex justify-between items-center mb-4'},
+    el('div',{class:'flex items-center gap-2'},
+      el('span',{html:ICONS.help,style:{color:'var(--accent)',width:'18px',height:'18px'}}),
+      el('h2',{style:{fontSize:'18px'}},'Справка по вики-разметке')
+    ),
+    el('button',{class:'btn btn-ghost btn-icon',onclick:()=>modal.remove()},el('span',{html:ICONS.close}))
+  ));
+  card.appendChild(el('p',{class:'text-muted text-xs italic mb-3'},'Используйте разметку в формах Хроники, Бестиария, Постов и Вердиктов. Превью доступно по кнопке глаза в тулбаре.'));
+  const helpData=[
+    ['Заголовки','# H1\n## H2\n### H3\n#### H4','<h1>H1</h1><h2>H2</h2><h3>H3</h3><h4>H4</h4>'],
+    ['Жирный','**полужирный**','<strong>полужирный</strong>'],
+    ['Курсив','*курсив*','<em>курсив</em>'],
+    ['Подчёркнутый','__подчёркнутый__','<u>подчёркнутый</u>'],
+    ['Зачёркнутый','~~зачёркнутый~~','<del>зачёркнутый</del>'],
+    ['Подсветка','==текст==','<mark>текст</mark>'],
+    ['Спойлер','||скрыто||','<span class="spoiler">скрыто</span>'],
+    ['Верх. индекс','^текст^ или ^(текст)','<sup>текст</sup>'],
+    ['Нижн. индекс','~текст~ или ~(текст)','<sub>текст</sub>'],
+    ['Строка кода','`код`','<code>код</code>'],
+    ['Блок кода','```\nкод\n```','<pre><code>код</code></pre>'],
+    ['Цитата','> текст','<blockquote>текст</blockquote>'],
+    ['Разделитель','---','<hr>'],
+    ['Орнамент','===','<div class="ornament"></div>'],
+    ['Маркир. список','- пункт\n- пункт','<ul><li>пункт</li><li>пункт</li></ul>'],
+    ['Нумер. список','1. пункт\n2. пункт','<ol><li>пункт</li><li>пункт</li></ol>'],
+    ['Ссылка','[текст](https://url)','<a href="#">текст</a>'],
+    ['Изображение','![alt](https://url)','<img alt="alt" src="#">'],
+    ['Таблица','| A | B |\n|---|---|\n| 1 | 2 |','<table><thead><tr><th>A</th><th>B</th></tr></thead><tbody><tr><td>1</td><td>2</td></tr></tbody></table>'],
+    ['Сноска','Текст [^1]\n\n[^1]: пояснение','Текст <sup>1</sup>'],
+    ['Инфо-блок',':::info\nтекст\n:::','<div class="callout callout-info">текст</div>'],
+    ['Предупр.',':::warning\nтекст\n:::','<div class="callout callout-warning">текст</div>'],
+    ['Опасность',':::danger\nтекст\n:::','<div class="callout callout-danger">текст</div>'],
+    ['Успех',':::success\nтекст\n:::','<div class="callout callout-success">текст</div>'],
+    ['Цитата-блок',':::quote\nтекст\n:::','<div class="callout callout-quote">текст</div>'],
+  ];
+  const table=el('table',{class:'help-table'});
+  helpData.forEach(([name,syntax,result])=>{
+    const tr=el('tr');
+    tr.appendChild(el('td',{class:'help-name'},name));
+    tr.appendChild(el('td',{class:'help-syntax'},syntax));
+    tr.appendChild(el('td',{class:'help-result markdown',html:result}));
+    table.appendChild(tr);
+  });
+  card.appendChild(el('div',{style:{maxHeight:'60vh',overflowY:'auto'}},table));
+  modal.appendChild(card);
+  modal.addEventListener('click',e=>{if(e.target===modal)modal.remove()});
+  document.addEventListener('keydown',function handler(e){
+    if(e.key==='Escape'){modal.remove();document.removeEventListener('keydown',handler)}
+  });
+  document.body.appendChild(modal);
+}
+
 function fmtDate(d){return new Date(d).toLocaleString('ru-RU',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'})}
 function fmtDateShort(d){return new Date(d).toLocaleDateString('ru-RU',{day:'numeric',month:'short'})}
 function formatTimeLeft(ms){
@@ -850,51 +1492,41 @@ function defaultFactionStats(){
       {label:'Дипломатические',type:'list',value:[]},
       {label:'Военные',type:'list',value:[]},
       {label:'Экономические',type:'list',value:[]},
-      {label:'Секретные',type:'list',value:[]},
     ]},
     {title:'Казна',icon:'coins',fields:[
       {label:'Доход/мес (солей)',type:'number',value:0},
       {label:'Расход/мес (солей)',type:'number',value:0},
-      {label:'Баланс/мес',type:'number',value:0},
-      {label:'Алмазная казна',type:'number',value:0},
+      {label:'Казна (солей)',type:'number',value:0},
     ]},
     {title:'Армия',icon:'swords',fields:[
-      {label:'Пехота ближнего боя',type:'number',value:0},
-      {label:'Пехота дальнего боя',type:'number',value:0},
+      {label:'Пехота',type:'number',value:0},
+      {label:'Лучники',type:'number',value:0},
       {label:'Кавалерия',type:'number',value:0},
       {label:'Флот',type:'number',value:0},
-      {label:'Ордена',type:'text',value:''},
     ]},
     {title:'Религия',icon:'church',fields:[
-      {label:'Вероисповедания',type:'list',value:[]},
+      {label:'Основная вера (%)',type:'number',value:0},
     ]},
     {title:'Население',icon:'users',fields:[
-      {label:'Всего',type:'number',value:0},
-      {label:'Власти',type:'number',value:0},
-      {label:'Гарнизоны',type:'number',value:0},
-      {label:'Торговые семьи',type:'number',value:0},
+      {label:'Всего существ',type:'number',value:0},
     ]},
     {title:'Учреждения',icon:'building',fields:[
       {label:'Работающие',type:'list',value:[]},
-      {label:'Ожидают срока',type:'list',value:[]},
     ]},
     {title:'Управление',icon:'crown',fields:[
-      {label:'Рейтинг управления (%)',type:'number',value:0},
-      {label:'Дома Сената',type:'text',value:''},
-      {label:'Бюрократия',type:'text',value:''},
-      {label:'Князь',type:'text',value:''},
+      {label:'Рейтинг (%)',type:'number',value:0},
     ]},
   ];
   return defaults.map((s,i)=>({
-    id:'sec_'+(i+1),
+    id:uid('sec'),
     title:s.title,
     icon:s.icon,
     order:i,
-    fields:s.fields.map((f,j)=>({id:'f'+(j+1),label:f.label,type:f.type,value:f.value}))
+    fields:s.fields.map(f=>({id:uid('f'),label:f.label,type:f.type,value:f.value}))
   }));
 }
 
-/* Конвертация старого формата статистики в новый */
+/* Конвертация старого формата статистики в новый. Гарантирует id у всех секций/полей. */
 function migrateStats(oldStats){
   if(!oldStats||!Array.isArray(oldStats)){
     return defaultFactionStats();
@@ -904,12 +1536,12 @@ function migrateStats(oldStats){
     return oldStats.map((s,i)=>{
       const legacy=LEGACY_STAT_SECTIONS.find(x=>x.key===s.sectionKey);
       return {
-        id:s.id||('sec_'+(i+1)),
+        id:s.id||uid('sec'),
         title:s.title||s.sectionTitle||(legacy?legacy.title:('Секция '+(i+1))),
         icon:s.icon||(legacy?legacy.icon:'file'),
         order:typeof s.order==='number'?s.order:i,
         fields:Array.isArray(s.fields)?s.fields.map((f,j)=>({
-          id:f.id||('f'+(j+1)),
+          id:f.id||uid('f'),
           label:f.label||('Поле '+(j+1)),
           type:f.type||'text',
           value:f.value!==undefined?f.value:defaultFieldValue(f.type||'text')
@@ -923,14 +1555,14 @@ function migrateStats(oldStats){
     const fields=(legacy?legacy.fields:[]).map((f,j)=>{
       const val=s.content?s.content[f.key]:undefined;
       return {
-        id:'f'+(j+1),
+        id:uid('f'),
         label:f.label,
         type:f.type,
         value:val!==undefined&&val!==null?val:defaultFieldValue(f.type)
       };
     });
     return {
-      id:'sec_'+(i+1),
+      id:uid('sec'),
       title:s.sectionTitle||(legacy?legacy.title:('Секция '+(i+1))),
       icon:legacy?legacy.icon:'file',
       order:typeof s.order==='number'?s.order:i,
@@ -1018,6 +1650,135 @@ function setSectionExpanded(factionId,sectionId,expanded){
   const stored=getExpandedSections();
   stored[factionId+':'+sectionId]=!!expanded;
   saveExpandedSections(stored);
+}
+
+/* ====== ВАРИАНТ D: иконка поля по названию, recentChanges, deltas ====== */
+/* Возвращает имя иконки из ICONS по ключевым словам в названии поля */
+function getFieldIcon(label){
+  if(!label)return 'file';
+  const l=String(label).toLowerCase();
+  /* Казна/деньги */
+  if(/алмаз/.test(l))return 'gem';
+  if(/резерв/.test(l))return 'bank';
+  if(/баланс/.test(l))return 'balance';
+  if(/доход/.test(l))return 'trendingUp';
+  if(/расход/.test(l))return 'trendingDown';
+  if(/казн/.test(l))return 'coins';
+  if(/пай|займ|долг/.test(l))return 'coins';
+  /* Армия */
+  if(/кавалер|конн|кон|лошад|жереб|коневод/.test(l))return 'horse';
+  if(/флот|кораб|ушку|судно/.test(l))return 'ship';
+  if(/пехот|копей/.test(l))return 'sword';
+  if(/лучник|арбалет|стрел/.test(l))return 'users';
+  if(/армия|войск/.test(l))return 'swords';
+  if(/орден/.test(l))return 'shield';
+  /* Связи */
+  if(/дипломат/.test(l))return 'handshake';
+  if(/воен/.test(l)&&/связ|альянс/.test(l))return 'handshake';
+  if(/эконом/.test(l))return 'handshake';
+  /* Религия */
+  if(/вера|бог|религ|ангел/.test(l))return 'church';
+  /* Население */
+  if(/населен|жител|народ|существ/.test(l))return 'users';
+  if(/власт|прав|сенат/.test(l))return 'crown';
+  if(/монах|монастыр/.test(l))return 'church';
+  if(/маг/.test(l))return 'scroll';
+  /* Учреждения */
+  if(/учрежд|палат|служба|завод|верфь|сенат/.test(l))return 'building';
+  /* Управление */
+  if(/князь|правитель|монарх|корол/.test(l))return 'crown';
+  if(/рейтинг|управ/.test(l))return 'crown';
+  if(/девиз/.test(l))return 'flag';
+  if(/государ|держав/.test(l))return 'flag';
+  if(/тайн/.test(l))return 'scroll';
+  if(/секрет/.test(l))return 'scroll';
+  /* Прочее */
+  if(/запас|склад|зерно/.test(l))return 'bank';
+  if(/всего|итог/.test(l))return 'stats';
+  if(/торгов/.test(l))return 'coins';
+  if(/вероят|шанс/.test(l))return 'stats';
+  return 'file';
+}
+
+/* Очистка recentChanges старше 7 дней (возвращает очищенный массив) */
+function pruneRecentChanges(arr){
+  if(!Array.isArray(arr))return [];
+  const week=7*24*60*60*1000;
+  const now=Date.now();
+  return arr.filter(ch=>ch&&typeof ch.timestamp==='number'&&(now-ch.timestamp)<week);
+}
+
+/* Применение changes вердикта к stats фракции. Возвращает {stats, recentChanges} */
+function applyVerdictChanges(factionStats,changes){
+  const stats=migrateStats(factionStats).map(s=>({...s,fields:s.fields.map(f=>({...f}))}));
+  const newRecent=[];
+  if(Array.isArray(changes)){
+    changes.forEach(ch=>{
+      if(!ch||!ch.sectionId||!ch.fieldId)return;
+      const section=stats.find(s=>s.id===ch.sectionId);
+      if(!section)return;
+      const field=section.fields.find(f=>f.id===ch.fieldId);
+      if(!field)return;
+      const oldValue=field.value;
+      let newValue=oldValue;
+      if(ch.operation==='add'&&field.type==='number'){
+        newValue=(Number(oldValue)||0)+(Number(ch.value)||0);
+      }else if(ch.operation==='subtract'&&field.type==='number'){
+        newValue=(Number(oldValue)||0)-(Number(ch.value)||0);
+      }else if(ch.operation==='set'){
+        if(field.type==='number'){
+          newValue=Number(ch.value)||0;
+        }else if(field.type==='list'){
+          newValue=Array.isArray(ch.value)?ch.value.slice():(typeof ch.value==='string'?ch.value.split('\n').map(s=>s.trim()).filter(Boolean):[]);
+        }else{
+          newValue=String(ch.value==null?'':ch.value);
+        }
+      }
+      field.value=newValue;
+      ch.oldValue=oldValue;
+      ch.newValue=newValue;
+      /* Записать в recentChanges только если было реальное изменение */
+      if(field.type==='number'){
+        const d=(Number(newValue)||0)-(Number(oldValue)||0);
+        if(d!==0){
+          newRecent.push({
+            sectionId:ch.sectionId,
+            fieldId:ch.fieldId,
+            delta:d,
+            sign:d>0?'+':'-',
+            timestamp:Date.now(),
+            note:ch.note||''
+          });
+        }
+      }else{
+        newRecent.push({
+          sectionId:ch.sectionId,
+          fieldId:ch.fieldId,
+          delta:null,
+          sign:'=',
+          timestamp:Date.now(),
+          note:ch.note||''
+        });
+      }
+    });
+  }
+  return {stats,recent:newRecent};
+}
+
+/* Поиск recentChange для конкретного поля (для подсветки карточки). Возвращает объект или null. */
+function findRecentChange(faction,sectionId,fieldId){
+  if(!faction||!Array.isArray(faction.recentChanges))return null;
+  const arr=pruneRecentChanges(faction.recentChanges);
+  return arr.find(c=>c.sectionId===sectionId&&c.fieldId===fieldId)||null;
+}
+
+/* Форматирование дельты для бейджа на карточке */
+function formatDeltaBadge(delta){
+  if(delta==null)return '';
+  const n=Number(delta);
+  if(!isFinite(n))return '';
+  const sign=n>0?'+':'−';
+  return sign+formatNumber(Math.abs(n));
 }
 
 /* ====== Realtime Database helpers ====== */
@@ -1116,6 +1877,16 @@ const App={
       if(window.scrollY>400)btn.classList.add('visible');
       else btn.classList.remove('visible');
     },{passive:true});
+
+    /* Spoiler click-to-reveal (delegated event listener for all .spoiler elements in document) */
+    document.addEventListener('click',e=>{
+      const sp=e.target.closest('.spoiler');
+      if(sp&&sp.nodeType){
+        sp.classList.toggle('revealed');
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
 
     if(!firebaseReady){this.render();return}
 
@@ -2036,7 +2807,7 @@ function FactionDetails(faction){
     card.appendChild(hdr);
     const body=el('div',{class:'stat-section-body'});
     body.appendChild(el('div',{class:'ornament',style:{opacity:'0.3',marginBottom:'12px'}}));
-    body.appendChild(renderStatContent(section));
+    body.appendChild(renderFieldCards(section,faction));
     if(canEdit){
       body.appendChild(el('div',{class:'flex gap-2 mt-2',style:{flexWrap:'wrap',marginTop:'12px'}},
         el('button',{class:'btn btn-ghost btn-sm',onclick:()=>openStatEditor(faction,section)},el('span',{html:ICONS.edit}),'Редактировать секцию'),
@@ -2048,44 +2819,166 @@ function FactionDetails(faction){
     card.appendChild(body);
     wrap.appendChild(card);
   });
+  /* === Асинхронная очистка старых recentChanges (>7 дней) === */
+  if(Array.isArray(faction.recentChanges)&&faction.recentChanges.length>0){
+    const cleaned=pruneRecentChanges(faction.recentChanges);
+    if(cleaned.length!==faction.recentChanges.length){
+      RTDB.update('factions/'+faction.id,{recentChanges:cleaned}).catch(()=>{});
+    }
+  }
   return wrap;
 }
 function pluralFields(n){return n===1?'поле':(n>=2&&n<=4?'поля':'полей')}
 
-function renderStatContent(section){
+/* ====== ВАРИАНТ D: карточки полей вместо stat-field блоков ====== */
+function renderFieldCards(section,faction){
   if(!section||!section.fields||section.fields.length===0){
     return el('p',{class:'text-muted italic text-sm'},'Нет данных');
   }
-  const wrap=el('div',{});
-  const gridClass=section.fields.length<=4?'stat-grid-2':(section.fields.length<=6?'stat-grid-3':'stat-grid-4');
-  const grid=el('div',{class:gridClass});
+  const isAdmin=App.userProfile&&App.userProfile.role==='ADMIN';
+  const wrap=el('div',{class:'cards-grid'});
   let renderedCount=0;
   section.fields.forEach(f=>{
-    const val=f.value;
+    const recent=faction?findRecentChange(faction,section.id,f.id):null;
+    const deltaText=recent&&recent.delta!=null?formatDeltaBadge(recent.delta):'';
+    const isUp=recent&&recent.delta!=null&&Number(recent.delta)>0;
+    const isDown=recent&&recent.delta!=null&&Number(recent.delta)<0;
     if(f.type==='list'){
-      const items=Array.isArray(val)?val.filter(Boolean):[];
-      if(items.length===0)return;
-      grid.appendChild(el('div',{class:'stat-field',style:{gridColumn:'1 / -1'}},
-        el('div',{class:'stat-field-label'},f.label),
-        el('ul',{style:{listStyle:'none',paddingLeft:'0',marginTop:'4px'}},
-          ...items.map(item=>el('li',{style:{marginBottom:'4px',display:'flex',gap:'8px',alignItems:'flex-start'}},el('span',{style:{color:'var(--accent)',flexShrink:'0'}},'•'),el('span',{class:'text-sm'},String(item))))
-        )
-      ));
+      const items=Array.isArray(f.value)?f.value.filter(Boolean):[];
+      const cardClasses='field-card list-card'+(recent?' changed':'')+(isDown?' down':'');
+      const card=el('div',{class:cardClasses,onclick:isAdmin?()=>openQuickEdit(faction,section,f):null});
+      card.appendChild(el('div',{class:'list-card-label'},f.label+(items.length?(' ('+items.length+')'):'')));
+      if(items.length===0){
+        card.appendChild(el('p',{class:'text-muted text-xs italic'},isAdmin?'Пусто — нажмите, чтобы заполнить':'Нет данных'));
+      }else{
+        items.forEach(it=>card.appendChild(el('div',{class:'list-card-item'},String(it))));
+      }
+      if(recent&&recent.delta!=null){
+        card.appendChild(el('div',{class:'field-card-delta '+(isUp?'up':'down')},deltaText));
+      }
+      wrap.appendChild(card);
       renderedCount++;
     }else if(f.type==='number'){
-      const num=typeof val==='number'?val:(Number(val)||0);
-      grid.appendChild(el('div',{class:'stat-field'},el('div',{class:'stat-field-label'},f.label),el('div',{class:'stat-field-value-number'},formatNumber(num))));
+      const num=typeof f.value==='number'?f.value:(Number(f.value)||0);
+      const cardClasses='field-card'+(recent?' changed':'')+(isDown?' down':'');
+      const card=el('div',{class:cardClasses,onclick:isAdmin?()=>openQuickEdit(faction,section,f):null});
+      const iconName=getFieldIcon(f.label);
+      card.appendChild(el('div',{class:'field-card-icon',html:ICONS[iconName]||ICONS.file}));
+      card.appendChild(el('div',{class:'field-card-label'},f.label));
+      /* Извлечь единицу измерения из названия поля (например, «Доход/мес (солей)» → «солей») */
+      const unitMatch=/\(([^)]+)\)/.exec(f.label);
+      const unit=unitMatch?unitMatch[1]:'';
+      const valEl=el('div',{class:'field-card-value'});
+      valEl.appendChild(document.createTextNode(formatNumber(num)+' '));
+      if(unit)valEl.appendChild(el('span',{class:'field-card-unit'},unit));
+      card.appendChild(valEl);
+      if(isAdmin){
+        card.appendChild(el('div',{class:'field-card-edit',html:ICONS.edit}));
+      }
+      if(recent&&recent.delta!=null){
+        card.appendChild(el('div',{class:'field-card-delta '+(isUp?'up':'down')},deltaText));
+      }
+      wrap.appendChild(card);
       renderedCount++;
     }else{
-      const txt=val==null?'':String(val);
-      if(!txt)return;
-      grid.appendChild(el('div',{class:'stat-field'},el('div',{class:'stat-field-label'},f.label),el('div',{class:'stat-field-value'},txt)));
+      /* text */
+      const txt=f.value==null?'':String(f.value);
+      const cardClasses='field-card text-card'+(recent?' changed':'')+(isDown?' down':'');
+      const card=el('div',{class:cardClasses,onclick:isAdmin?()=>openQuickEdit(faction,section,f):null});
+      const iconName=getFieldIcon(f.label);
+      card.appendChild(el('div',{class:'field-card-icon',html:ICONS[iconName]||ICONS.file}));
+      card.appendChild(el('div',{class:'field-card-label'},f.label));
+      if(txt){
+        card.appendChild(el('div',{class:'field-card-value-text'},txt));
+      }else{
+        card.appendChild(el('p',{class:'text-muted text-xs italic'},isAdmin?'Пусто — нажмите, чтобы заполнить':'Нет данных'));
+      }
+      if(isAdmin){
+        card.appendChild(el('div',{class:'field-card-edit',html:ICONS.edit}));
+      }
+      if(recent&&recent.delta!=null){
+        card.appendChild(el('div',{class:'field-card-delta '+(isUp?'up':'down')},deltaText));
+      }
+      wrap.appendChild(card);
       renderedCount++;
     }
   });
   if(renderedCount===0)return el('p',{class:'text-muted italic text-sm'},'Нет данных');
-  wrap.appendChild(grid);
   return wrap;
+}
+
+/* ====== Быстрое редактирование поля (модал) — ВАРИАНТ D ====== */
+function openQuickEdit(faction,section,field){
+  if(!faction||!section||!field)return;
+  /* Закрыть возможный предыдущий */
+  const existing=document.querySelector('.quick-edit-modal');
+  if(existing)existing.remove();
+  const overlay=el('div',{class:'modal-overlay'});
+  const modal=el('div',{class:'quick-edit-modal'});
+  modal.appendChild(el('h3',{},el('span',{html:ICONS.edit}),'Редактировать поле'));
+  const labelInput=el('input',{value:field.label||''});
+  modal.appendChild(el('label',{},'Название поля'));
+  modal.appendChild(labelInput);
+  /* Текущее значение — глубокая копия */
+  let currentValue;
+  if(field.type==='list'){
+    currentValue=Array.isArray(field.value)?field.value.slice():[];
+  }else if(field.type==='number'){
+    currentValue=typeof field.value==='number'?field.value:(Number(field.value)||0);
+  }else{
+    currentValue=field.value==null?'':String(field.value);
+  }
+  modal.appendChild(el('label',{},'Значение'));
+  let valueEl;
+  if(field.type==='list'){
+    valueEl=el('textarea',{});;
+    valueEl.value=currentValue.join('\n');
+  }else if(field.type==='number'){
+    valueEl=el('input',{type:'number',step:'any'});
+    valueEl.value=String(currentValue);
+  }else{
+    valueEl=el('textarea',{});
+    valueEl.value=String(currentValue);
+  }
+  modal.appendChild(valueEl);
+  const actions=el('div',{class:'quick-edit-actions'},
+    el('button',{class:'btn btn-ghost',onclick:()=>overlay.remove()},'Отмена'),
+    el('button',{class:'btn btn-primary'},el('span',{html:ICONS.save}),'Сохранить')
+  );
+  modal.appendChild(actions);
+  overlay.appendChild(modal);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.remove()});
+  document.addEventListener('keydown',function handler(e){
+    if(e.key==='Escape'){overlay.remove();document.removeEventListener('keydown',handler)}
+  });
+  document.body.appendChild(overlay);
+  setTimeout(()=>labelInput.focus(),10);
+  /* Save handler */
+  actions.querySelector('.btn-primary').addEventListener('click',async ()=>{
+    const newLabel=(labelInput.value||'').trim()||field.label;
+    let newValue;
+    if(field.type==='list'){
+      newValue=valueEl.value.split('\n').map(s=>s.trim()).filter(Boolean);
+    }else if(field.type==='number'){
+      newValue=Number(valueEl.value)||0;
+    }else{
+      newValue=valueEl.value;
+    }
+    /* Построить новый stats с обновлённым полем */
+    const stats=migrateStats(faction.stats||[]).map(s=>({...s,fields:s.fields.map(fld=>({...fld}))}));
+    const sec=stats.find(s=>s.id===section.id);
+    if(!sec){toast('Ошибка','Секция не найдена','error');overlay.remove();return}
+    const fld=sec.fields.find(ff=>ff.id===field.id);
+    if(!fld){toast('Ошибка','Поле не найдено','error');overlay.remove();return}
+    fld.label=newLabel;
+    fld.value=newValue;
+    try{
+      await RTDB.update('factions/'+faction.id,{stats});
+      toast('Поле обновлено','','success');
+      overlay.remove();
+      App.render();
+    }catch(e){toast('Ошибка',e.message,'error')}
+  });
 }
 function formatNumber(n){
   if(typeof n!=='number')n=Number(n)||0;
@@ -2360,25 +3253,92 @@ function PostsView(){
   }
   return wrap;
 }
+/* ====== Дельта-журнал: блок «Изменения в статистике» (ВАРИАНТ D) ====== */
+function renderDeltaJournal(changes,verdict){
+  const wrap=el('div',{class:'delta-banner'});
+  wrap.appendChild(el('div',{class:'delta-banner-title'},el('span',{html:ICONS.stats}),'Изменения в статистике ('+(verdict&&verdict.applied?'применены':'черновик')+')'));
+  changes.forEach(ch=>{
+    const isAdd=ch.operation==='add';
+    const isSub=ch.operation==='subtract';
+    const isSet=ch.operation==='set';
+    const iconCls=isAdd?'up':(isSub?'down':'set');
+    const iconName=isAdd?'arrowUp':(isSub?'arrowDown':'equals');
+    const row=el('div',{class:'delta-row'});
+    row.appendChild(el('div',{class:'delta-row-icon '+iconCls,html:ICONS[iconName]||ICONS.equals}));
+    const content=el('div',{class:'delta-row-content'});
+    content.appendChild(el('div',{class:'delta-row-field'},ch.fieldName||'поле'));
+    const changeEl=el('div',{class:'delta-row-change'});
+    if(ch.oldValue!==undefined&&ch.newValue!==undefined){
+      /* Format old value */
+      let oldStr=ch.oldValue, newStr=ch.newValue;
+      if(typeof ch.oldValue==='number'||(typeof ch.oldValue==='string'&&/^-?\d+(\.\d+)?$/.test(ch.oldValue))){
+        oldStr=formatNumber(Number(ch.oldValue)||0);
+        newStr=formatNumber(Number(ch.newValue)||0);
+      }
+      changeEl.appendChild(el('span',{class:'old'},String(oldStr)));
+      changeEl.appendChild(el('span',{class:'arrow'},'→'));
+      changeEl.appendChild(el('span',{class:'new'},String(newStr)));
+      if(isAdd||isSub){
+        const amt=Number(ch.value)||0;
+        const sign=isAdd?'+':'−';
+        changeEl.appendChild(el('span',{class:'amount '+(isAdd?'up':'down')},sign+formatNumber(Math.abs(amt))));
+      }
+    }else if(isSet){
+      /* old verdicts may not have oldValue/newValue — just show value */
+      let valStr=ch.value;
+      if(typeof ch.value==='number'||(typeof ch.value==='string'&&/^-?\d+(\.\d+)?$/.test(ch.value))){
+        valStr=formatNumber(Number(ch.value)||0);
+      }
+      changeEl.appendChild(el('span',{class:'amount',style:{color:'var(--accent-light)'}},'= '+String(valStr)));
+    }else{
+      const amt=Number(ch.value)||0;
+      const sign=isAdd?'+':'−';
+      changeEl.appendChild(el('span',{class:'amount '+(isAdd?'up':'down')},sign+formatNumber(Math.abs(amt))));
+    }
+    content.appendChild(changeEl);
+    if(ch.note){
+      content.appendChild(el('div',{class:'delta-row-note'},ch.note));
+    }
+    row.appendChild(content);
+    wrap.appendChild(row);
+  });
+  return wrap;
+}
 function PostCard(post){
   const statusMap={PENDING:{label:'Ожидает',cls:'badge-warning',icon:ICONS.clock},VERDICTED:{label:'Вердикт',cls:'badge-success',icon:ICONS.check},ARCHIVED:{label:'Архив',cls:'',icon:ICONS.file}};
   const s=statusMap[post.status]||statusMap.PENDING;
   const ts=RTDB.ts(post.createdAt);
-  return el('div',{class:'card card-hover',onclick:()=>App.setView('posts',post.id)},
-    el('div',{class:'list-item-row'},
-      el('div',{class:'flex-1 min-w-0'},
-        el('div',{class:'flex items-center gap-2 mb-2',style:{flexWrap:'wrap'}},
-          el('span',{class:'badge '+s.cls,html:s.icon+' '+s.label}),
-          post.turnNumber?el('span',{class:'badge'},'Ход '+post.turnNumber):null,
-          post.attachments&&post.attachments.length?el('span',{class:'badge',html:ICONS.file+' '+post.attachments.length}):null
-        ),
-        el('div',{class:'text-sm',style:{fontFamily:'Cinzel,serif',fontWeight:'600'}},post.title),
-        el('p',{class:'text-muted text-sm mt-1',style:{display:'-webkit-box',WebkitLineClamp:'2',WebkitBoxOrient:'vertical',overflow:'hidden'}},post.content),
-        el('p',{class:'text-muted',style:{fontSize:'10px',marginTop:'8px',opacity:'0.6'}},fmtDate(ts))
+  const card=el('div',{class:'card card-hover',style:{position:'relative'},onclick:()=>App.setView('posts',post.id)});
+  /* === Кнопка удаления (правый верхний угол) === */
+  const delBtn=el('button',{class:'post-card-delete','data-tooltip':'Удалить пост','aria-label':'Удалить пост',onclick:async (e)=>{
+    e.stopPropagation();
+    e.preventDefault();
+    if(post.status==='VERDICTED'){
+      toast('Нельзя удалить пост','У поста есть вердикт — сначала отзовите вердикт через админку','error');
+      return;
+    }
+    const ok=await ConfirmDialog('Удалить пост?','Пост будет удалён без возможности восстановления.','Удалить','Отмена',{danger:true});
+    if(!ok)return;
+    try{
+      await RTDB.remove('posts/'+post.id);
+      toast('Пост удалён','','info');
+    }catch(err){toast('Ошибка',err.message,'error')}
+  }},el('span',{html:ICONS.trash}));
+  card.appendChild(delBtn);
+  card.appendChild(el('div',{class:'list-item-row'},
+    el('div',{class:'flex-1 min-w-0'},
+      el('div',{class:'flex items-center gap-2 mb-2',style:{flexWrap:'wrap'}},
+        el('span',{class:'badge '+s.cls,html:s.icon+' '+s.label}),
+        post.turnNumber?el('span',{class:'badge'},'Ход '+post.turnNumber):null,
+        post.attachments&&post.attachments.length?el('span',{class:'badge',html:ICONS.file+' '+post.attachments.length}):null
       ),
-      el('span',{html:ICONS.chevron,style:{color:'var(--fg-dim)',flexShrink:'0'}})
-    )
-  );
+      el('div',{class:'text-sm',style:{fontFamily:'Cinzel,serif',fontWeight:'600'}},post.title),
+      el('p',{class:'text-muted text-sm mt-1',style:{display:'-webkit-box',WebkitLineClamp:'2',WebkitBoxOrient:'vertical',overflow:'hidden'}},post.content),
+      el('p',{class:'text-muted',style:{fontSize:'10px',marginTop:'8px',opacity:'0.6'}},fmtDate(ts))
+    ),
+    el('span',{html:ICONS.chevron,style:{color:'var(--fg-dim)',flexShrink:'0'}})
+  ));
+  return card;
 }
 function PostForm(){
   const state={title:'',content:'',context:'',turnNumber:'',weekNumber:'',attachments:[]};
@@ -2392,7 +3352,7 @@ function PostForm(){
   wrap.appendChild(progress.wrap);
   const form=el('form',{onsubmit:e=>{e.preventDefault();submit()}});
   const titleInput=el('input',{class:'input',placeholder:'Действия княжества на 5-й неделе...',oninput:e=>{state.title=e.target.value;progress.update()},required:true});
-  const contentTa=el('textarea',{class:'textarea',placeholder:'Опишите действия вашего княжества... Поддерживается Markdown.',style:{minHeight:'200px'},oninput:e=>{state.content=e.target.value;progress.update()},required:true});
+  const contentTa=WikiEditor(state.content,v=>{state.content=v;progress.update()},'Опишите действия вашего княжества... Поддерживается вики-разметка.',200);
   form.appendChild(el('div',{class:'field-group'},el('label',{class:'label'},'Заголовок *'),titleInput));
   form.appendChild(el('div',{class:'stat-grid-2 mb-4'},
     el('div',{class:'field-group'},el('label',{class:'label'},'Ход'),el('input',{class:'input',type:'number',placeholder:'5',oninput:e=>state.turnNumber=e.target.value})),
@@ -2401,7 +3361,7 @@ function PostForm(){
   form.appendChild(el('div',{class:'field-group'},
     el('label',{class:'label'},'Ролевое содержание *'),
     contentTa,
-    el('p',{class:'text-muted',style:{fontSize:'10px',marginTop:'4px',opacity:'0.6'}},'Поддерживается Markdown-форматирование')
+    el('p',{class:'text-muted',style:{fontSize:'10px',marginTop:'4px',opacity:'0.6'}},'Поддерживается вики-разметка: # заголовки, **жирный**, :::info блоки, таблицы и др.')
   ));
   form.appendChild(el('div',{class:'field-group'},el('label',{class:'label'},'Контекст / Пояснение (опц.)'),el('textarea',{class:'textarea',placeholder:'Технические пояснения для администратора...',style:{minHeight:'80px'},oninput:e=>state.context=e.target.value})));
   const attList=el('div',{class:'flex flex-wrap gap-2'});
@@ -2516,6 +3476,10 @@ function PostDetail(post){
         )
       ));
     }
+    /* === Дельта-журнал изменений статистики (ВАРИАНТ D) === */
+    if(Array.isArray(verdict.changes)&&verdict.changes.length>0){
+      vCard.appendChild(renderDeltaJournal(verdict.changes,verdict));
+    }
     wrap.appendChild(vCard);
   }else{
     wrap.appendChild(el('div',{class:'card text-center',style:{background:'rgba(212,165,67,0.05)',borderColor:'rgba(212,165,67,0.2)'}},
@@ -2562,21 +3526,35 @@ function AdminPostsView(){
       list.forEach(post=>{
         const faction=App.cache.factions.find(f=>f.id===post.factionId);
         const ts=RTDB.ts(post.createdAt);
-        listHolder.appendChild(el('div',{class:'card card-hover',onclick:()=>App.setView('admin-posts',post.id)},
-          el('div',{class:'flex items-start justify-between gap-3'},
-            el('div',{class:'flex-1 min-w-0'},
-              el('div',{class:'flex items-center gap-2 mb-2',style:{flexWrap:'wrap'}},
-                post.status==='PENDING'?el('span',{class:'badge badge-warning',html:ICONS.clock+' Ожидает'}):el('span',{class:'badge badge-success',html:ICONS.check+' Вердикт'}),
-                faction?el('span',{class:'badge badge-accent',html:ICONS.shield+' '+faction.name}):null,
-                post.turnNumber?el('span',{class:'badge'},'Ход '+post.turnNumber):null
-              ),
-              el('div',{class:'text-sm',style:{fontFamily:'Cinzel,serif',fontWeight:'600'}},post.title),
-              el('p',{class:'text-muted text-xs mt-1',style:{display:'-webkit-box',WebkitLineClamp:'2',WebkitBoxOrient:'vertical',overflow:'hidden'}},post.content),
-              el('p',{class:'text-muted',style:{fontSize:'10px',marginTop:'6px',opacity:'0.6'}},(post.authorName||'')+' · '+fmtDate(ts))
+        const card=el('div',{class:'card card-hover',style:{position:'relative'},onclick:()=>App.setView('admin-posts',post.id)});
+        /* === Кнопка удаления (админ может удалять любые посты) === */
+        const delBtn=el('button',{class:'post-card-delete','data-tooltip':'Удалить пост','aria-label':'Удалить пост',onclick:async (e)=>{
+          e.stopPropagation();
+          e.preventDefault();
+          const hasVerdict=post.status==='VERDICTED';
+          const msg=hasVerdict?'Пост и его вердикт будут удалены без возможности восстановления. Вердикт будет утерян, изменения статистики не отменяются.':'Пост будет удалён без возможности восстановления.';
+          const ok=await ConfirmDialog('Удалить пост?',msg,'Удалить','Отмена',{danger:true});
+          if(!ok)return;
+          try{
+            await RTDB.remove('posts/'+post.id);
+            toast('Пост удалён','','info');
+          }catch(err){toast('Ошибка',err.message,'error')}
+        }},el('span',{html:ICONS.trash}));
+        card.appendChild(delBtn);
+        card.appendChild(el('div',{class:'flex items-start justify-between gap-3'},
+          el('div',{class:'flex-1 min-w-0'},
+            el('div',{class:'flex items-center gap-2 mb-2',style:{flexWrap:'wrap'}},
+              post.status==='PENDING'?el('span',{class:'badge badge-warning',html:ICONS.clock+' Ожидает'}):el('span',{class:'badge badge-success',html:ICONS.check+' Вердикт'}),
+              faction?el('span',{class:'badge badge-accent',html:ICONS.shield+' '+faction.name}):null,
+              post.turnNumber?el('span',{class:'badge'},'Ход '+post.turnNumber):null
             ),
-            el('span',{html:ICONS.chevron,style:{color:'var(--fg-dim)',flexShrink:'0',marginTop:'4px'}})
-          )
+            el('div',{class:'text-sm',style:{fontFamily:'Cinzel,serif',fontWeight:'600'}},post.title),
+            el('p',{class:'text-muted text-xs mt-1',style:{display:'-webkit-box',WebkitLineClamp:'2',WebkitBoxOrient:'vertical',overflow:'hidden'}},post.content),
+            el('p',{class:'text-muted',style:{fontSize:'10px',marginTop:'6px',opacity:'0.6'}},(post.authorName||'')+' · '+fmtDate(ts))
+          ),
+          el('span',{html:ICONS.chevron,style:{color:'var(--fg-dim)',flexShrink:'0',marginTop:'4px'}})
         ));
+        listHolder.appendChild(card);
       });
     }
     renderList();
@@ -2591,8 +3569,8 @@ function VerdictEditor(post){
   const state={
     roleplayText:existingVerdict?existingVerdict.roleplayText:'',
     technicalText:existingVerdict?existingVerdict.technicalText:'',
-    effects:existingVerdict&&Array.isArray(existingVerdict.effects)?JSON.parse(JSON.stringify(existingVerdict.effects)):[],
-    showEffectForm:false
+    changes:existingVerdict&&Array.isArray(existingVerdict.changes)?JSON.parse(JSON.stringify(existingVerdict.changes)):[],
+    showChangeForm:false
   };
   const postCard=el('div',{class:'card'});
   const ts=RTDB.ts(post.createdAt);
@@ -2616,7 +3594,7 @@ function VerdictEditor(post){
       existingVerdict?el('span',{class:'badge badge-success'},'Редактирование'):null
     ),
     existingVerdict?el('button',{class:'btn btn-ghost btn-sm text-danger',onclick:async()=>{
-      const ok=await ConfirmDialog('Отозвать вердикт?','Статус поста вернётся к «Ожидает», а применённые эффекты на статистику фракции не будут отменены.','Отозвать','Отмена',{danger:true});
+      const ok=await ConfirmDialog('Отозвать вердикт?','Статус поста вернётся к «Ожидает». Уже применённые изменения статистики фракции сохраняются.','Отозвать','Отмена',{danger:true});
       if(!ok)return;
       try{
         await RTDB.update('posts/'+post.id,{status:'PENDING',verdict:null});
@@ -2629,65 +3607,84 @@ function VerdictEditor(post){
   /* Progress bar: 1 обязательное поле (roleplayText) */
   const verdictProgress=FormProgress(()=>state.roleplayText.trim().length>=5?1:0,()=>1);
   form.appendChild(verdictProgress.wrap);
-  const roleplayTa=el('textarea',{class:'textarea',placeholder:'Опишите, что произошло по итогам поста игрока...',style:{minHeight:'150px'},oninput:e=>{state.roleplayText=e.target.value;verdictProgress.update()}},state.roleplayText);
+  const roleplayTa=WikiEditor(state.roleplayText,v=>{state.roleplayText=v;verdictProgress.update()},'Опишите, что произошло по итогам поста игрока... Поддерживается вики-разметка.',150);
   form.appendChild(el('div',{class:'field-group'},el('label',{class:'label'},'Ролевая часть (нарратив) *'),roleplayTa));
   form.appendChild(el('div',{class:'field-group'},el('label',{class:'label'},'Техническая часть (опц.)'),el('textarea',{class:'textarea',placeholder:'Технические пояснения...',style:{minHeight:'80px'},oninput:e=>state.technicalText=e.target.value},state.technicalText)));
 
-  /* Секция эффектов */
-  const effSection=el('div',{class:'field-group'});
-  effSection.appendChild(el('div',{class:'flex items-center justify-between'},
-    el('label',{class:'label'},'Эффекты на статистику'),
-    el('button',{type:'button',class:'btn btn-ghost btn-sm',onclick:()=>{state.showEffectForm=!state.showEffectForm;renderEffectsForm()}},el('span',{html:ICONS.plus}),'Добавить эффект')
+  /* === Секция «Изменения в статистике» (ВАРИАНТ D — delta journal) === */
+  const chSection=el('div',{class:'field-group'});
+  chSection.appendChild(el('div',{class:'flex items-center justify-between'},
+    el('label',{class:'label'},'Изменения в статистике'),
+    el('button',{type:'button',class:'btn btn-ghost btn-sm',onclick:()=>{state.showChangeForm=!state.showChangeForm;renderChangeForm()}},el('span',{html:ICONS.plus}),'Добавить изменение')
   ));
-  const effList=el('div',{class:'flex flex-col gap-2',style:{marginTop:'8px'}});
-  effSection.appendChild(effList);
-  const effFormWrap=el('div');
-  effSection.appendChild(effFormWrap);
+  const chList=el('div',{class:'flex flex-col gap-2',style:{marginTop:'8px'}});
+  chSection.appendChild(chList);
+  const chFormWrap=el('div');
+  chSection.appendChild(chFormWrap);
 
-  /* Получаем секции фракции автора (для выбора target) */
   function getFactionStats(){
     if(!faction)return [];
     return migrateStats(faction.stats||[]);
   }
-  function renderEffectsList(){
-    effList.innerHTML='';
-    if(state.effects.length===0){
-      effList.appendChild(el('p',{class:'text-muted italic text-xs',style:{padding:'12px',textAlign:'center',border:'1px dashed var(--border)',borderRadius:'6px'}},'Нет эффектов. Добавьте эффект, чтобы изменить статистику фракции.'));
+  function renderChangesList(){
+    chList.innerHTML='';
+    if(state.changes.length===0){
+      chList.appendChild(el('p',{class:'text-muted italic text-xs',style:{padding:'12px',textAlign:'center',border:'1px dashed var(--border)',borderRadius:'6px'}},'Нет изменений. Добавьте, чтобы обновить статистику фракции.'));
       return;
     }
-    state.effects.forEach((eff,idx)=>{
-      effList.appendChild(el('div',{class:'effect-row'},
-        el('div',{class:'effect-info'},
-          el('div',{class:'effect-target'},eff.fieldName||('поле '+eff.targetFieldId)),
-          el('div',{class:'effect-detail'},
-            modeLabel(eff.mode)+' '+eff.amount+
-            ' · '+(eff.timing==='instant'?'сразу':eff.timing==='per_turn'?'каждый ход':'в течение '+eff.turns+' ходов')
-          ),
-          eff.note?el('div',{class:'effect-note'},eff.note):null
-        ),
-        el('button',{type:'button',class:'btn btn-ghost btn-icon btn-sm text-danger',onclick:()=>{state.effects.splice(idx,1);renderEffectsList()}},el('span',{html:ICONS.trash}))
-      ));
+    state.changes.forEach((ch,idx)=>{
+      const isAdd=ch.operation==='add';
+      const isSub=ch.operation==='subtract';
+      const isSet=ch.operation==='set';
+      const iconCls=isAdd?'up':(isSub?'down':'set');
+      const iconName=isAdd?'arrowUp':(isSub?'arrowDown':'equals');
+      const row=el('div',{class:'delta-row',style:{background:'rgba(24,33,31,0.4)',border:'1px solid var(--border)',borderRadius:'6px',padding:'8px 10px'}});
+      row.appendChild(el('div',{class:'delta-row-icon '+iconCls,html:ICONS[iconName]||ICONS.equals}));
+      const content=el('div',{class:'delta-row-content'});
+      content.appendChild(el('div',{class:'delta-row-field'},ch.fieldName||'поле'));
+      const changeLine=el('div',{class:'delta-row-change'});
+      const opLabel=isAdd?'+':(isSub?'−':'=');
+      const amountCls=isAdd?'up':(isSub?'down':'');
+      let amountStr='';
+      if(ch.value!==undefined&&ch.value!==null){
+        if(typeof ch.value==='number'||(typeof ch.value==='string'&&/^-?\d+(\.\d+)?$/.test(ch.value))){
+          amountStr=formatNumber(Number(ch.value)||0);
+        }else if(Array.isArray(ch.value)){
+          amountStr=ch.value.length+' пункт(ов)';
+        }else{
+          amountStr=String(ch.value).slice(0,40)+(String(ch.value).length>40?'…':'');
+        }
+      }
+      changeLine.appendChild(el('span',{class:'amount '+amountCls,style:!amountCls?{color:'var(--accent-light)'}:{}},opLabel+' '+amountStr));
+      content.appendChild(changeLine);
+      if(ch.note){
+        content.appendChild(el('div',{class:'delta-row-note'},ch.note));
+      }
+      row.appendChild(content);
+      row.appendChild(el('button',{type:'button',class:'btn btn-ghost btn-icon btn-sm text-danger',style:{alignSelf:'center'},onclick:()=>{state.changes.splice(idx,1);renderChangesList()}},el('span',{html:ICONS.close})));
+      chList.appendChild(row);
     });
   }
-  function renderEffectsForm(){
-    effFormWrap.innerHTML='';
-    if(!state.showEffectForm)return;
+  function renderChangeForm(){
+    chFormWrap.innerHTML='';
+    if(!state.showChangeForm)return;
     if(!faction){
-      effFormWrap.appendChild(el('div',{class:'card',style:{background:'rgba(212,165,67,0.05)',borderColor:'rgba(212,165,67,0.25)',padding:'10px'}},
-        el('p',{class:'text-xs text-warning'},'У автора поста нет фракции. Невозможно создать эффект на статистику.')
+      chFormWrap.appendChild(el('div',{class:'card',style:{background:'rgba(212,165,67,0.05)',borderColor:'rgba(212,165,67,0.25)',padding:'10px'}},
+        el('p',{class:'text-xs text-warning'},'У автора поста нет фракции. Невозможно создать изменение статистики.')
       ));
       return;
     }
     const stats=getFactionStats();
-    const local={targetSectionId:'',targetFieldId:'',mode:'add',amount:0,timing:'instant',turns:10,note:''};
+    const local={sectionId:'',fieldId:'',operation:'add',value:0,note:''};
     const formInner=el('div',{class:'card',style:{background:'rgba(58,125,116,0.05)',borderColor:'rgba(58,125,116,0.25)',padding:'12px'}});
-    formInner.appendChild(el('div',{class:'label'},'Новый эффект'));
+    formInner.appendChild(el('div',{class:'label'},'Новое изменение'));
     /* Row 1: section + field */
     const row1=el('div',{class:'stat-grid-2 mb-2'});
     const sectionSel=el('select',{class:'select',onchange:()=>{
-      local.targetSectionId=sectionSel.value;
-      local.targetFieldId='';
+      local.sectionId=sectionSel.value;
+      local.fieldId='';
       rebuildFieldSelect();
+      updateValueInput();
     }});
     sectionSel.appendChild(el('option',{value:''},'— Выберите секцию —'));
     stats.forEach(s=>sectionSel.appendChild(el('option',{value:s.id},s.title)));
@@ -2699,101 +3696,109 @@ function VerdictEditor(post){
       const oldFieldSel=fieldSelWrap.querySelector('select');
       if(oldFieldSel)oldFieldSel.remove();
       const fieldSel=el('select',{class:'select',onchange:()=>{
-        local.targetFieldId=fieldSel.value;
-        const sec=stats.find(s=>s.id===local.targetSectionId);
-        const f=findField(sec,local.targetFieldId);
-        /* Авто-выбор подходящего mode для не-number полей */
+        local.fieldId=fieldSel.value;
+        const sec=stats.find(s=>s.id===local.sectionId);
+        const f=findField(sec,local.fieldId);
+        /* Для list/text полей — только set */
         if(f&&(f.type==='list'||f.type==='text')){
-          modeSel.value='set';
-          local.mode='set';
-          updateAmountInput();
+          local.operation='set';
+          rebuildOperationSelect();
         }
+        updateValueInput();
       }});
       fieldSel.appendChild(el('option',{value:''},'— Выберите поле —'));
-      const sec=stats.find(s=>s.id===local.targetSectionId);
+      const sec=stats.find(s=>s.id===local.sectionId);
       if(sec){
         sec.fields.forEach(f=>fieldSel.appendChild(el('option',{value:f.id},f.label+' ('+f.type+')')));
       }
       fieldSelWrap.appendChild(fieldSel);
     }
-    /* Row 2: amount + mode */
+    /* Row 2: operation + value */
     const row2=el('div',{class:'stat-grid-2 mb-2'});
-    const amountInputWrap=el('div',{},el('label',{class:'label',style:{fontSize:'10px'}},'Значение'));
-    row2.appendChild(amountInputWrap);
-    const modeSel=el('select',{class:'select',onchange:()=>{local.mode=modeSel.value;updateAmountInput()}});
-    [['add','Добавить (+)'],['set','Установить (=)'],['subtract','Вычесть (−)'],['percent_add','Увеличить на % (+%)'],['percent_subtract','Уменьшить на % (−%)']].forEach(([k,l])=>{
-      const o=el('option',{value:k},l);modeSel.appendChild(o);
-    });
-    row2.appendChild(el('div',{},el('label',{class:'label',style:{fontSize:'10px'}},'Тип изменения'),modeSel));
+    const operationSelWrap=el('div',{},el('label',{class:'label',style:{fontSize:'10px'}},'Операция'));
+    row2.appendChild(operationSelWrap);
+    const valueWrap=el('div',{},el('label',{class:'label',style:{fontSize:'10px'}},'Значение'));
+    row2.appendChild(valueWrap);
     formInner.appendChild(row2);
-    function updateAmountInput(){
-      const old=amountInputWrap.querySelector('input,textarea');
-      if(old)old.remove();
-      const sec=stats.find(s=>s.id===local.targetSectionId);
-      const f=findField(sec,local.targetFieldId);
-      /* Для set на list — показываем textarea; иначе — number input */
-      if(f&&f.type==='list'&&local.mode==='set'){
-        const ta=el('textarea',{class:'textarea',style:{minHeight:'50px',fontSize:'12px'},placeholder:'Каждый пункт с новой строки',oninput:e=>local.amount=e.target.value});
-        amountInputWrap.appendChild(ta);
-      }else if(f&&f.type==='text'&&local.mode==='set'){
-        const inp=el('input',{class:'input',style:{fontSize:'12px'},oninput:e=>local.amount=e.target.value});
-        amountInputWrap.appendChild(inp);
+    function rebuildOperationSelect(){
+      const oldOpSel=operationSelWrap.querySelector('select');
+      if(oldOpSel)oldOpSel.remove();
+      const opSel=el('select',{class:'select',onchange:()=>{local.operation=opSel.value;updateValueInput()}});
+      const sec=stats.find(s=>s.id===local.sectionId);
+      const f=findField(sec,local.fieldId);
+      /* Для number — все 3 операции; для list/text — только set */
+      if(f&&f.type==='number'){
+        [['add','Добавить (+)'],['subtract','Вычесть (−)'],['set','Установить (=)']].forEach(([k,l])=>{
+          const o=el('option',{value:k},l);if(k===local.operation)o.selected=true;opSel.appendChild(o);
+        });
       }else{
-        const inp=el('input',{class:'input',type:'number',value:'0',style:{fontSize:'12px'},oninput:e=>local.amount=Number(inp.value)||0});
-        amountInputWrap.appendChild(inp);
+        const o=el('option',{value:'set'},'Установить (=)');opSel.appendChild(o);
+        local.operation='set';
+      }
+      operationSelWrap.appendChild(opSel);
+    }
+    function updateValueInput(){
+      const old=valueWrap.querySelector('input,textarea');
+      if(old)old.remove();
+      const sec=stats.find(s=>s.id===local.sectionId);
+      const f=findField(sec,local.fieldId);
+      if(!f)return;
+      /* Для list + set — textarea; для text + set — input; иначе — number input */
+      if(f.type==='list'&&local.operation==='set'){
+        const ta=el('textarea',{class:'textarea',style:{minHeight:'50px',fontSize:'12px'},placeholder:'Каждый пункт с новой строки',oninput:e=>local.value=e.target.value});
+        valueWrap.appendChild(ta);
+      }else if(f.type==='text'&&local.operation==='set'){
+        const inp=el('input',{class:'input',style:{fontSize:'12px'},oninput:e=>local.value=e.target.value});
+        valueWrap.appendChild(inp);
+      }else{
+        const inp=el('input',{class:'input',type:'number',step:'any',value:'0',style:{fontSize:'12px'},oninput:e=>local.value=Number(inp.value)||0});
+        valueWrap.appendChild(inp);
       }
     }
-    /* Row 3: timing + turns */
-    const row3=el('div',{class:'stat-grid-2 mb-2'});
-    const timingSel=el('select',{class:'select',onchange:()=>{
-      local.timing=timingSel.value;
-      turnsWrap.style.display=local.timing==='over_turns'?'block':'none';
-    }});
-    [['instant','Сразу'],['per_turn','Каждый ход'],['over_turns','В течение N ходов']].forEach(([k,l])=>{
-      const o=el('option',{value:k},l);timingSel.appendChild(o);
-    });
-    row3.appendChild(el('div',{},el('label',{class:'label',style:{fontSize:'10px'}},'Время применения'),timingSel));
-    const turnsWrap=el('div',{style:{display:'none'}},el('label',{class:'label',style:{fontSize:'10px'}},'Кол-во ходов'),
-      el('input',{class:'input',type:'number',min:'1',value:'10',oninput:e=>local.turns=Number(e.target.value)||1}));
-    row3.appendChild(turnsWrap);
-    formInner.appendChild(row3);
-    /* Row 4: note */
+    /* Row 3: note */
     formInner.appendChild(el('div',{class:'field-group'},
       el('label',{class:'label',style:{fontSize:'10px'}},'Комментарий (необязательно)'),
-      el('input',{class:'input',style:{fontSize:'12px'},placeholder:'Например: Торговля принесла +3000 солей/мес',oninput:e=>local.note=e.target.value})
+      el('input',{class:'input',style:{fontSize:'12px'},placeholder:'Например: Пошлины за покровительство караванов',oninput:e=>local.note=e.target.value})
     ));
     formInner.appendChild(el('div',{class:'flex gap-2 justify-end'},
-      el('button',{type:'button',class:'btn btn-ghost btn-sm',onclick:()=>{state.showEffectForm=false;renderEffectsForm()}},'Отмена'),
+      el('button',{type:'button',class:'btn btn-ghost btn-sm',onclick:()=>{state.showChangeForm=false;renderChangeForm()}},'Отмена'),
       el('button',{type:'button',class:'btn btn-primary btn-sm',onclick:()=>{
-        if(!local.targetSectionId){toast('Ошибка','Выберите секцию','error');return}
-        if(!local.targetFieldId){toast('Ошибка','Выберите поле','error');return}
-        const sec=stats.find(s=>s.id===local.targetSectionId);
-        const f=findField(sec,local.targetFieldId);
+        if(!local.sectionId){toast('Ошибка','Выберите секцию','error');return}
+        if(!local.fieldId){toast('Ошибка','Выберите поле','error');return}
+        const sec=stats.find(s=>s.id===local.sectionId);
+        const f=findField(sec,local.fieldId);
         if(!f){toast('Ошибка','Поле не найдено','error');return}
-        if(local.timing==='over_turns' && (!local.turns||local.turns<1)){toast('Ошибка','Укажите кол-во ходов','error');return}
-        const eff={
-          id:uid('eff'),
-          targetSectionId:local.targetSectionId,
-          targetFieldId:local.targetFieldId,
+        /* Валидация значения */
+        let val=local.value;
+        if(f.type==='number'){
+          if(typeof val!=='number'){val=Number(val)||0}
+        }else if(f.type==='list'&&local.operation==='set'){
+          if(typeof val==='string'){val=val.split('\n').map(s=>s.trim()).filter(Boolean)}
+          else if(!Array.isArray(val)){val=[]}
+        }else{
+          val=String(val==null?'':val);
+        }
+        const ch={
+          id:uid('chg'),
+          sectionId:local.sectionId,
+          fieldId:local.fieldId,
           fieldName:f.label,
           fieldType:f.type,
-          mode:local.mode,
-          amount:local.amount,
-          timing:local.timing,
-          turns:local.timing==='over_turns'?local.turns:0,
+          operation:local.operation,
+          value:val,
           note:local.note||''
         };
-        state.effects.push(eff);
-        state.showEffectForm=false;
-        renderEffectsList();
-        renderEffectsForm();
+        state.changes.push(ch);
+        state.showChangeForm=false;
+        renderChangesList();
+        renderChangeForm();
       }},el('span',{html:ICONS.plus}),'Добавить')
     ));
-    effFormWrap.appendChild(formInner);
+    chFormWrap.appendChild(formInner);
   }
-  renderEffectsList();
-  renderEffectsForm();
-  form.appendChild(effSection);
+  renderChangesList();
+  renderChangeForm();
+  form.appendChild(chSection);
 
   form.appendChild(el('div',{class:'flex justify-end gap-2',style:{marginTop:'8px'}},
     el('button',{type:'button',class:'btn btn-ghost',onclick:()=>App.setView('admin-posts')},'Отмена'),
@@ -2805,27 +3810,23 @@ function VerdictEditor(post){
     if(state.roleplayText.length<5){toast('Ошибка','Ролевая часть обязательна','error');return}
     const verdict={
       roleplayText:state.roleplayText,technicalText:state.technicalText,
-      effects:state.effects,adminId:App.userProfile.id,adminName:App.userProfile.name,
+      changes:state.changes,applied:true,
+      adminId:App.userProfile.id,adminName:App.userProfile.name,
       createdAt:new Date().toISOString(),
     };
     try{
       await RTDB.update('posts/'+post.id,{status:'VERDICTED',verdict});
-      if(faction&&state.effects.length){
-        const stats=migrateStats(faction.stats||[]);
-        const instantEffects=state.effects.filter(e=>e.timing==='instant');
-        const pendingEffects=state.effects.filter(e=>e.timing==='per_turn'||e.timing==='over_turns');
-        let newStats=stats;
-        if(instantEffects.length){
-          newStats=applyInstantEffects(stats,instantEffects);
-        }
-        const updateData={stats:newStats};
-        if(pendingEffects.length){
-          const existingPending=Array.isArray(faction.pendingEffects)?faction.pendingEffects:[];
-          updateData.pendingEffects=[...existingPending,...pendingEffects];
-        }
-        await RTDB.update('factions/'+faction.id,updateData);
+      if(faction&&state.changes.length){
+        /* Применить changes к stats фракции + заполнить recentChanges */
+        const {stats,recent}=applyVerdictChanges(faction.stats||[],state.changes);
+        const existingRecent=Array.isArray(faction.recentChanges)?faction.recentChanges:[];
+        const mergedRecent=pruneRecentChanges([...recent,...existingRecent]).slice(0,200);
+        await RTDB.update('factions/'+faction.id,{stats,recentChanges:mergedRecent});
+        /* Сохранить в вердикт oldValue/newValue для каждой change (для последующего отображения) */
+        verdict.changes=state.changes.map(c=>({...c}));
       }
-      toast('Вердикт вынесен',state.effects.length?'Статистика обновлена':'Вердикт сохранён','success');
+      await RTDB.update('posts/'+post.id,{verdict});
+      toast('Вердикт вынесен',state.changes.length?'Статистика обновлена':'Вердикт сохранён','success');
       App.setView('admin-posts');
     }catch(e){toast('Ошибка',e.message,'error')}
   }
@@ -2962,7 +3963,7 @@ function NewsForm(editing){
     el('div',{class:'field-group'},el('label',{class:'label'},'Ход'),el('input',{class:'input',type:'number',value:state.turnNumber,oninput:e=>state.turnNumber=e.target.value}))
   ));
   form.appendChild(el('div',{class:'field-group'},el('label',{class:'label'},'Краткое описание'),el('input',{class:'input',value:state.excerpt,oninput:e=>state.excerpt=e.target.value,placeholder:'Короткая аннотация...'})));
-  form.appendChild(el('div',{class:'field-group'},el('label',{class:'label'},'Содержание *'),el('textarea',{class:'textarea',style:{minHeight:'200px'},oninput:e=>{state.content=e.target.value;newsProgress.update()},placeholder:'Markdown поддерживается...'},state.content)));
+  form.appendChild(el('div',{class:'field-group'},el('label',{class:'label'},'Содержание *'),WikiEditor(state.content,v=>{state.content=v;newsProgress.update()},'Вики-разметка поддерживается: # заголовки, **жирный**, :::info блоки, таблицы, спойлеры и др.',200)));
   form.appendChild(el('div',{class:'flex items-center gap-2'},el('input',{type:'checkbox',id:'pinned',checked:state.isPinned,onchange:e=>state.isPinned=e.target.checked}),el('label',{for:'pinned',class:'text-sm text-muted'},'Закрепить новость')));
   form.appendChild(el('div',{class:'flex justify-end gap-2',style:{marginTop:'8px'}},
     el('button',{type:'button',class:'btn btn-ghost',onclick:()=>App.setView('admin-news')},'Отмена'),
@@ -3552,7 +4553,7 @@ function ChronicleForm(viewKey){
     ),
     el('div',{class:'field-group'},el('label',{class:'label'},'Эпоха'),el('input',{class:'input',placeholder:'I эпоха',oninput:e=>state.era=e.target.value}))
   ));
-  form.appendChild(el('div',{class:'field-group'},el('label',{class:'label'},'Содержание *'),el('textarea',{class:'textarea',style:{minHeight:'200px'},placeholder:'Markdown поддерживается...',oninput:e=>{state.content=e.target.value;chronProgress.update()},required:true})));
+  form.appendChild(el('div',{class:'field-group'},el('label',{class:'label'},'Содержание *'),WikiEditor(state.content,v=>{state.content=v;chronProgress.update()},'Вики-разметка поддерживается: # заголовки, **жирный**, :::info блоки, таблицы, спойлеры и др.',200)));
   form.appendChild(el('div',{class:'flex justify-end gap-2',style:{marginTop:'8px'}},
     el('button',{type:'button',class:'btn btn-ghost',onclick:()=>App.setView(viewKey)},'Отмена'),
     el('button',{type:'submit',class:'btn btn-primary'},el('span',{html:ICONS.save}),'Создать')
@@ -3656,7 +4657,7 @@ function BestiaryForm(viewKey){
     el('div',{class:'field-group'},el('label',{class:'label'},'Опасность'),el('input',{class:'input',placeholder:'Высокая',oninput:e=>state.danger=e.target.value})),
     el('div',{class:'field-group'},el('label',{class:'label'},'Среда обитания'),el('input',{class:'input',placeholder:'Леса',oninput:e=>state.habitat=e.target.value}))
   ));
-  form.appendChild(el('div',{class:'field-group'},el('label',{class:'label'},'Описание *'),el('textarea',{class:'textarea',style:{minHeight:'200px'},placeholder:'Markdown поддерживается...',oninput:e=>{state.content=e.target.value;bestiaryProgress.update()},required:true})));
+  form.appendChild(el('div',{class:'field-group'},el('label',{class:'label'},'Описание *'),WikiEditor(state.content,v=>{state.content=v;bestiaryProgress.update()},'Вики-разметка поддерживается: # заголовки, **жирный**, :::info блоки, таблицы, спойлеры и др.',200)));
   form.appendChild(el('div',{class:'flex justify-end gap-2',style:{marginTop:'8px'}},
     el('button',{type:'button',class:'btn btn-ghost',onclick:()=>App.setView(viewKey)},'Отмена'),
     el('button',{type:'submit',class:'btn btn-primary'},el('span',{html:ICONS.save}),'Создать')
